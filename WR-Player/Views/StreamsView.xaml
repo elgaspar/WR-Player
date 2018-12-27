@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="WR_Player.Views.StreamsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WR_Player.Views"
+             xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:Cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro.Platform">
+
+    <ListBox Grid.Row="2"
+             x:Name="list"
+             ItemsSource="{Binding Categories}"
+             SelectedItem="{Binding SelectedCategory}"
+             
+             Background="Red"
+             
+             
+             >
+
+
+
+    </ListBox>
+
+</UserControl>

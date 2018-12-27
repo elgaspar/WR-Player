@@ -1,0 +1,98 @@
+﻿<UserControl x:Class="WR_Player.Views.PlayerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:Cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro.Platform">
+
+    
+    <StackPanel>
+
+        <Grid Margin="10 5 5 10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="48"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <TextBlock Grid.Column="0"
+                       Text="{Binding Status}"
+                       FontStyle="Italic"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Center"/>
+            <TextBlock Grid.Column="1"
+                       Text=":"
+                       FontStyle="Italic"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"/>
+            <TextBlock Grid.Column="2"
+                       Text="{Binding SelectedStream.Title}"
+                       FontSize="14"
+                       FontWeight="DemiBold"
+                       Margin="10 0 0 0"/>
+
+            <Grid.Resources>
+                <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MetroTextBlock}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Status}" Value="Idle">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Resources>
+        </Grid>
+
+        <StackPanel Orientation="Horizontal">
+
+            <Button Cal:Message.Attach="Previous"
+                    Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
+                    Focusable="False"
+                    Padding="0"
+                    Width="40" Height="40"
+                    Margin="5">
+                <Image Source="/WR-Player;component/Resources/images/previous.png" />
+            </Button>
+
+            <Button Cal:Message.Attach="Play"
+                    Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
+                    Focusable="False"
+                    Padding="0"
+                    Width="40" Height="40"
+                    Margin="5">
+                <Image Source="/WR-Player;component/Resources/images/play.png" />
+            </Button>
+
+            <Button Cal:Message.Attach="Stop"
+                    Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
+                    Focusable="False"
+                    Padding="0"
+                    Width="40" Height="40"
+                    Margin="5">
+                <Image Source="/WR-Player;component/Resources/images/stop.png" />
+            </Button>
+
+            <Button Cal:Message.Attach="Next"
+                    Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
+                    Focusable="False"
+                    Padding="0"
+                    Width="40" Height="40"
+                    Margin="5">
+                <Image Source="/WR-Player;component/Resources/images/next.png" />
+            </Button>
+
+            <Slider Style="{DynamicResource FlatSlider}"
+                    Value="{Binding Volume}"
+                    ToolTip="Volume"
+                    Controls:SliderHelper.EnableMouseWheel="MouseHover"
+                    IsMoveToPointEnabled="True"
+                    Maximum="0.99"
+                    SmallChange="0.05"
+                    VerticalAlignment="Center"
+                    Width="125"
+                    Height="15"
+                    Margin="5"/>
+        </StackPanel>
+        
+    </StackPanel>
+
+
+</UserControl>

@@ -9,8 +9,9 @@ namespace WR_Player.Models
 {
     class Player
     {
-        public double Volume { get; private set; }
-        public bool IsPlaying { get; private set; } //TODO: do i need this?
+        public double Volume { get; private set; }        
+        public PlayerStatus Status { get; private set; }
+
 
         private MediaPlayer player;
 
@@ -18,6 +19,12 @@ namespace WR_Player.Models
         {
             player = new MediaPlayer();
             Volume = 0.5;
+            Status = PlayerStatus.Idle;
+        }
+
+        public enum PlayerStatus
+        {
+            Idle, Buffering, Playing 
         }
 
         public void Play(string Url)
@@ -27,13 +34,13 @@ namespace WR_Player.Models
             player.Play();
             player.Volume = Volume;
 
-            IsPlaying = true;
+            Status = PlayerStatus.Playing;
         }
 
         public void Stop()
         {
             player.Stop();
-            IsPlaying = false;
+            Status = PlayerStatus.Idle;
         }
 
         public void SetVolume(double vol)

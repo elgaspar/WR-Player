@@ -7,32 +7,28 @@
                       xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
                       Title="WR-Player"
                       TitleCaps="False"
-                      Width="300" Height="200"
-                      WindowStartupLocation="CenterScreen">
-    <Grid>
+                      SizeToContent="WidthAndHeight"
+                      WindowStartupLocation="CenterScreen"
+                      MinHeight="155">
 
+    <DockPanel>
 
-        <Button x:Name="Play"
-                Content="Play"
-                Width="100" Height="37"
-                HorizontalAlignment="Left"
-                Margin="5"/>
+        <local:MenuView DockPanel.Dock="Top"/>
 
-        <Button x:Name="Stop"
-                Content="Stop"
-                Width="100" Height="37"
-                HorizontalAlignment="Right"
-                Margin="5"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
-        <Slider x:Name="Volume"
-                Style="{DynamicResource FlatSlider}"
-                ToolTip="Volume"
-                Controls:SliderHelper.EnableMouseWheel="MouseHover"
-                IsMoveToPointEnabled="True"
-                Maximum="0.99"
-                SmallChange="0.05"
-                VerticalAlignment="Bottom"
-                Margin="5"/>
+            <local:StreamsView Grid.Row="0"/>
+            <local:PlayerView Grid.Row="1"
+                              DataContext="{Binding PlayerVM}"
+                              Margin="5"/>
 
-    </Grid>
+        </Grid>
+
+    </DockPanel>
+    
+    
 </Controls:MetroWindow>

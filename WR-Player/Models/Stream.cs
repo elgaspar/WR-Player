@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace WR_Player.Models
 {
-    class Station
+    class Stream
     {
         public string Title { get; set; }
         public string Url { get; set; }
 
-        public Station()
+        public Stream()
         {
         }
 
-        public Station(string title, string url)
+        public Stream(string title, string url)
         {
             Title = title;
             Url = url;
