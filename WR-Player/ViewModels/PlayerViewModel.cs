@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,34 +9,43 @@ using WR_Player.Models;
 
 namespace WR_Player.ViewModels
 {
-    class PlayerViewModel : PropertyChangedBase
+    class PlayerViewModel : ViewModelBase
     {
+        private Player player;
 
-        public PlayerViewModel()
+        public PlayerViewModel(MainViewModel parent) : base(parent)
         {
             player = new Player();
 
-            SelectedStream = new Stream("web radio name 95,7", "http://46.4.37.132:9382");//TODO
+            loadFirstStream();//TODO
         }
 
-        private Player player;
 
-        public Player.PlayerStatus Status
+        public Stream LoadedStream
         {
-            get { return player.Status; }
-        }
-
-        //TODO: move it into StreamsViewModel
-        private Stream _selectedStream;
-        public Stream SelectedStream
-        {
-            get { return _selectedStream; }
-            set
+            get
             {
-                _selectedStream = value;
-                NotifyOfPropertyChange(() => SelectedStream);
+                if (LoadedStreamIndex < 0)
+                    return null;
+                return ParentVM.StreamsVM.Streams[LoadedStreamIndex];
             }
         }
+
+        private int _loadedStreamIndex;
+        public int LoadedStreamIndex
+        {
+            get { return _loadedStreamIndex; }
+            set
+            {
+                if (value >= ParentVM.StreamsVM.Streams.Count || value < 0)
+                    return;
+                ParentVM.StreamsVM.MarkStreamAsSelected(value);
+                _loadedStreamIndex = value;
+                NotifyOfPropertyChange(() => LoadedStream);
+            }
+        }
+
+        public Player.PlayerStatus Status { get { return player.Status; } }
 
         public double Volume
         {
@@ -43,32 +53,57 @@ namespace WR_Player.ViewModels
             set { player.SetVolume(value); }
         }
 
+
         public void Play()
         {
-            player.Play(SelectedStream.Url);
-            refresh();
+            if (!ParentVM.StreamsVM.AreThereStreams)
+                return;
+            player.Play(LoadedStream.Url);
+            NotifyOfPropertyChange(() => Status);
         }
 
         public void Stop()
         {
             player.Stop();
-            refresh();
+            NotifyOfPropertyChange(() => Status);
         }
 
         public void Next()
         {
-            //TODO
+            if (LoadedStreamIndex == ParentVM.StreamsVM.Streams.Count - 1)
+                return;
+            bool isPlaying = player.Status != Player.PlayerStatus.Idle;
+            Stop();
+            loadNextStream();
+            if (isPlaying)
+                Play();
         }
 
         public void Previous()
         {
-            //TODO
+            if (LoadedStreamIndex <= 0)
+                return;
+            bool isPlaying = player.Status != Player.PlayerStatus.Idle;
+            Stop();
+            loadPreviousStream();
+            if (isPlaying)
+                Play();
         }
 
-        //TODO: better name?
-        private void refresh()
+        private void loadFirstStream()
         {
-            NotifyOfPropertyChange(() => Status);
+            LoadedStreamIndex = 0;
         }
+
+        private void loadNextStream()
+        {
+            LoadedStreamIndex++;
+        }
+
+        private void loadPreviousStream()
+        {
+            LoadedStreamIndex--;
+        }
+
     }
 }

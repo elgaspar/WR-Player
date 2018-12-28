@@ -25,7 +25,7 @@
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center"/>
             <TextBlock Grid.Column="2"
-                       Text="{Binding SelectedStream.Title}"
+                       Text="{Binding LoadedStream.Title}"
                        FontSize="14"
                        FontWeight="DemiBold"
                        Margin="10 0 0 0"/>

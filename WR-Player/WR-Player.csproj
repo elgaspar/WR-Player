@@ -76,12 +76,15 @@
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\Stream.cs" />
+    <Compile Include="ViewModels\FileViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ViewModels\PlayerViewModel.cs" />
+    <Compile Include="ViewModels\StreamsViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>

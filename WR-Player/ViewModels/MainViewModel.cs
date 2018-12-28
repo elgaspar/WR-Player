@@ -10,19 +10,15 @@ namespace WR_Player.ViewModels
 {
     class MainViewModel : PropertyChangedBase
     {
+        public FileViewModel FileVM { get; }
+        public StreamsViewModel StreamsVM { get; }
         public PlayerViewModel PlayerVM { get; }
 
         public MainViewModel()
         {
-            PlayerVM = new PlayerViewModel();
-
-            
+            FileVM = new FileViewModel(this);
+            StreamsVM = new StreamsViewModel(this);
+            PlayerVM = new PlayerViewModel(this);
         }
-
-        
-
-
-        
-
     }
 }
