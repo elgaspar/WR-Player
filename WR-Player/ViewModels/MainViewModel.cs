@@ -8,16 +8,16 @@ using WR_Player.Models;
 
 namespace WR_Player.ViewModels
 {
-    class MainViewModel : PropertyChangedBase
+    public class MainViewModel : PropertyChangedBase
     {
         public FileViewModel FileVM { get; }
-        public StreamsViewModel StreamsVM { get; }
+        public PlaylistViewModel PlaylistVM { get; }
         public PlayerViewModel PlayerVM { get; }
 
         public MainViewModel()
         {
             FileVM = new FileViewModel(this);
-            StreamsVM = new StreamsViewModel(this);
+            PlaylistVM = new PlaylistViewModel(this);
             PlayerVM = new PlayerViewModel(this);
         }
     }

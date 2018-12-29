@@ -9,33 +9,41 @@
     
     <Menu>
 
-        <MenuItem Header="File" Height="Auto">
-            <MenuItem Header="New"/>
-            <MenuItem Header="Open.."/>
+        <MenuItem Header="Playlist" Height="Auto">
+            <MenuItem Header="New"
+                      Click="PlaylistNew"/>
+            <MenuItem Header="Open.."
+                      Click="PlaylistOpen"/>
             <Separator/>
-            <MenuItem Header="Save"/>
-            <MenuItem Header="Save As.."/>
-            <Separator/>
-            <MenuItem Header="Exit"/>
+            <MenuItem Header="Save"
+                      Click="PlaylistSave"/>
+            <MenuItem Header="Save As.."
+                      Click="PlaylistSaveAs"/>
         </MenuItem>
 
-        <MenuItem Header="Edit" Height="Auto">
-            <MenuItem Header="Add Stream.."/>
-            <MenuItem Header="Edit Stream.."/>
-            <MenuItem Header="Remove Stream.."/>
+        <MenuItem Header="Stream" Height="Auto">
+            <MenuItem Header="Add.."
+                      Click="StreamAdd"/>
+            <MenuItem Header="Edit.."
+                      Click="StreamEdit"/>
+            <MenuItem Header="Remove.."
+                      Click="StreamRemove"/>
         </MenuItem>
 
         <MenuItem Header="View" Height="Auto">
             <MenuItem Header="Compact Mode"
-                      IsCheckable="True"/>
+                      IsCheckable="True"
+                      Click="CompactMode"/>
         </MenuItem>
 
         <MenuItem Header="Options" Height="Auto">
-            <MenuItem Header="Settings.."/>
+            <MenuItem Header="Settings.."
+                      Click="Settings"/>
         </MenuItem>
         
         <MenuItem Header="Help" Height="Auto">
-            <MenuItem Header="About WR-Player.."/>
+            <MenuItem Header="About WR-Player.."
+                      Click="About"/>
         </MenuItem>
 
     </Menu>

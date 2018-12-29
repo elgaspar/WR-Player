@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 
 namespace WR_Player.Models
 {
-    class Stream : INotifyPropertyChanged
+    public class PlaylistItem : NotifyBase
     {
-        public Stream()
+        public PlaylistItem()
         {
         }
 
-        public Stream(string title, string url)
+        public PlaylistItem(string title, string path)
         {
             Title = title;
-            Url = url;
+            Path = path;
             IsSelected = false;
         }
 
@@ -33,13 +33,13 @@ namespace WR_Player.Models
             }
         }
 
-        private string _url;
-        public string Url
+        private string _path;
+        public string Path
         {
-            get { return _url; }
+            get { return _path; }
             set
             {
-                _url = value;
+                _path = value;
                 NotifyPropertyChanged();
             }
         }
@@ -55,14 +55,5 @@ namespace WR_Player.Models
             }
         }
 
-
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }

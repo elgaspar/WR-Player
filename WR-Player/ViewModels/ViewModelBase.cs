@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WR_Player.ViewModels
 {
-    class ViewModelBase : PropertyChangedBase
+    public class ViewModelBase : PropertyChangedBase
     {
         protected MainViewModel ParentVM;
 

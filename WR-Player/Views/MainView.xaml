@@ -21,8 +21,8 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <local:StreamsView Grid.Row="0"
-                               DataContext="{Binding StreamsVM}"/>
+            <local:PlaylistView Grid.Row="0"
+                               DataContext="{Binding PlaylistVM}"/>
             
             <local:PlayerView Grid.Row="1"
                               DataContext="{Binding PlayerVM}"

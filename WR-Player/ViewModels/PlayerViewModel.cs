@@ -9,41 +9,20 @@ using WR_Player.Models;
 
 namespace WR_Player.ViewModels
 {
-    class PlayerViewModel : ViewModelBase
+    public class PlayerViewModel : ViewModelBase
     {
         private Player player;
+
+        private Playlist playlist { get { return ParentVM.PlaylistVM.Playlist; } }
 
         public PlayerViewModel(MainViewModel parent) : base(parent)
         {
             player = new Player();
-
-            loadFirstStream();//TODO
         }
 
 
-        public Stream LoadedStream
-        {
-            get
-            {
-                if (LoadedStreamIndex < 0)
-                    return null;
-                return ParentVM.StreamsVM.Streams[LoadedStreamIndex];
-            }
-        }
 
-        private int _loadedStreamIndex;
-        public int LoadedStreamIndex
-        {
-            get { return _loadedStreamIndex; }
-            set
-            {
-                if (value >= ParentVM.StreamsVM.Streams.Count || value < 0)
-                    return;
-                ParentVM.StreamsVM.MarkStreamAsSelected(value);
-                _loadedStreamIndex = value;
-                NotifyOfPropertyChange(() => LoadedStream);
-            }
-        }
+        public PlaylistItem LoadedItem { get { return playlist.SelectedItem; } }
 
         public Player.PlayerStatus Status { get { return player.Status; } }
 
@@ -56,9 +35,9 @@ namespace WR_Player.ViewModels
 
         public void Play()
         {
-            if (!ParentVM.StreamsVM.AreThereStreams)
+            if (!playlist.AreThereItems)
                 return;
-            player.Play(LoadedStream.Url);
+            player.Play(LoadedItem.Path);
             NotifyOfPropertyChange(() => Status);
         }
 
@@ -70,39 +49,26 @@ namespace WR_Player.ViewModels
 
         public void Next()
         {
-            if (LoadedStreamIndex == ParentVM.StreamsVM.Streams.Count - 1)
+            if (LoadedItem == playlist.Items.Last())
                 return;
             bool isPlaying = player.Status != Player.PlayerStatus.Idle;
             Stop();
-            loadNextStream();
+            playlist.SelectNextItem();
             if (isPlaying)
                 Play();
+            NotifyOfPropertyChange(() => LoadedItem);
         }
 
         public void Previous()
         {
-            if (LoadedStreamIndex <= 0)
+            if (LoadedItem == playlist.Items.First())
                 return;
             bool isPlaying = player.Status != Player.PlayerStatus.Idle;
             Stop();
-            loadPreviousStream();
+            playlist.SelectPreviousItem();
             if (isPlaying)
                 Play();
-        }
-
-        private void loadFirstStream()
-        {
-            LoadedStreamIndex = 0;
-        }
-
-        private void loadNextStream()
-        {
-            LoadedStreamIndex++;
-        }
-
-        private void loadPreviousStream()
-        {
-            LoadedStreamIndex--;
+            NotifyOfPropertyChange(() => LoadedItem);
         }
 
     }

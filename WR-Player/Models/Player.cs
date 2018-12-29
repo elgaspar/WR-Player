@@ -7,7 +7,7 @@ using System.Windows.Media;
 
 namespace WR_Player.Models
 {
-    class Player
+    public class Player
     {
         public double Volume { get; private set; }        
         public PlayerStatus Status { get; private set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WR_Player.ViewModels
 {
-    class FileViewModel : ViewModelBase
+    public class FileViewModel : ViewModelBase
     {
         public FileViewModel(MainViewModel parent) : base(parent)
         {

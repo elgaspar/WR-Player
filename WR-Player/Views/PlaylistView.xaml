@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="WR_Player.Views.StreamsView"
+﻿<UserControl x:Class="WR_Player.Views.PlaylistView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -9,9 +9,9 @@
 
     <ListBox Grid.Row="2"
              x:Name="list"
-             ItemsSource="{Binding Streams}"
-             SelectedItem="{Binding SelectedStream}">
-        
+             ItemsSource="{Binding Playlist.Items}"
+             >
+
         <ListBox.ItemTemplate>
             <DataTemplate>
 
@@ -26,10 +26,10 @@
                         </Style>
                     </TextBlock.Style>
                 </TextBlock>
-                
+
             </DataTemplate>
         </ListBox.ItemTemplate>
-        
+
     </ListBox>
 
 </UserControl>

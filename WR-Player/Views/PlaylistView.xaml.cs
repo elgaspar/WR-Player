@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace WR_Player.Views
 {
     /// <summary>
-    /// Interaction logic for StationsView.xaml
+    /// Interaction logic for PlaylistView.xaml
     /// </summary>
-    public partial class StreamsView : UserControl
+    public partial class PlaylistView : UserControl
     {
-        public StreamsView()
+        public PlaylistView()
         {
             InitializeComponent();
         }
