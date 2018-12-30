@@ -36,7 +36,6 @@ namespace WR_Player.Views
             //    return;
 
             Console.WriteLine("NEW");//TODO: delete it
-
             MainVM.PlaylistVM.New();
         }
 
@@ -51,23 +50,24 @@ namespace WR_Player.Views
                 return;
 
             Console.WriteLine("OPEN: " + filepath);//TODO: delete it
-
             bool succeed = MainVM.PlaylistVM.Load(filepath);
-            if (succeed == false)
+
+            if (!succeed)
                 Dialogs.Error("Couldn't open playlist.");
         }
 
         private void PlaylistSave(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(MainVM.PlaylistVM.Filepath))
+            if (!MainVM.PlaylistVM.isPlaylistFileOpen)
             {
                 PlaylistSaveAs(null, null);
                 return;
             }
-            Console.WriteLine("SAVE");//TODO: delete it
 
+            Console.WriteLine("SAVE");//TODO: delete it
             bool succeed = MainVM.PlaylistVM.Save();
-            if (succeed == false)
+
+            if (!succeed)
                 Dialogs.Error("Couldn't save playlist.");
         }
 
@@ -78,39 +78,45 @@ namespace WR_Player.Views
                 return;
 
             Console.WriteLine("SAVE AS: " + filepath);//TODO: delete it
-
             bool succeed = MainVM.PlaylistVM.SaveAs(filepath);
-            if (succeed == false)
+
+            if (!succeed)
                 Dialogs.Error("Couldn't save playlist.");
         }
 
         private void StreamAdd(object sender, RoutedEventArgs e)
         {
+            Console.WriteLine("STREAM ADD");//TODO: delete it
             //TODO
         }
 
         private void StreamEdit(object sender, RoutedEventArgs e)
         {
+            Console.WriteLine("STREAM EDIT");//TODO: delete it
             //TODO
         }
 
         private void StreamRemove(object sender, RoutedEventArgs e)
         {
+            Console.WriteLine("STREAM REMOVE");//TODO: delete it
             //TODO
         }
 
         private void CompactMode(object sender, RoutedEventArgs e)
         {
+            Console.WriteLine("COMPACT MODE");//TODO: delete it
             //TODO
         }
 
         private void Settings(object sender, RoutedEventArgs e)
         {
+            Console.WriteLine("SETTINGS");//TODO: delete it
             //TODO
         }
 
         private void About(object sender, RoutedEventArgs e)
         {
+            Console.WriteLine("ABOUT");//TODO: delete it
             //TODO
         }
 

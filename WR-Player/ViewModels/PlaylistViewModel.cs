@@ -12,7 +12,7 @@ namespace WR_Player.ViewModels
     {
         private Playlist playlist;
 
-        public string Filepath { get; private set; }
+        private string filepath;
 
         public PlaylistViewModel(MainViewModel parent) : base(parent)
         {
@@ -27,6 +27,7 @@ namespace WR_Player.ViewModels
 
         public PlaylistItem SelectedItem { get { return playlist.SelectedItem; } }
 
+        public bool isPlaylistFileOpen { get { return !string.IsNullOrEmpty(filepath); } }
 
 
         public void New()
@@ -40,20 +41,23 @@ namespace WR_Player.ViewModels
 
         public bool Save()
         {
-            return playlist.SaveToFile(Filepath);
+            return playlist.SaveToFile(filepath);
         }
 
         public bool SaveAs(string path)
         {
-            this.Filepath = path;
-            return playlist.SaveToFile(path);
+            bool succeed = playlist.SaveToFile(path);
+            if (succeed)
+                this.filepath = path;
+            return succeed;
         }
 
         public bool Load(string path)
         {
-            this.Filepath = path;
             stopPlaying();
             bool succeed = playlist.LoadFromFile(path);
+            if (succeed)
+                this.filepath = path;
             notifyAll();
             return succeed;
         }
@@ -80,7 +84,7 @@ namespace WR_Player.ViewModels
         private void initPlaylist()
         {
             playlist = new Playlist();
-            Filepath = null;
+            filepath = null;
         }
 
         private void notifyAll()
