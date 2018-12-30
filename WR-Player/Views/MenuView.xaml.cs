@@ -52,7 +52,7 @@ namespace WR_Player.Views
 
             Console.WriteLine("OPEN: " + filepath);
 
-            bool succeed = MainVM.PlaylistVM.Playlist.LoadFromFile(filepath);
+            bool succeed = MainVM.PlaylistVM.Load(filepath);
             if (succeed == false)
                 Dialogs.Error("Couldn't open playlist.");
         }
@@ -79,7 +79,7 @@ namespace WR_Player.Views
 
             Console.WriteLine("SAVE AS: " + filepath);
 
-            bool succeed = MainVM.PlaylistVM.Playlist.SaveToFile(filepath);
+            bool succeed = MainVM.PlaylistVM.Save(filepath);
             if (succeed == false)
                 Dialogs.Error("Couldn't save playlist.");
         }

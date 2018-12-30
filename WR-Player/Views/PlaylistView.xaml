@@ -9,7 +9,7 @@
 
     <ListBox Grid.Row="2"
              x:Name="list"
-             ItemsSource="{Binding Playlist.Items}"
+             ItemsSource="{Binding Items}"
              >
 
         <ListBox.ItemTemplate>

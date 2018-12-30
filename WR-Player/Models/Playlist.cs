@@ -51,12 +51,7 @@ namespace WR_Player.Models
             }
         }
 
-
-
-        public void SelectFirstItem()
-        {
-            SelectedItemIndex = 0;
-        }
+        
 
         public void SelectNextItem()
         {
@@ -89,6 +84,11 @@ namespace WR_Player.Models
 
 
 
+
+        private void SelectFirstItem()
+        {
+            SelectedItemIndex = 0;
+        }
 
         private void MarkItemAsSelected(int index)
         {

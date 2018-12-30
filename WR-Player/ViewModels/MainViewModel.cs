@@ -10,13 +10,11 @@ namespace WR_Player.ViewModels
 {
     public class MainViewModel : PropertyChangedBase
     {
-        public FileViewModel FileVM { get; }
         public PlaylistViewModel PlaylistVM { get; }
         public PlayerViewModel PlayerVM { get; }
 
         public MainViewModel()
         {
-            FileVM = new FileViewModel(this);
             PlaylistVM = new PlaylistViewModel(this);
             PlayerVM = new PlayerViewModel(this);
         }
