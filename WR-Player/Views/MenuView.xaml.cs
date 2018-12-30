@@ -27,17 +27,17 @@ namespace WR_Player.Views
             InitializeComponent();
         }
 
-        public MainViewModel MainVM
-        {
-            get
-            {
-                return (MainViewModel)Application.Current.MainWindow.DataContext;
-            }
-        }
+        public MainViewModel MainVM { get { return (MainViewModel)Application.Current.MainWindow.DataContext; } }
 
         private void PlaylistNew(object sender, RoutedEventArgs e)
         {
-            //TODO
+            //bool? result = _promptForSaveAndSave("Do you want to save changes to file?");
+            //if (result == null)
+            //    return;
+
+            Console.WriteLine("NEW");//TODO: delete it
+
+            MainVM.PlaylistVM.New();
         }
 
         private void PlaylistOpen(object sender, RoutedEventArgs e)
@@ -50,7 +50,7 @@ namespace WR_Player.Views
             if (filepath == null)
                 return;
 
-            Console.WriteLine("OPEN: " + filepath);
+            Console.WriteLine("OPEN: " + filepath);//TODO: delete it
 
             bool succeed = MainVM.PlaylistVM.Load(filepath);
             if (succeed == false)
@@ -77,7 +77,7 @@ namespace WR_Player.Views
             if (filepath == null)
                 return;
 
-            Console.WriteLine("SAVE AS: " + filepath);
+            Console.WriteLine("SAVE AS: " + filepath);//TODO: delete it
 
             bool succeed = MainVM.PlaylistVM.Save(filepath);
             if (succeed == false)

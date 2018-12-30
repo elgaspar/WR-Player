@@ -10,13 +10,13 @@ namespace WR_Player.ViewModels
 {
     public class PlaylistViewModel : ViewModelBase
     {
-        private Playlist playlist { get; }
+        private Playlist playlist;
 
-        public string Filepath { get; set; }
+        private string filepath;
 
         public PlaylistViewModel(MainViewModel parent) : base(parent)
         {
-            playlist = new Playlist();
+            New();
         }
 
 
@@ -29,6 +29,31 @@ namespace WR_Player.ViewModels
 
 
 
+        public void New()
+        {
+            if (ParentVM.PlayerVM != null)
+                ParentVM.PlayerVM.Stop();
+            playlist = new Playlist();
+            filepath = null;
+            NotifyOfPropertyChange(() => Items);
+        }
+
+        public bool Save(string filepath)
+        {
+            this.filepath = filepath;
+            return playlist.SaveToFile(filepath);
+        }
+
+        public bool Load(string filepath)
+        {
+            this.filepath = filepath;
+            ParentVM.PlayerVM.Stop();
+            bool succeed = playlist.LoadFromFile(filepath);
+            NotifyOfPropertyChange(() => Items);
+            return succeed;
+        }
+
+
         public void SelectNextItem()
         {
             playlist.SelectNextItem();
@@ -37,17 +62,6 @@ namespace WR_Player.ViewModels
         public void SelectPreviousItem()
         {
             playlist.SelectPreviousItem();
-        }
-
-        public bool Save(string filepath)
-        {
-            return playlist.SaveToFile(filepath);
-        }
-
-        public bool Load(string filepath)
-        {
-            ParentVM.PlayerVM.Stop();
-            return playlist.LoadFromFile(filepath);
         }
     }
 }
