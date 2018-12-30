@@ -59,16 +59,16 @@ namespace WR_Player.Views
 
         private void PlaylistSave(object sender, RoutedEventArgs e)
         {
-            //if (string.IsNullOrEmpty(MainVM.Filepath))
-            //{
-            //    return FileSaveAs();
-            //}
-            //else
-            //{
-            //    bool succeed = MainVM.Save(null);
-            //    _handleError(succeed, "File saved successfully.", "Couldn't save file.");
-            //    return succeed;
-            //}
+            if (string.IsNullOrEmpty(MainVM.PlaylistVM.Filepath))
+            {
+                PlaylistSaveAs(null, null);
+                return;
+            }
+            Console.WriteLine("SAVE");//TODO: delete it
+
+            bool succeed = MainVM.PlaylistVM.Save();
+            if (succeed == false)
+                Dialogs.Error("Couldn't save playlist.");
         }
 
         private void PlaylistSaveAs(object sender, RoutedEventArgs e)
@@ -79,7 +79,7 @@ namespace WR_Player.Views
 
             Console.WriteLine("SAVE AS: " + filepath);//TODO: delete it
 
-            bool succeed = MainVM.PlaylistVM.Save(filepath);
+            bool succeed = MainVM.PlaylistVM.SaveAs(filepath);
             if (succeed == false)
                 Dialogs.Error("Couldn't save playlist.");
         }

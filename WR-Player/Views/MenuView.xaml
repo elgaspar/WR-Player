@@ -16,8 +16,10 @@
                       Click="PlaylistOpen"/>
             <Separator/>
             <MenuItem Header="Save"
+                      IsEnabled="{Binding PlaylistVM.CanSave}"
                       Click="PlaylistSave"/>
             <MenuItem Header="Save As.."
+                      IsEnabled="{Binding PlaylistVM.CanSave}"
                       Click="PlaylistSaveAs"/>
         </MenuItem>
 

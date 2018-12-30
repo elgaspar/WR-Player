@@ -12,11 +12,11 @@ namespace WR_Player.ViewModels
     {
         private Playlist playlist;
 
-        private string filepath;
+        public string Filepath { get; private set; }
 
         public PlaylistViewModel(MainViewModel parent) : base(parent)
         {
-            New();
+            initPlaylist();
         }
 
 
@@ -31,25 +31,30 @@ namespace WR_Player.ViewModels
 
         public void New()
         {
-            if (ParentVM.PlayerVM != null)
-                ParentVM.PlayerVM.Stop();
-            playlist = new Playlist();
-            filepath = null;
-            NotifyOfPropertyChange(() => Items);
+            stopPlaying();
+            initPlaylist();
+            notifyAll();
         }
 
-        public bool Save(string filepath)
+        public bool CanSave { get { return playlist.Items.Count > 0; } }
+
+        public bool Save()
         {
-            this.filepath = filepath;
-            return playlist.SaveToFile(filepath);
+            return playlist.SaveToFile(Filepath);
         }
 
-        public bool Load(string filepath)
+        public bool SaveAs(string path)
         {
-            this.filepath = filepath;
-            ParentVM.PlayerVM.Stop();
-            bool succeed = playlist.LoadFromFile(filepath);
-            NotifyOfPropertyChange(() => Items);
+            this.Filepath = path;
+            return playlist.SaveToFile(path);
+        }
+
+        public bool Load(string path)
+        {
+            this.Filepath = path;
+            stopPlaying();
+            bool succeed = playlist.LoadFromFile(path);
+            notifyAll();
             return succeed;
         }
 
@@ -62,6 +67,26 @@ namespace WR_Player.ViewModels
         public void SelectPreviousItem()
         {
             playlist.SelectPreviousItem();
+        }
+
+
+
+        private void stopPlaying()
+        {
+            if (ParentVM.PlayerVM != null)
+                ParentVM.PlayerVM.Stop();
+        }
+
+        private void initPlaylist()
+        {
+            playlist = new Playlist();
+            Filepath = null;
+        }
+
+        private void notifyAll()
+        {
+            NotifyOfPropertyChange(() => Items);
+            NotifyOfPropertyChange(() => CanSave);
         }
     }
 }
