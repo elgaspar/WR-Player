@@ -39,6 +39,7 @@ namespace WR_Player.ViewModels
                 return;
             player.Play(LoadedItem.Path);
             NotifyOfPropertyChange(() => Status);
+            NotifyOfPropertyChange(() => LoadedItem);
         }
 
         public void Stop()

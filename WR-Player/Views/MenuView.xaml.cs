@@ -77,7 +77,7 @@ namespace WR_Player.Views
             if (filepath == null)
                 return;
 
-            Console.WriteLine("OPEN: " + filepath);
+            Console.WriteLine("SAVE AS: " + filepath);
 
             bool succeed = MainVM.PlaylistVM.Playlist.SaveToFile(filepath);
             if (succeed == false)

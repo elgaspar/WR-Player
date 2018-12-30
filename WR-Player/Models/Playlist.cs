@@ -18,7 +18,7 @@ namespace WR_Player.Models
 
 
 
-        public ObservableCollection<PlaylistItem> Items { get; }
+        public ObservableCollection<PlaylistItem> Items { get; private set; }
 
         public bool AreThereItems { get { return Items.Count > 0; } }
 
@@ -74,12 +74,16 @@ namespace WR_Player.Models
 
         public bool SaveToFile(string filepath)
         {
-            return PlaylistParser.WriteToFile(filepath);
+            return PlaylistParser.WriteToFile(this, filepath);
         }
 
         public bool LoadFromFile(string filepath)
         {
-            return PlaylistParser.ReadFromFile(filepath);
+            Playlist loadedPlaylist = PlaylistParser.ReadFromFile(filepath);
+            if (loadedPlaylist == null)
+                return false;
+            loadNewItemCollection(loadedPlaylist.Items);
+            return true;
         }
 
 
@@ -97,6 +101,17 @@ namespace WR_Player.Models
         {
             foreach (PlaylistItem item in Items)
                 item.IsSelected = false;
+        }
+
+        private void loadNewItemCollection(Collection<PlaylistItem> newItems)
+        {
+            Items.Clear();
+            foreach (PlaylistItem item in newItems)
+                Items.Add(item);
+            if (Items.Count > 0)
+                SelectedItemIndex = 0;
+            else
+                SelectedItemIndex = -1;
         }
     }
 }
