@@ -25,6 +25,8 @@ namespace WR_Player.ViewModels
             }
         }
 
+
+
         private bool AddEdit { get; set; }
 
         private string _title;
@@ -66,7 +68,6 @@ namespace WR_Player.ViewModels
 
 
 
-
         public bool IsValid { get { return string.IsNullOrEmpty(Error); } }
 
         public string Error { get { return this[null]; } }
@@ -92,30 +93,14 @@ namespace WR_Player.ViewModels
 
 
 
-
-
         public bool CanOk { get { return IsValid; } }
 
         public void Ok()
         {
-            if (AddEdit == true)
-            {
-                Console.WriteLine("STREAM ADD: \n" +
-                                    "\tTitle: " + StreamTitle +
-                                    "\n\tURL: " + StreamUrl);//TODO: delete me
-
-                PlaylistItem stream = new PlaylistItem(StreamTitle, StreamUrl);
-                ParentVM.PlaylistVM.AddStream(stream);
-            }
-            else 
-            {
-                Console.WriteLine("STREAM EDIT: \n" +
-                                    "\tTitle: " + StreamTitle +
-                                    "\n\tURL: " + StreamUrl);//TODO: delete me
-
-                ParentVM.PlaylistVM.ItemToProcess.Title = StreamTitle;
-                ParentVM.PlaylistVM.ItemToProcess.Path = StreamUrl;
-            }
+            if (AddEdit)
+                StreamAdd();
+            else
+                StreamEdit();
             TryClose(true);
         }
 
@@ -123,6 +108,28 @@ namespace WR_Player.ViewModels
         {
             //Do nothing
             TryClose(null);
+        }
+
+
+
+        private void StreamAdd()
+        {
+            Console.WriteLine("STREAM ADD: \n" +
+                                    "\tTitle: " + StreamTitle +
+                                    "\n\tURL: " + StreamUrl);//TODO: delete me
+
+            PlaylistItem stream = new PlaylistItem(StreamTitle, StreamUrl);
+            ParentVM.PlaylistVM.AddStream(stream);
+        }
+
+        private void StreamEdit()
+        {
+            Console.WriteLine("STREAM EDIT: \n" +
+                                    "\tTitle: " + StreamTitle +
+                                    "\n\tURL: " + StreamUrl);//TODO: delete me
+
+            ParentVM.PlaylistVM.ItemToProcess.Title = StreamTitle;
+            ParentVM.PlaylistVM.ItemToProcess.Path = StreamUrl;
         }
     }
 }
