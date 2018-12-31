@@ -49,7 +49,14 @@
                     Padding="0"
                     Width="40" Height="40"
                     Margin="5">
-                <Image Source="/WR-Player;component/Resources/images/previous.png" />
+                <Viewbox HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         Width="40"
+                         Height="40">
+                    <Canvas Width="24" Height="24">
+                        <Path Data="M6,18V6H8V18H6M9.5,12L18,6V18L9.5,12Z" Fill="Black" />
+                    </Canvas>
+                </Viewbox>
             </Button>
 
             <Button Cal:Message.Attach="Play"
@@ -58,7 +65,14 @@
                     Padding="0"
                     Width="40" Height="40"
                     Margin="5">
-                <Image Source="/WR-Player;component/Resources/images/play.png" />
+                <Viewbox HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         Width="40"
+                         Height="40">
+                    <Canvas Width="24" Height="24">
+                        <Path Data="M8,5.14V19.14L19,12.14L8,5.14Z" Fill="Black" />
+                    </Canvas>
+                </Viewbox>
             </Button>
 
             <Button Cal:Message.Attach="Stop"
@@ -67,7 +81,14 @@
                     Padding="0"
                     Width="40" Height="40"
                     Margin="5">
-                <Image Source="/WR-Player;component/Resources/images/stop.png" />
+                <Viewbox HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         Width="40"
+                         Height="40">
+                    <Canvas Width="24" Height="24">
+                        <Path Data="M18,18H6V6H18V18Z" Fill="Black" />
+                    </Canvas>
+                </Viewbox>
             </Button>
 
             <Button Cal:Message.Attach="Next"
@@ -76,7 +97,14 @@
                     Padding="0"
                     Width="40" Height="40"
                     Margin="5">
-                <Image Source="/WR-Player;component/Resources/images/next.png" />
+                <Viewbox HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         Width="40"
+                         Height="40">
+                    <Canvas Width="24" Height="24">
+                        <Path Data="M16,18H18V6H16M6,18L14.5,12L6,6V18Z" Fill="Black" />
+                    </Canvas>
+                </Viewbox>
             </Button>
 
             <Slider Style="{DynamicResource FlatSlider}"

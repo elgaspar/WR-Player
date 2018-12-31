@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WR_Player.ViewModels;
 
 namespace WR_Player.Views.Assist
 {
@@ -15,11 +16,11 @@ namespace WR_Player.Views.Assist
         private static readonly string FILE_FILTER = "UTF-8 Encoded Audio Playlist files (*.m3u8)|*.m3u8";
 
 
-        //public static bool? ShowDialog(DialogViewModelBase vm)
-        //{
-        //    IWindowManager manager = new WindowManager();
-        //    return manager.ShowDialog(vm, null, null);
-        //}
+        public static bool? ShowDialog(DialogViewModelBase vm)
+        {
+            IWindowManager manager = new WindowManager();
+            return manager.ShowDialog(vm, null, null);
+        }
 
         public static string BrowseFileToSave()
         {

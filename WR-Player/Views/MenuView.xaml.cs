@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MahApps.Metro.Controls.Dialogs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,7 +36,6 @@ namespace WR_Player.Views
             //if (result == null)
             //    return;
 
-            Console.WriteLine("NEW");//TODO: delete it
             MainVM.PlaylistVM.New();
         }
 
@@ -49,7 +49,6 @@ namespace WR_Player.Views
             if (filepath == null)
                 return;
 
-            Console.WriteLine("OPEN: " + filepath);//TODO: delete it
             bool succeed = MainVM.PlaylistVM.Load(filepath);
 
             if (!succeed)
@@ -64,7 +63,6 @@ namespace WR_Player.Views
                 return;
             }
 
-            Console.WriteLine("SAVE");//TODO: delete it
             bool succeed = MainVM.PlaylistVM.Save();
 
             if (!succeed)
@@ -77,7 +75,6 @@ namespace WR_Player.Views
             if (filepath == null)
                 return;
 
-            Console.WriteLine("SAVE AS: " + filepath);//TODO: delete it
             bool succeed = MainVM.PlaylistVM.SaveAs(filepath);
 
             if (!succeed)
@@ -86,14 +83,12 @@ namespace WR_Player.Views
 
         private void StreamAdd(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("STREAM ADD");//TODO: delete it
-            //TODO
+            Dialogs.ShowDialog(new DialogStreamAddEditViewModel(MainVM, true));
         }
 
         private void StreamEdit(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("STREAM EDIT");//TODO: delete it
-            //TODO
+            Dialogs.ShowDialog(new DialogStreamAddEditViewModel(MainVM, false));
         }
 
         private void StreamRemove(object sender, RoutedEventArgs e)

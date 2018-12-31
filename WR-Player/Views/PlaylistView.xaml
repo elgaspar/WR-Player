@@ -10,7 +10,7 @@
     <ListBox Grid.Row="2"
              x:Name="list"
              ItemsSource="{Binding Items}"
-             >
+             SelectedItem="{Binding ItemToProcess}">
 
         <ListBox.ItemTemplate>
             <DataTemplate>

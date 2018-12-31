@@ -21,6 +21,18 @@ namespace WR_Player.ViewModels
 
 
 
+        private PlaylistItem _itemToProcess;
+        public PlaylistItem ItemToProcess
+        {
+            get { return _itemToProcess; }
+            set
+            {
+                _itemToProcess = value;
+                NotifyOfPropertyChange(() => ItemToProcess);
+                NotifyOfPropertyChange(() => CanEditRemove);
+            }
+        }
+
         public ObservableCollection<PlaylistItem> Items { get { return playlist.Items; } }
 
         public bool AreThereItems { get { return playlist.AreThereItems; } }
@@ -29,6 +41,9 @@ namespace WR_Player.ViewModels
 
         public bool isPlaylistFileOpen { get { return !string.IsNullOrEmpty(filepath); } }
 
+        public bool CanSave { get { return playlist.Items.Count > 0; } }
+
+        public bool CanEditRemove { get { return ItemToProcess != null; } }
 
         public void New()
         {
@@ -37,8 +52,7 @@ namespace WR_Player.ViewModels
             notifyAll();
         }
 
-        public bool CanSave { get { return playlist.Items.Count > 0; } }
-
+        
         public bool Save()
         {
             return playlist.SaveToFile(filepath);
@@ -73,6 +87,13 @@ namespace WR_Player.ViewModels
             playlist.SelectPreviousItem();
         }
 
+
+        public void AddStream(PlaylistItem stream)
+        {
+            playlist.Items.Add(stream);
+            PlaylistItem item = playlist.SelectedItem; //hack to update selected item
+            notifyAll();
+        }
 
 
         private void stopPlaying()

@@ -27,8 +27,10 @@
             <MenuItem Header="Add.."
                       Click="StreamAdd"/>
             <MenuItem Header="Edit.."
+                      IsEnabled="{Binding PlaylistVM.CanEditRemove}"
                       Click="StreamEdit"/>
             <MenuItem Header="Remove.."
+                      IsEnabled="{Binding PlaylistVM.CanEditRemove}"
                       Click="StreamRemove"/>
         </MenuItem>
 
