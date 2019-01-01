@@ -12,15 +12,19 @@ namespace WR_Player.Models
     {
         public Playlist()
         {
-            Items = new ObservableCollection<PlaylistItem>();
+            _items = new ObservableCollection<PlaylistItem>();
+            Items = new ReadOnlyObservableCollection<PlaylistItem>(_items);
             SelectedItemIndex = -1;
         }
 
 
 
-        public ObservableCollection<PlaylistItem> Items { get; private set; }
+        private ObservableCollection<PlaylistItem> _items { get; }
+        public ReadOnlyObservableCollection<PlaylistItem> Items { get; }
 
-        public bool AreThereItems { get { return Items.Count > 0; } }
+        //public ObservableCollection<PlaylistItem> Items { get; private set; }
+
+        public bool AreThereItems { get { return _items.Count > 0; } }
 
         public PlaylistItem SelectedItem
         {
@@ -31,9 +35,9 @@ namespace WR_Player.Models
                 if (SelectedItemIndex < 0)
                 {
                     SelectFirstItem();
-                    return Items[SelectedItemIndex];
+                    return _items[SelectedItemIndex];
                 }
-                return Items[SelectedItemIndex];
+                return _items[SelectedItemIndex];
             }
         }
 
@@ -53,9 +57,23 @@ namespace WR_Player.Models
 
         
 
+        public void Add(PlaylistItem item)
+        {
+            _items.Add(item);
+            if (_items.Count == 1)
+                SelectFirstItem();
+        }
+
+        public void Remove(PlaylistItem item)
+        {
+            int indexOfRemovedItem = _items.IndexOf(item);
+            _items.Remove(item);
+            updateSelectedIndexAfterRemove(indexOfRemovedItem);
+        }
+
         public void SelectNextItem()
         {
-            if (SelectedItemIndex < Items.Count - 1)
+            if (SelectedItemIndex < _items.Count - 1)
                 SelectedItemIndex++;
         }
 
@@ -77,13 +95,26 @@ namespace WR_Player.Models
             Playlist loadedPlaylist = PlaylistParser.ReadFromFile(filepath);
             if (loadedPlaylist == null)
                 return false;
-            loadNewItemCollection(loadedPlaylist.Items);
+            loadNewItemCollection(loadedPlaylist._items);
             return true;
         }
 
 
 
 
+
+        private void updateSelectedIndexAfterRemove(int indexOfRemovedItem)
+        {
+            if (!AreThereItems)
+            {
+                SelectedItemIndex = -1;
+                return;
+            }
+            if (indexOfRemovedItem == SelectedItemIndex)
+                SelectedItemIndex = 0;
+            if (indexOfRemovedItem < SelectedItemIndex)
+                SelectedItemIndex--;
+        }
 
         private void SelectFirstItem()
         {
@@ -93,21 +124,21 @@ namespace WR_Player.Models
         private void MarkItemAsSelected(int index)
         {
             markAllItemsAsNotSelected();
-            PlaylistItem item = Items[index];
+            PlaylistItem item = _items[index];
             item.IsSelected = true;
         }
 
         private void markAllItemsAsNotSelected()
         {
-            foreach (PlaylistItem item in Items)
+            foreach (PlaylistItem item in _items)
                 item.IsSelected = false;
         }
 
         private void loadNewItemCollection(Collection<PlaylistItem> newItems)
         {
-            Items.Clear();
+            _items.Clear();
             foreach (PlaylistItem item in newItems)
-                Items.Add(item);
+                _items.Add(item);
             if (Items.Count > 0)
                 SelectedItemIndex = 0;
             else

@@ -79,6 +79,7 @@
     <Compile Include="Models\Playlist.cs" />
     <Compile Include="Models\PlaylistItem.cs" />
     <Compile Include="Models\PlaylistParser.cs" />
+    <Compile Include="ViewModels\DialogConfirmViewModel.cs" />
     <Compile Include="ViewModels\DialogStreamAddEditViewModel.cs" />
     <Compile Include="ViewModels\DialogViewModelBase.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
@@ -90,6 +91,9 @@
     <Compile Include="ViewModels\PlaylistViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\Assist\Dialogs.cs" />
+    <Compile Include="Views\DialogConfirmView.xaml.cs">
+      <DependentUpon>DialogConfirmView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DialogStreamAddEditView.xaml.cs">
       <DependentUpon>DialogStreamAddEditView.xaml</DependentUpon>
     </Compile>
@@ -145,6 +149,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\DialogConfirmView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\DialogStreamAddEditView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -83,18 +83,21 @@ namespace WR_Player.Views
 
         private void StreamAdd(object sender, RoutedEventArgs e)
         {
-            Dialogs.ShowDialog(new DialogStreamAddEditViewModel(MainVM, true));
+            Dialogs.StreamAdd(MainVM);
         }
 
         private void StreamEdit(object sender, RoutedEventArgs e)
         {
-            Dialogs.ShowDialog(new DialogStreamAddEditViewModel(MainVM, false));
+            Dialogs.StreamEdit(MainVM);
         }
 
         private void StreamRemove(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("STREAM REMOVE");//TODO: delete it
-            //TODO
+            bool? result = Dialogs.StreamRemove(MainVM);
+            if (result == true)
+            {
+                MainVM.PlaylistVM.RemoveStream();
+            }
         }
 
         private void CompactMode(object sender, RoutedEventArgs e)

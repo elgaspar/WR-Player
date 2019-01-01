@@ -16,11 +16,6 @@ namespace WR_Player.Views.Assist
         private static readonly string FILE_FILTER = "UTF-8 Encoded Audio Playlist files (*.m3u8)|*.m3u8";
 
 
-        public static bool? ShowDialog(DialogViewModelBase vm)
-        {
-            IWindowManager manager = new WindowManager();
-            return manager.ShowDialog(vm, null, null);
-        }
 
         public static string BrowseFileToSave()
         {
@@ -44,13 +39,22 @@ namespace WR_Player.Views.Assist
             return dialog.FileName;
         }
 
-        //public static bool? ConfirmDialog(string msg)
-        //{
-        //    DialogConfirmViewModel vm = new DialogConfirmViewModel(msg);
-        //    IWindowManager manager = new WindowManager();
-        //    manager.ShowDialog(vm, null, null);
-        //    return vm.Result;
-        //}
+        public static void StreamAdd(MainViewModel mainVM)
+        {
+            ShowDialog(new DialogStreamAddEditViewModel(mainVM, true));
+        }
+
+        public static void StreamEdit(MainViewModel mainVM)
+        {
+            ShowDialog(new DialogStreamAddEditViewModel(mainVM, false));
+        }
+
+        public static bool? StreamRemove(MainViewModel mainVM)
+        {
+            return ConfirmDialog(mainVM, "Remove selected entry?");
+        }
+
+
 
         public static void Error(string errorMsg)
         {
@@ -63,5 +67,18 @@ namespace WR_Player.Views.Assist
             Console.WriteLine("-----------------");
         }
 
+
+        private static bool? ShowDialog(DialogViewModelBase vm)
+        {
+            IWindowManager manager = new WindowManager();
+            return manager.ShowDialog(vm, null, null);
+        }
+
+        private static bool? ConfirmDialog(MainViewModel mainVM, string msg)
+        {
+            DialogConfirmViewModel vm = new DialogConfirmViewModel(mainVM, msg);
+            ShowDialog(vm);
+            return vm.Result;
+        }
     }
 }

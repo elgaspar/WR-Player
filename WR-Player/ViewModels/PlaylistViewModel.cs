@@ -33,7 +33,7 @@ namespace WR_Player.ViewModels
             }
         }
 
-        public ObservableCollection<PlaylistItem> Items { get { return playlist.Items; } }
+        public ReadOnlyObservableCollection<PlaylistItem> Items { get { return playlist.Items; } }
 
         public bool AreThereItems { get { return playlist.AreThereItems; } }
 
@@ -90,8 +90,15 @@ namespace WR_Player.ViewModels
 
         public void AddStream(PlaylistItem stream)
         {
-            playlist.Items.Add(stream);
-            PlaylistItem item = playlist.SelectedItem; //hack to update selected item
+            playlist.Add(stream);
+            notifyAll();
+        }
+
+        public void RemoveStream()
+        {
+            if (ItemToProcess == SelectedItem)
+                stopPlaying();
+            playlist.Remove(ItemToProcess);
             notifyAll();
         }
 
@@ -112,6 +119,7 @@ namespace WR_Player.ViewModels
         {
             NotifyOfPropertyChange(() => Items);
             NotifyOfPropertyChange(() => CanSave);
+            NotifyOfPropertyChange(() => SelectedItem);
         }
     }
 }

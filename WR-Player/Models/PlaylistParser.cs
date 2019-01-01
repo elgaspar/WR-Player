@@ -139,7 +139,7 @@ namespace WR_Player.Models
             string path = secondLine;
 
             PlaylistItem item = new PlaylistItem(title, path);
-            playlist.Items.Add(item);
+            playlist.Add(item);
         }
 
         private static string readTitle(string line)
