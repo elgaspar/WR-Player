@@ -26,6 +26,8 @@ namespace WR_Player.ViewModels
 
         public Player.PlayerStatus Status { get { return player.Status; } }
 
+        public bool IsPlaying { get { return Status != Player.PlayerStatus.Idle; } }
+
         public double Volume
         {
             get { return player.Volume; }
@@ -51,7 +53,7 @@ namespace WR_Player.ViewModels
         {
             if (thereIsNoNextItem)
                 return;
-            bool itWasPlaying = isPlaying;
+            bool itWasPlaying = IsPlaying;
             Stop();
             PlaylistVM.SelectNextItem();
             if (itWasPlaying)
@@ -63,7 +65,7 @@ namespace WR_Player.ViewModels
         {
             if (thereIsNoPreviousItem)
                 return;
-            bool itWasPlaying = isPlaying;
+            bool itWasPlaying = IsPlaying;
             Stop();
             PlaylistVM.SelectPreviousItem();
             if (itWasPlaying)
@@ -76,6 +78,7 @@ namespace WR_Player.ViewModels
         private void notifyAll()
         {
             NotifyOfPropertyChange(() => Status);
+            NotifyOfPropertyChange(() => IsPlaying);
             NotifyOfPropertyChange(() => LoadedItem);
         }
 
@@ -83,6 +86,5 @@ namespace WR_Player.ViewModels
 
         private bool thereIsNoPreviousItem { get { return LoadedItem == PlaylistVM.Items.First(); } }
 
-        private bool isPlaying { get { return player.Status != Player.PlayerStatus.Idle; } }
     }
 }

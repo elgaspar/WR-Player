@@ -33,7 +33,7 @@
             <Grid.Resources>
                 <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MetroTextBlock}">
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding Status}" Value="Idle">
+                        <DataTrigger Binding="{Binding IsPlaying}" Value="False">
                             <Setter Property="Visibility" Value="Collapsed" />
                         </DataTrigger>
                     </Style.Triggers>
