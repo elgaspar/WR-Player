@@ -28,96 +28,57 @@ namespace WR_Player.Views
             InitializeComponent();
         }
 
-        public MainViewModel MainVM { get { return (MainViewModel)Application.Current.MainWindow.DataContext; } }
+
 
         private void PlaylistNew(object sender, RoutedEventArgs e)
         {
-            //bool? result = _promptForSaveAndSave("Do you want to save changes to file?");
-            //if (result == null)
-            //    return;
-
-            MainVM.PlaylistVM.New();
+            Actions.PlaylistNew();
         }
 
         private void PlaylistOpen(object sender, RoutedEventArgs e)
         {
-            //bool? result = _promptForSaveAndSave("Do you want to save changes to file?");
-            //if (result == null)
-            //    return;
-
-            string filepath = Dialogs.BrowseFileToOpen();
-            if (filepath == null)
-                return;
-
-            bool succeed = MainVM.PlaylistVM.Load(filepath);
-
-            if (!succeed)
-                Dialogs.Error("Couldn't open playlist.");
+            Actions.PlaylistOpen();
         }
 
         private void PlaylistSave(object sender, RoutedEventArgs e)
         {
-            if (!MainVM.PlaylistVM.isPlaylistFileOpen)
-            {
-                PlaylistSaveAs(null, null);
-                return;
-            }
-
-            bool succeed = MainVM.PlaylistVM.Save();
-
-            if (!succeed)
-                Dialogs.Error("Couldn't save playlist.");
+            Actions.PlaylistSave();
         }
 
         private void PlaylistSaveAs(object sender, RoutedEventArgs e)
         {
-            string filepath = Dialogs.BrowseFileToSave();
-            if (filepath == null)
-                return;
-
-            bool succeed = MainVM.PlaylistVM.SaveAs(filepath);
-
-            if (!succeed)
-                Dialogs.Error("Couldn't save playlist.");
-        }
-
+            Actions.PlaylistSaveAs();
+        }    
+        
         private void StreamAdd(object sender, RoutedEventArgs e)
         {
-            Dialogs.StreamAdd(MainVM);
+            Actions.StreamAdd();
         }
 
         private void StreamEdit(object sender, RoutedEventArgs e)
         {
-            Dialogs.StreamEdit(MainVM);
+            Actions.StreamEdit();
         }
 
         private void StreamRemove(object sender, RoutedEventArgs e)
         {
-            bool? result = Dialogs.StreamRemove(MainVM);
-            if (result == true)
-            {
-                MainVM.PlaylistVM.RemoveStream();
-            }
+            Actions.StreamRemove();
         }
 
         private void CompactMode(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("COMPACT MODE");//TODO: delete it
-            //TODO
+            Actions.CompactMode();
         }
 
         private void Settings(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("SETTINGS");//TODO: delete it
-            //TODO
+            Actions.Settings();
         }
 
         private void About(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("ABOUT");//TODO: delete it
-            //TODO
+            Actions.About();
         }
-
 
     }
 }

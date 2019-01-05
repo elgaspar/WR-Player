@@ -14,12 +14,16 @@ namespace WR_Player.ViewModels
 
         private string filepath;
 
+        private PlayerViewModel PlayerVM { get { return ParentVM.PlayerVM; } }
+
         public PlaylistViewModel(MainViewModel parent) : base(parent)
         {
             initPlaylist();
         }
 
 
+
+        public bool AnyChangeHappened { get; set; }
 
         private PlaylistItem _itemToProcess;
         public PlaylistItem ItemToProcess
@@ -55,14 +59,20 @@ namespace WR_Player.ViewModels
         
         public bool Save()
         {
-            return playlist.SaveToFile(filepath);
+            bool succeed = playlist.SaveToFile(filepath);
+            if (succeed)
+                AnyChangeHappened = false;
+            return succeed;
         }
 
         public bool SaveAs(string path)
         {
             bool succeed = playlist.SaveToFile(path);
             if (succeed)
+            {
                 this.filepath = path;
+                AnyChangeHappened = false;
+            }
             return succeed;
         }
 
@@ -72,6 +82,7 @@ namespace WR_Player.ViewModels
             bool succeed = playlist.LoadFromFile(path);
             if (succeed)
                 this.filepath = path;
+            AnyChangeHappened = false;
             notifyAll();
             return succeed;
         }
@@ -91,6 +102,25 @@ namespace WR_Player.ViewModels
         public void AddStream(PlaylistItem stream)
         {
             playlist.Add(stream);
+            AnyChangeHappened = true;
+            notifyAll();
+        }
+
+        public void EditStream(string newTitle, string newPath)
+        {
+            PlaylistItem itemToEdit = ParentVM.PlaylistVM.ItemToProcess;
+
+            bool wasPlaying = PlayerVM.IsPlaying;
+            bool editedItemWasLoadedOnPlayer = (PlayerVM.LoadedItem == itemToEdit);
+            bool pathChanged = (itemToEdit.Path != newPath);
+
+            itemToEdit.Title = newTitle;
+            itemToEdit.Path = newPath;
+
+            if (wasPlaying && editedItemWasLoadedOnPlayer && pathChanged)
+                PlayerVM.Play();
+
+            AnyChangeHappened = true;
             notifyAll();
         }
 
@@ -99,6 +129,7 @@ namespace WR_Player.ViewModels
             if (ItemToProcess == SelectedItem)
                 stopPlaying();
             playlist.Remove(ItemToProcess);
+            AnyChangeHappened = true;
             notifyAll();
         }
 
@@ -113,6 +144,7 @@ namespace WR_Player.ViewModels
         {
             playlist = new Playlist();
             filepath = null;
+            AnyChangeHappened = false;
         }
 
         private void notifyAll()

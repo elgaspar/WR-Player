@@ -8,7 +8,7 @@ namespace WR_Player.ViewModels
 {
     class DialogConfirmViewModel : DialogViewModelBase
     {
-        public DialogConfirmViewModel(MainViewModel parent, string msg) : base(parent)
+        public DialogConfirmViewModel(string msg)
         {
             Msg = msg;
             Result = null;

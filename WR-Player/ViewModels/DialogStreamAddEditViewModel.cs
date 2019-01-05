@@ -128,17 +128,7 @@ namespace WR_Player.ViewModels
                                     "\tTitle: " + StreamTitle +
                                     "\n\tURL: " + StreamUrl);//TODO: delete me
 
-            PlaylistItem itemToEdit = ParentVM.PlaylistVM.ItemToProcess;
-
-            bool wasPlaying = ParentVM.PlayerVM.IsPlaying;
-            bool editedItemWasLoadedOnPlayer = (ParentVM.PlayerVM.LoadedItem == itemToEdit);
-            bool pathChanged = (itemToEdit.Path != StreamUrl);
-
-            itemToEdit.Title = StreamTitle;
-            itemToEdit.Path = StreamUrl;
-
-            if (wasPlaying && editedItemWasLoadedOnPlayer && pathChanged)
-                ParentVM.PlayerVM.Play();
+            ParentVM.PlaylistVM.EditStream(StreamTitle, StreamUrl);
         }
     }
 }

@@ -49,22 +49,22 @@ namespace WR_Player.Views.Assist
             ShowDialog(new DialogStreamAddEditViewModel(mainVM, false));
         }
 
-        public static bool? StreamRemove(MainViewModel mainVM)
+        public static bool? StreamRemove()
         {
-            return ConfirmDialog(mainVM, "Remove selected entry?");
+            return ConfirmDialog("Remove selected entry?");
         }
 
+        public static bool? PromptForSave()
+        {
+            return ConfirmDialog("Save changes in playlist?");
+        }
 
 
         public static void Error(string errorMsg)
         {
-            //DialogErrorViewModel vm = new DialogErrorViewModel(errorMsg);
-            //IWindowManager manager = new WindowManager();
-            //manager.ShowDialog(vm, null, null);
-            //TODO
-            Console.WriteLine("----- ERROR -----");
-            Console.WriteLine(errorMsg);
-            Console.WriteLine("-----------------");
+            DialogErrorViewModel vm = new DialogErrorViewModel(errorMsg);
+            IWindowManager manager = new WindowManager();
+            manager.ShowDialog(vm, null, null);
         }
 
 
@@ -74,9 +74,9 @@ namespace WR_Player.Views.Assist
             return manager.ShowDialog(vm, null, null);
         }
 
-        private static bool? ConfirmDialog(MainViewModel mainVM, string msg)
+        private static bool? ConfirmDialog(string msg)
         {
-            DialogConfirmViewModel vm = new DialogConfirmViewModel(mainVM, msg);
+            DialogConfirmViewModel vm = new DialogConfirmViewModel(msg);
             ShowDialog(vm);
             return vm.Result;
         }

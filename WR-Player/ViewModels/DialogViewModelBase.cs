@@ -15,5 +15,9 @@ namespace WR_Player.ViewModels
         {
             ParentVM = parent;
         }
+
+        public DialogViewModelBase()
+        {
+        }
     }
 }
