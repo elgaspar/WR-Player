@@ -12,7 +12,6 @@ namespace WR_Player.Models
         public double Volume { get; private set; }        
         public PlayerStatus Status { get; private set; }
 
-
         private MediaPlayer player;
 
         public Player()
@@ -24,16 +23,25 @@ namespace WR_Player.Models
 
         public enum PlayerStatus
         {
-            Idle, Buffering, Playing 
+            Idle, Playing, Error
         }
 
         public void Play(string Url)
         {
             player.Close();
-            player.Open(new Uri(Url));
-            player.Play();
-            player.Volume = Volume;
 
+            try
+            {
+                player.Open(new Uri(Url));
+                player.Play();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("---Invalid URL");//TODO deleteme
+                Status = PlayerStatus.Error;
+                return;
+            }
+            player.Volume = Volume;
             Status = PlayerStatus.Playing;
         }
 

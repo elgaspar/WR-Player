@@ -22,8 +22,6 @@ namespace WR_Player.Models
         private ObservableCollection<PlaylistItem> _items { get; }
         public ReadOnlyObservableCollection<PlaylistItem> Items { get; }
 
-        //public ObservableCollection<PlaylistItem> Items { get; private set; }
-
         public bool AreThereItems { get { return _items.Count > 0; } }
 
         public PlaylistItem SelectedItem
