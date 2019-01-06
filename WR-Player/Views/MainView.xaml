@@ -7,9 +7,11 @@
                       xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
                       Title="WR-Player"
                       TitleCaps="False"
-                      SizeToContent="WidthAndHeight"
-                      WindowStartupLocation="CenterScreen"
-                      MinHeight="155">
+                      Width="347"
+                      Height="262"
+                      MinWidth="347"
+                      MinHeight="156"
+                      WindowStartupLocation="CenterScreen">
 
     <DockPanel>
 

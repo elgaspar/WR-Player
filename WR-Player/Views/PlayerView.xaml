@@ -11,7 +11,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="48"/>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             
             <TextBlock Grid.Column="0"
@@ -28,6 +28,7 @@
                        Text="{Binding LoadedItem.Title}"
                        FontSize="14"
                        FontWeight="DemiBold"
+                       TextTrimming="CharacterEllipsis"
                        Margin="10 0 0 0"/>
 
             <Grid.Resources>
