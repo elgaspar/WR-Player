@@ -27,6 +27,7 @@
                                Text="- "/>
                     <TextBlock Grid.Column="1"
                                Text="{Binding Title}"
+                               ToolTip="{Binding Title}"
                                TextTrimming="CharacterEllipsis">
                         <TextBlock.Style>
                             <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MetroTextBlock}">

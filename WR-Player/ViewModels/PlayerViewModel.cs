@@ -45,6 +45,8 @@ namespace WR_Player.ViewModels
 
         public void Stop()
         {
+            if (!IsPlaying)
+                return;
             player.Stop();
             notifyAll();
         }
@@ -82,9 +84,9 @@ namespace WR_Player.ViewModels
             NotifyOfPropertyChange(() => LoadedItem);
         }
 
-        private bool thereIsNoNextItem { get { return LoadedItem == PlaylistVM.Items.Last(); } }
+        private bool thereIsNoNextItem { get { return !PlaylistVM.AreThereItems || LoadedItem == PlaylistVM.Items.Last(); } }
 
-        private bool thereIsNoPreviousItem { get { return LoadedItem == PlaylistVM.Items.First(); } }
+        private bool thereIsNoPreviousItem { get { return !PlaylistVM.AreThereItems || LoadedItem == PlaylistVM.Items.First(); } }
 
     }
 }

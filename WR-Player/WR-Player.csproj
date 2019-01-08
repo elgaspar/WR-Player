@@ -93,6 +93,9 @@
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\Assist\Actions.cs" />
     <Compile Include="Views\Assist\Dialogs.cs" />
+    <Compile Include="Views\CompactModeRestoreButton.xaml.cs">
+      <DependentUpon>CompactModeRestoreButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DialogConfirmView.xaml.cs">
       <DependentUpon>DialogConfirmView.xaml</DependentUpon>
     </Compile>
@@ -154,6 +157,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\CompactModeRestoreButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\DialogConfirmView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

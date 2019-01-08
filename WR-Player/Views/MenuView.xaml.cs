@@ -30,6 +30,30 @@ namespace WR_Player.Views
 
 
 
+        public bool IsCompactModeEnabled
+        {
+            get { return (bool)GetValue(IsCompactModeEnabledProperty); }
+            set { SetValue(IsCompactModeEnabledProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for IsCompactModeEnabled.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty IsCompactModeEnabledProperty =
+            DependencyProperty.Register("IsCompactModeEnabled", typeof(bool), typeof(MenuView), new PropertyMetadata(false));
+
+
+
+        public void MakeVisible()
+        {
+            Visibility = Visibility.Visible;
+        }
+
+        public void MakeInvisible()
+        {
+            Visibility = Visibility.Collapsed;
+        }
+
+
+
         private void PlaylistNew(object sender, RoutedEventArgs e)
         {
             Actions.PlaylistNew();
@@ -67,7 +91,7 @@ namespace WR_Player.Views
 
         private void CompactMode(object sender, RoutedEventArgs e)
         {
-            Actions.CompactMode();
+            Actions.EnableCompactMode();
         }
 
         private void Settings(object sender, RoutedEventArgs e)
@@ -80,5 +104,6 @@ namespace WR_Player.Views
             Actions.About();
         }
 
+        
     }
 }

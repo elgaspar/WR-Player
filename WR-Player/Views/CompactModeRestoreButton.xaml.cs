@@ -12,27 +12,23 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WR_Player.Views.Assist;
 
 namespace WR_Player.Views
 {
     /// <summary>
-    /// Interaction logic for PlaylistView.xaml
+    /// Interaction logic for CompactModeRestoreButton.xaml
     /// </summary>
-    public partial class PlaylistView : UserControl
+    public partial class CompactModeRestoreButton : UserControl
     {
-        public PlaylistView()
+        public CompactModeRestoreButton()
         {
             InitializeComponent();
         }
 
-        public void MakeVisible()
+        private void Button_Click_Restore(object sender, RoutedEventArgs e)
         {
-            Visibility = Visibility.Visible;
-        }
-
-        public void MakeInvisible()
-        {
-            Visibility = Visibility.Collapsed;
+            Actions.DisableCompactMode();
         }
     }
 }

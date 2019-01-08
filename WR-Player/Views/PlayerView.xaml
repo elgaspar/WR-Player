@@ -7,13 +7,13 @@
 
     <StackPanel>
 
-        <Grid Margin="10 5 5 10">
+        <Grid Margin="5 0 5 0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="48"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            
+
             <TextBlock Grid.Column="0"
                        Text="{Binding Status}"
                        FontStyle="Italic"
@@ -26,6 +26,7 @@
                        VerticalAlignment="Center"/>
             <TextBlock Grid.Column="2"
                        Text="{Binding LoadedItem.Title}"
+                       ToolTip="{Binding LoadedItem.Title}"
                        FontSize="14"
                        FontWeight="DemiBold"
                        TextTrimming="CharacterEllipsis"
@@ -35,7 +36,7 @@
                 <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MetroTextBlock}">
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding IsPlaying}" Value="False">
-                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Setter Property="Visibility" Value="Hidden" />
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
@@ -44,7 +45,8 @@
 
         <StackPanel Orientation="Horizontal">
 
-            <Button Cal:Message.Attach="Previous"
+            <Button x:Name="previousButton"
+                    Cal:Message.Attach="Previous"
                     Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
                     Focusable="False"
                     Padding="0"
@@ -52,15 +54,18 @@
                     Margin="5">
                 <Viewbox HorizontalAlignment="Center"
                          VerticalAlignment="Center"
-                         Width="40"
-                         Height="40">
+                         Width="{Binding Width, ElementName=previousButton}"
+                         Height="{Binding Height, ElementName=previousButton}">
                     <Canvas Width="24" Height="24">
-                        <Path Data="M6,18V6H8V18H6M9.5,12L18,6V18L9.5,12Z" Fill="Black" />
+                        <Path Data="M6,18V6H8V18H6M9.5,12L18,6V18L9.5,12Z"
+                              Fill="Black"
+                              SnapsToDevicePixels="True"/>
                     </Canvas>
                 </Viewbox>
             </Button>
 
-            <Button Cal:Message.Attach="Play"
+            <Button x:Name="playButton"
+                    Cal:Message.Attach="Play"
                     Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
                     Focusable="False"
                     Padding="0"
@@ -68,15 +73,18 @@
                     Margin="5">
                 <Viewbox HorizontalAlignment="Center"
                          VerticalAlignment="Center"
-                         Width="40"
-                         Height="40">
+                         Width="{Binding Width, ElementName=playButton}"
+                         Height="{Binding Height, ElementName=playButton}">
                     <Canvas Width="24" Height="24">
-                        <Path Data="M8,5.14V19.14L19,12.14L8,5.14Z" Fill="Black" />
+                        <Path Data="M8,5.14V19.14L19,12.14L8,5.14Z"
+                              Fill="Black"
+                              SnapsToDevicePixels="True"/>
                     </Canvas>
                 </Viewbox>
             </Button>
 
-            <Button Cal:Message.Attach="Stop"
+            <Button x:Name="stopButton"
+                    Cal:Message.Attach="Stop"
                     Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
                     Focusable="False"
                     Padding="0"
@@ -84,15 +92,18 @@
                     Margin="5">
                 <Viewbox HorizontalAlignment="Center"
                          VerticalAlignment="Center"
-                         Width="40"
-                         Height="40">
+                         Width="{Binding Width, ElementName=stopButton}"
+                         Height="{Binding Height, ElementName=stopButton}">
                     <Canvas Width="24" Height="24">
-                        <Path Data="M18,18H6V6H18V18Z" Fill="Black" />
+                        <Path Data="M18,18H6V6H18V18Z"
+                              Fill="Black"
+                              SnapsToDevicePixels="True"/>
                     </Canvas>
                 </Viewbox>
             </Button>
 
-            <Button Cal:Message.Attach="Next"
+            <Button x:Name="nextButton"
+                    Cal:Message.Attach="Next"
                     Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
                     Focusable="False"
                     Padding="0"
@@ -100,15 +111,18 @@
                     Margin="5">
                 <Viewbox HorizontalAlignment="Center"
                          VerticalAlignment="Center"
-                         Width="40"
-                         Height="40">
+                         Width="{Binding Width, ElementName=nextButton}"
+                         Height="{Binding Height, ElementName=nextButton}">
                     <Canvas Width="24" Height="24">
-                        <Path Data="M16,18H18V6H16M6,18L14.5,12L6,6V18Z" Fill="Black" />
+                        <Path Data="M16,18H18V6H16M6,18L14.5,12L6,6V18Z"
+                              Fill="Black"
+                              SnapsToDevicePixels="True"/>
                     </Canvas>
                 </Viewbox>
             </Button>
 
-            <Slider Style="{DynamicResource FlatSlider}"
+            <Slider x:Name="volumeSlider"
+                    Style="{DynamicResource FlatSlider}"
                     Value="{Binding Volume}"
                     ToolTip="Volume"
                     Controls:SliderHelper.EnableMouseWheel="MouseHover"
@@ -119,8 +133,9 @@
                     Width="125"
                     Height="15"
                     Margin="5"/>
+
         </StackPanel>
-        
+
     </StackPanel>
 
 

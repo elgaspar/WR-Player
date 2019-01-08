@@ -1,4 +1,5 @@
-﻿<UserControl x:Class="WR_Player.Views.MenuView"
+﻿<UserControl x:Name="mv"
+             x:Class="WR_Player.Views.MenuView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -37,6 +38,7 @@
         <MenuItem Header="View" Height="Auto">
             <MenuItem Header="Compact Mode"
                       IsCheckable="True"
+                      IsChecked="{Binding ElementName=mv, Path=IsCompactModeEnabled}"
                       Click="CompactMode"/>
         </MenuItem>
 
