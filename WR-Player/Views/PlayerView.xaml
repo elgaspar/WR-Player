@@ -5,6 +5,15 @@
              xmlns:Cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro.Platform">
 
 
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="IconsResourceDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    
+
     <StackPanel>
 
         <Grid Margin="5 0 5 0">
@@ -48,78 +57,38 @@
             <Button x:Name="previousButton"
                     Cal:Message.Attach="Previous"
                     Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
+                    Content="{StaticResource PlayerPreviousIcon}"
                     Focusable="False"
                     Padding="0"
                     Width="40" Height="40"
-                    Margin="5">
-                <Viewbox HorizontalAlignment="Center"
-                         VerticalAlignment="Center"
-                         Width="{Binding Width, ElementName=previousButton}"
-                         Height="{Binding Height, ElementName=previousButton}">
-                    <Canvas Width="24" Height="24">
-                        <Path Data="M6,18V6H8V18H6M9.5,12L18,6V18L9.5,12Z"
-                              Fill="Black"
-                              SnapsToDevicePixels="True"/>
-                    </Canvas>
-                </Viewbox>
-            </Button>
+                    Margin="5"/>
 
             <Button x:Name="playButton"
                     Cal:Message.Attach="Play"
                     Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
+                    Content="{StaticResource PlayerPlayIcon}"
                     Focusable="False"
                     Padding="0"
                     Width="40" Height="40"
-                    Margin="5">
-                <Viewbox HorizontalAlignment="Center"
-                         VerticalAlignment="Center"
-                         Width="{Binding Width, ElementName=playButton}"
-                         Height="{Binding Height, ElementName=playButton}">
-                    <Canvas Width="24" Height="24">
-                        <Path Data="M8,5.14V19.14L19,12.14L8,5.14Z"
-                              Fill="Black"
-                              SnapsToDevicePixels="True"/>
-                    </Canvas>
-                </Viewbox>
-            </Button>
+                    Margin="5"/>
 
             <Button x:Name="stopButton"
                     Cal:Message.Attach="Stop"
                     Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
+                    Content="{StaticResource PlayerStopIcon}"
                     Focusable="False"
                     Padding="0"
                     Width="40" Height="40"
-                    Margin="5">
-                <Viewbox HorizontalAlignment="Center"
-                         VerticalAlignment="Center"
-                         Width="{Binding Width, ElementName=stopButton}"
-                         Height="{Binding Height, ElementName=stopButton}">
-                    <Canvas Width="24" Height="24">
-                        <Path Data="M18,18H6V6H18V18Z"
-                              Fill="Black"
-                              SnapsToDevicePixels="True"/>
-                    </Canvas>
-                </Viewbox>
-            </Button>
+                    Margin="5"/>
 
             <Button x:Name="nextButton"
                     Cal:Message.Attach="Next"
                     Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
+                    Content="{StaticResource PlayerNextIcon}"
                     Focusable="False"
                     Padding="0"
                     Width="40" Height="40"
-                    Margin="5">
-                <Viewbox HorizontalAlignment="Center"
-                         VerticalAlignment="Center"
-                         Width="{Binding Width, ElementName=nextButton}"
-                         Height="{Binding Height, ElementName=nextButton}">
-                    <Canvas Width="24" Height="24">
-                        <Path Data="M16,18H18V6H16M6,18L14.5,12L6,6V18Z"
-                              Fill="Black"
-                              SnapsToDevicePixels="True"/>
-                    </Canvas>
-                </Viewbox>
-            </Button>
+                    Margin="5"/>
 
             <Slider x:Name="volumeSlider"
                     Style="{DynamicResource FlatSlider}"

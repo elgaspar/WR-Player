@@ -29,12 +29,42 @@ namespace WR_Player.Views
         private double default_slider_width;
         private double default_slider_height;
 
+
+
         public PlayerView()
         {
             InitializeComponent();
 
             initDefaultSizeValues();
         }
+
+        
+
+        public void EnableCompact()
+        {
+            setCompactSize(previousButton);
+            setCompactSize(playButton);
+            setCompactSize(stopButton);
+            setCompactSize(nextButton);
+            setCompactSize(volumeSlider);
+
+            Width = 271;
+        }
+
+        public void DisableCompact()
+        {
+            setNormalSize(previousButton);
+            setNormalSize(playButton);
+            setNormalSize(stopButton);
+            setNormalSize(nextButton);
+            setNormalSize(volumeSlider);
+
+            Width = Double.NaN; //Double.NaN is the default value. (equal to "Auto" in xaml)
+        }
+
+
+
+
 
         private void initDefaultSizeValues()
         {
@@ -43,44 +73,40 @@ namespace WR_Player.Views
             default_slider_height = volumeSlider.Height;
         }
 
-        public void EnableCompact()
+
+
+        private void setCompactSize(Button button)
         {
-            previousButton.Width = COMPACT_BUTTONS_WIDTH_HEIGHT;
-            previousButton.Height = COMPACT_BUTTONS_WIDTH_HEIGHT;
+            button.Width = COMPACT_BUTTONS_WIDTH_HEIGHT;
+            button.Height = COMPACT_BUTTONS_WIDTH_HEIGHT;
 
-            playButton.Width = COMPACT_BUTTONS_WIDTH_HEIGHT;
-            playButton.Height = COMPACT_BUTTONS_WIDTH_HEIGHT;
-
-            stopButton.Width = COMPACT_BUTTONS_WIDTH_HEIGHT;
-            stopButton.Height = COMPACT_BUTTONS_WIDTH_HEIGHT;
-
-            nextButton.Width = COMPACT_BUTTONS_WIDTH_HEIGHT;
-            nextButton.Height = COMPACT_BUTTONS_WIDTH_HEIGHT;
-
-            volumeSlider.Width = COMPACT_SLIDER_WIDTH;
-            volumeSlider.Height = COMPACT_SLIDER_HEIGHT;
-
-            Width = 271;
+            IconContentControl icon = (IconContentControl)button.Content;
+            icon.IconWidth = COMPACT_BUTTONS_WIDTH_HEIGHT;
+            icon.IconHeight = COMPACT_BUTTONS_WIDTH_HEIGHT;
         }
 
-        public void DisableCompact()
+        private void setCompactSize(Slider slider)
         {
-            previousButton.Width = default_buttons_width_height;
-            previousButton.Height = default_buttons_width_height;
+            slider.Width = COMPACT_SLIDER_WIDTH;
+            slider.Height = COMPACT_SLIDER_HEIGHT;
+        }
 
-            playButton.Width = default_buttons_width_height;
-            playButton.Height = default_buttons_width_height;
 
-            stopButton.Width = default_buttons_width_height;
-            stopButton.Height = default_buttons_width_height;
 
-            nextButton.Width = default_buttons_width_height;
-            nextButton.Height = default_buttons_width_height;
+        private void setNormalSize(Button button)
+        {
+            button.Width = default_buttons_width_height;
+            button.Height = default_buttons_width_height;
 
-            volumeSlider.Width = default_slider_width;
-            volumeSlider.Height = default_slider_height;
+            IconContentControl icon = (IconContentControl)button.Content;
+            icon.IconWidth = default_buttons_width_height;
+            icon.IconHeight = default_buttons_width_height;
+        }
 
-            Width = Double.NaN; //Double.NaN is the default value. (equal to "Auto" in xaml)
+        private void setNormalSize(Slider slider)
+        {
+            slider.Width = default_slider_width;
+            slider.Height = default_slider_height;
         }
 
     }

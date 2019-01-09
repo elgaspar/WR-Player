@@ -9,7 +9,8 @@
     
     <ContentControl.Template>
         <ControlTemplate>
-            <Viewbox Width="16" Height="16">
+            <Viewbox Width="{Binding ElementName=ct, Path=IconWidth}"
+                     Height="{Binding ElementName=ct, Path=IconHeight}">
                 <Canvas Width="24" Height="24">
                     <Path Data="{Binding ElementName=ct, Path=DataPath}"
                           Fill="Black" />

@@ -25,6 +25,8 @@ namespace WR_Player.Views
             InitializeComponent();
         }
 
+
+
         public string DataPath
         {
             get { return (string)GetValue(DataPathProperty); }
@@ -34,6 +36,29 @@ namespace WR_Player.Views
         // Using a DependencyProperty as the backing store for DataPath.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty DataPathProperty =
             DependencyProperty.Register("DataPath", typeof(string), typeof(IconContentControl), new PropertyMetadata(string.Empty));
+
+
+        public double IconWidth
+        {
+            get { return (double)GetValue(IconWidthProperty); }
+            set { SetValue(IconWidthProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for IconWidth.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty IconWidthProperty =
+            DependencyProperty.Register("IconWidth", typeof(double), typeof(IconContentControl), new PropertyMetadata(16.0));
+
+
+        public double IconHeight
+        {
+            get { return (double)GetValue(IconHeightProperty); }
+            set { SetValue(IconHeightProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for IconHeight.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty IconHeightProperty =
+            DependencyProperty.Register("IconHeight", typeof(double), typeof(IconContentControl), new PropertyMetadata(16.0));
+
 
     }
 }

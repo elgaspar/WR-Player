@@ -2,8 +2,29 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:WR_Player.Views">
 
-    
-    
+
+    <local:IconContentControl x:Key="PlayerPreviousIcon"
+                              IconWidth="40"
+                              IconHeight="40"
+                              DataPath="M6,18V6H8V18H6M9.5,12L18,6V18L9.5,12Z"/>
+
+    <local:IconContentControl x:Key="PlayerPlayIcon"
+                              IconWidth="40"
+                              IconHeight="40"
+                              DataPath="M8,5.14V19.14L19,12.14L8,5.14Z"/>
+
+    <local:IconContentControl x:Key="PlayerStopIcon"
+                              IconWidth="40"
+                              IconHeight="40"
+                              DataPath="M18,18H6V6H18V18Z"/>
+
+    <local:IconContentControl x:Key="PlayerNextIcon"
+                              IconWidth="40"
+                              IconHeight="40"
+                              DataPath="M16,18H18V6H16M6,18L14.5,12L6,6V18Z"/>
+
+
+
     <local:IconContentControl x:Key="PlaylistNewIcon"
                               DataPath="M13,9V3.5L18.5,9M6,2C4.89,2 4,2.89 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2H6Z"/>
 
