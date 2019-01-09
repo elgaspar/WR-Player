@@ -105,6 +105,9 @@
     <Compile Include="Views\DialogStreamAddEditView.xaml.cs">
       <DependentUpon>DialogStreamAddEditView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\IconContentControl.xaml.cs">
+      <DependentUpon>IconContentControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
@@ -170,6 +173,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\DialogStreamAddEditView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\IconContentControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\IconsResourceDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -7,36 +7,55 @@
              xmlns:local="clr-namespace:WR_Player.Views"
              xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:Cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro.Platform">
+
+    
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="IconsResourceDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    
     
     <Menu>
 
         <MenuItem Header="Playlist" Height="Auto">
             <MenuItem Header="New"
-                      Click="PlaylistNew"/>
+                      Icon="{StaticResource PlaylistNewIcon}"
+                      Click="PlaylistNew">
+            </MenuItem>
             <MenuItem Header="Open.."
+                      Icon="{StaticResource PlaylistOpenIcon}"
                       Click="PlaylistOpen"/>
             <Separator/>
             <MenuItem Header="Save"
+                      Icon="{StaticResource PlaylistSaveIcon}"
                       IsEnabled="{Binding PlaylistVM.CanSave}"
                       Click="PlaylistSave"/>
             <MenuItem Header="Save As.."
+                      Icon="{StaticResource PlaylistSaveAsIcon}"
                       IsEnabled="{Binding PlaylistVM.CanSave}"
                       Click="PlaylistSaveAs"/>
         </MenuItem>
 
         <MenuItem Header="Stream" Height="Auto">
             <MenuItem Header="Add.."
+                      Icon="{StaticResource StreamAddIcon}"
                       Click="StreamAdd"/>
             <MenuItem Header="Edit.."
+                      Icon="{StaticResource StreamEditIcon}"
                       IsEnabled="{Binding PlaylistVM.CanEditRemove}"
                       Click="StreamEdit"/>
             <MenuItem Header="Remove.."
+                      Icon="{StaticResource StreamRemoveIcon}"
                       IsEnabled="{Binding PlaylistVM.CanEditRemove}"
                       Click="StreamRemove"/>
         </MenuItem>
 
         <MenuItem Header="View" Height="Auto">
             <MenuItem Header="Compact Mode"
+                      Icon="{StaticResource CompactModeEnableIcon}"
                       IsCheckable="True"
                       IsChecked="{Binding ElementName=mv, Path=IsCompactModeEnabled}"
                       Click="CompactMode"/>
@@ -44,11 +63,13 @@
 
         <MenuItem Header="Options" Height="Auto">
             <MenuItem Header="Settings.."
+                      Icon="{StaticResource SettingsIcon}"
                       Click="Settings"/>
         </MenuItem>
         
         <MenuItem Header="Help" Height="Auto">
             <MenuItem Header="About WR-Player.."
+                      Icon="{StaticResource AboutIcon}"
                       Click="About"/>
         </MenuItem>
 
