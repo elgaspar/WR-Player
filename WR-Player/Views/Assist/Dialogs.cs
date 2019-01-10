@@ -59,6 +59,10 @@ namespace WR_Player.Views.Assist
             return ConfirmDialog("Save changes in playlist?");
         }
 
+        public static void Settings(MainViewModel mainVM)
+        {
+            ShowDialog(new DialogSettingsViewModel(mainVM));
+        }
 
         public static void Error(string errorMsg)
         {

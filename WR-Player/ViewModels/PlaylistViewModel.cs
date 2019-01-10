@@ -12,8 +12,6 @@ namespace WR_Player.ViewModels
     {
         private Playlist playlist;
 
-        private string filepath;
-
         private PlayerViewModel PlayerVM { get { return ParentVM.PlayerVM; } }
 
         public PlaylistViewModel(MainViewModel parent) : base(parent)
@@ -22,6 +20,8 @@ namespace WR_Player.ViewModels
         }
 
 
+
+        public string Filepath { get; private set; }
 
         public bool AnyChangeHappened { get; set; }
 
@@ -43,7 +43,7 @@ namespace WR_Player.ViewModels
 
         public PlaylistItem SelectedItem { get { return playlist.SelectedItem; } }
 
-        public bool isPlaylistFileOpen { get { return !string.IsNullOrEmpty(filepath); } }
+        public bool isPlaylistFileOpen { get { return !string.IsNullOrEmpty(Filepath); } }
 
         public bool CanSave { get { return playlist.Items.Count > 0; } }
 
@@ -59,7 +59,7 @@ namespace WR_Player.ViewModels
         
         public bool Save()
         {
-            bool succeed = playlist.SaveToFile(filepath);
+            bool succeed = playlist.SaveToFile(Filepath);
             if (succeed)
                 AnyChangeHappened = false;
             return succeed;
@@ -70,7 +70,7 @@ namespace WR_Player.ViewModels
             bool succeed = playlist.SaveToFile(path);
             if (succeed)
             {
-                this.filepath = path;
+                Filepath = path;
                 AnyChangeHappened = false;
             }
             return succeed;
@@ -81,7 +81,9 @@ namespace WR_Player.ViewModels
             stopPlaying();
             bool succeed = playlist.LoadFromFile(path);
             if (succeed)
-                this.filepath = path;
+            {
+                Filepath = path;
+            }
             AnyChangeHappened = false;
             notifyAll();
             return succeed;
@@ -143,7 +145,7 @@ namespace WR_Player.ViewModels
         private void initPlaylist()
         {
             playlist = new Playlist();
-            filepath = null;
+            Filepath = null;
             AnyChangeHappened = false;
         }
 

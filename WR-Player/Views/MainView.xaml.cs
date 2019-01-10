@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WR_Player.ViewModels;
 using WR_Player.Views.Assist;
 
 namespace WR_Player.Views
@@ -21,9 +22,6 @@ namespace WR_Player.Views
     /// </summary>
     public partial class MainView : MetroWindow
     {
-        private SizeToContent default_SizeToContent;
-        private ResizeMode default_ResizeMode;
-        private bool default_ShowTitleBar;
         private double default_MinWidth;
         private double default_MinHeight;
 
@@ -41,9 +39,6 @@ namespace WR_Player.Views
 
         private void initDefaultValues()
         {
-            default_SizeToContent = SizeToContent.Manual;
-            default_ResizeMode = ResizeMode.CanResize;
-            default_ShowTitleBar = true;
             default_MinWidth = MinWidth;
             default_MinHeight = MinHeight;
         }
@@ -71,19 +66,25 @@ namespace WR_Player.Views
             ShowTitleBar = false;
             MinWidth = 0;
             MinHeight = 0;
+
+            Topmost = Properties.Settings.Default.AlwaysOnTop;
+            ShowInTaskbar = Properties.Settings.Default.ShowTaskbarIcon;
         }
 
         public void DisableCompact()
         {
-            SizeToContent = default_SizeToContent;
-            ResizeMode = default_ResizeMode;
-            ShowTitleBar = default_ShowTitleBar;
+            SizeToContent = SizeToContent.Manual;
+            ResizeMode = ResizeMode.CanResize;
+            ShowTitleBar = true;
 
             initWindowButtons();
 
             MinWidth = default_MinWidth;
             MinHeight = default_MinHeight;
             restoreSizeAndState();
+
+            Topmost = false;
+            ShowInTaskbar = true;
         }
 
         //window buttons (close, maximize, minimize) need to be reinitialized to be shown correctly
@@ -92,5 +93,19 @@ namespace WR_Player.Views
             WindowButtonCommands = new WindowButtonCommands();
             WindowButtonCommands.ParentWindow = this;
         }
+
+        private void metroWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            Actions.ApplySettings();
+        }
+
+        private void metroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Actions.SaveSettings();
+            
+            //TODO: prompt save
+        }
+
+        
     }
 }

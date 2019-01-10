@@ -81,6 +81,7 @@
     <Compile Include="Models\PlaylistParser.cs" />
     <Compile Include="ViewModels\DialogConfirmViewModel.cs" />
     <Compile Include="ViewModels\DialogErrorViewModel.cs" />
+    <Compile Include="ViewModels\DialogSettingsViewModel.cs" />
     <Compile Include="ViewModels\DialogStreamAddEditViewModel.cs" />
     <Compile Include="ViewModels\DialogViewModelBase.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
@@ -101,6 +102,9 @@
     </Compile>
     <Compile Include="Views\DialogErrorView.xaml.cs">
       <DependentUpon>DialogErrorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DialogSettingsView.xaml.cs">
+      <DependentUpon>DialogSettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DialogStreamAddEditView.xaml.cs">
       <DependentUpon>DialogStreamAddEditView.xaml</DependentUpon>
@@ -169,6 +173,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\DialogErrorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DialogSettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MahApps.Metro;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +18,8 @@ namespace WR_Player.Views.Assist
 
         public static void PlaylistNew()
         {
-            if (!promptForSaveSucceed())
+            bool succeed = promptForSave();
+            if (!succeed)
                 return;
 
             mainVM.PlaylistVM.New();
@@ -25,13 +27,19 @@ namespace WR_Player.Views.Assist
 
         public static void PlaylistOpen()
         {
-            if (!promptForSaveSucceed())
+            bool succeed = promptForSave();
+            if (!succeed)
                 return;
 
             string filepath = Dialogs.BrowseFileToOpen();
             if (filepath == null)
                 return;
 
+            PlaylistOpen(filepath);
+        }
+
+        private static void PlaylistOpen(string filepath)
+        {
             bool succeed = mainVM.PlaylistVM.Load(filepath);
             if (!succeed)
                 Dialogs.Error("Couldn't open playlist.");
@@ -81,6 +89,7 @@ namespace WR_Player.Views.Assist
 
         public static void EnableCompactMode()
         {
+            mainWin.menu.IsCompactModeEnabled = true;
             mainWin.EnableCompact();
             mainWin.menu.MakeInvisible();
             mainWin.playlist.MakeInvisible();
@@ -98,8 +107,8 @@ namespace WR_Player.Views.Assist
 
         public static void Settings()
         {
-            Console.WriteLine("SETTINGS");//TODO: delete it
-            //TODO
+            Dialogs.Settings(mainVM);
+            applyTheme();
         }
 
         public static void About()
@@ -110,9 +119,52 @@ namespace WR_Player.Views.Assist
 
 
 
+        public static void ApplySettings()
+        {
+            applyTheme();
+            openLastUsedFileIfNeeded();
+            enableCompactModeIfNeeded();
+        }
+
+        public static void SaveSettings()
+        {
+            Properties.Settings.Default.LastUsedFilepath = mainVM.PlaylistVM.Filepath;
+            Properties.Settings.Default.IsCompacModeEnabled = mainWin.menu.IsCompactModeEnabled;
+            Properties.Settings.Default.Save();
+        }
 
 
-        private static bool promptForSaveSucceed()
+
+
+
+        private static void applyTheme()
+        {
+            try
+            {
+                Tuple<AppTheme, Accent> appStyle = ThemeManager.DetectAppStyle(Application.Current);
+                ThemeManager.ChangeAppStyle(Application.Current, ThemeManager.GetAccent(Properties.Settings.Default.Theme), ThemeManager.GetAppTheme("BaseLight"));
+            }
+            catch (Exception)
+            {
+                Dialogs.Error("Couldn't apply theme.");
+            }
+        }
+
+        private static void openLastUsedFileIfNeeded()
+        {
+            bool openFile = Properties.Settings.Default.OpenLastUsedFile;
+            bool validFile = !string.IsNullOrEmpty(Properties.Settings.Default.LastUsedFilepath);
+            if (openFile && validFile)
+                Actions.PlaylistOpen(Properties.Settings.Default.LastUsedFilepath);
+        }
+
+        private static void enableCompactModeIfNeeded()
+        {
+            if (Properties.Settings.Default.IsCompacModeEnabled)
+                EnableCompactMode();
+        }
+
+        private static bool promptForSave()
         {
             if (mainVM.PlaylistVM.AnyChangeHappened)
             {

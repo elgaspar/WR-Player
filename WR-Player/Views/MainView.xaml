@@ -12,7 +12,9 @@
                       MinWidth="347"
                       MinHeight="141"
                       WindowStartupLocation="CenterScreen"
-                      SaveWindowPosition="True">
+                      SaveWindowPosition="True"
+                      Loaded="metroWindow_Loaded"
+                      Closing="metroWindow_Closing">
 
     <Grid>
         <Grid.RowDefinitions>

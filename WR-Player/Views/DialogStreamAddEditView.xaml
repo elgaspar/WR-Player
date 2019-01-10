@@ -10,7 +10,8 @@
                       Title="{Binding Title}"
                       TitleCaps="False"
                       SizeToContent="WidthAndHeight"
-                      WindowStartupLocation="CenterScreen"
+                      ResizeMode="NoResize"
+                      WindowStartupLocation="CenterOwner"
                       FocusManager.FocusedElement="{Binding ElementName=StreamTitle}">
     
     <Grid Margin="10">
