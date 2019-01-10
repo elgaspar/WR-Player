@@ -68,7 +68,7 @@ namespace WR_Player.Views
             MinHeight = 0;
 
             Topmost = Properties.Settings.Default.AlwaysOnTop;
-            ShowInTaskbar = Properties.Settings.Default.ShowTaskbarIcon;
+            ShowInTaskbar = !Properties.Settings.Default.HideTaskbarIcon;
         }
 
         public void DisableCompact()
@@ -101,9 +101,8 @@ namespace WR_Player.Views
 
         private void metroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            Actions.PromptForPlaylistSave();
             Actions.SaveSettings();
-            
-            //TODO: prompt save
         }
 
         

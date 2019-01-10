@@ -65,7 +65,7 @@
                                            OnLabel="" OffLabel=""
                                            Margin="5" />
                     <TextBlock Grid.Row="1" Grid.Column="1"
-                               Text="Show taskbar icon."
+                               Text="Hide taskbar icon."
                                FontSize="14"
                                Margin="5" />
 

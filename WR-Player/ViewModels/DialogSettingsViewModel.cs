@@ -86,7 +86,7 @@ namespace WR_Player.ViewModels
         {
             OpenLastUsedFile = Properties.Settings.Default.OpenLastUsedFile;
             AlwaysOnTop = Properties.Settings.Default.AlwaysOnTop;
-            ShowTaskbarIcon = Properties.Settings.Default.ShowTaskbarIcon;
+            ShowTaskbarIcon = Properties.Settings.Default.HideTaskbarIcon;
             Theme = Properties.Settings.Default.Theme;
         }
 
@@ -94,7 +94,7 @@ namespace WR_Player.ViewModels
         {
             Properties.Settings.Default.OpenLastUsedFile = OpenLastUsedFile;
             Properties.Settings.Default.AlwaysOnTop = AlwaysOnTop;
-            Properties.Settings.Default.ShowTaskbarIcon = ShowTaskbarIcon;
+            Properties.Settings.Default.HideTaskbarIcon = ShowTaskbarIcon;
             Properties.Settings.Default.Theme = Theme;
 
             Properties.Settings.Default.Save();

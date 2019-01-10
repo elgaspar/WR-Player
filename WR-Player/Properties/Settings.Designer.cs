@@ -61,13 +61,13 @@ namespace WR_Player.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool ShowTaskbarIcon {
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool HideTaskbarIcon {
             get {
-                return ((bool)(this["ShowTaskbarIcon"]));
+                return ((bool)(this["HideTaskbarIcon"]));
             }
             set {
-                this["ShowTaskbarIcon"] = value;
+                this["HideTaskbarIcon"] = value;
             }
         }
         

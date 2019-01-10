@@ -18,7 +18,7 @@ namespace WR_Player.Views.Assist
 
         public static void PlaylistNew()
         {
-            bool succeed = promptForSave();
+            bool succeed = PromptForPlaylistSave();
             if (!succeed)
                 return;
 
@@ -27,7 +27,7 @@ namespace WR_Player.Views.Assist
 
         public static void PlaylistOpen()
         {
-            bool succeed = promptForSave();
+            bool succeed = PromptForPlaylistSave();
             if (!succeed)
                 return;
 
@@ -64,6 +64,22 @@ namespace WR_Player.Views.Assist
             if (!succeed)
                 Dialogs.Error("Couldn't save playlist.");
             return succeed;
+        }
+
+        public static bool PromptForPlaylistSave()
+        {
+            if (mainVM.PlaylistVM.AnyChangeHappened)
+            {
+                bool? result = Dialogs.PromptForSave();
+                if (result == null)
+                    return false;
+                if (result == true)
+                {
+                    bool saveSucceed = PlaylistSave();
+                    return saveSucceed;
+                }
+            }
+            return true;
         }
 
 
@@ -137,6 +153,8 @@ namespace WR_Player.Views.Assist
 
 
 
+
+
         private static void applyTheme()
         {
             try
@@ -162,22 +180,6 @@ namespace WR_Player.Views.Assist
         {
             if (Properties.Settings.Default.IsCompacModeEnabled)
                 EnableCompactMode();
-        }
-
-        private static bool promptForSave()
-        {
-            if (mainVM.PlaylistVM.AnyChangeHappened)
-            {
-                bool? result = Dialogs.PromptForSave();
-                if (result == null)
-                    return false;
-                if (result == true)
-                {
-                    bool saveSucceed = PlaylistSave();
-                    return saveSucceed;
-                }
-            }
-            return true;
         }
 
     }
