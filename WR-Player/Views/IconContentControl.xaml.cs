@@ -20,6 +20,8 @@ namespace WR_Player.Views
     /// </summary>
     public partial class IconContentControl : ContentControl
     {
+        private const double DEFAULT_WIDTH_HEIGHT = 18.0;
+
         public IconContentControl()
         {
             InitializeComponent();
@@ -46,7 +48,7 @@ namespace WR_Player.Views
 
         // Using a DependencyProperty as the backing store for IconWidth.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty IconWidthProperty =
-            DependencyProperty.Register("IconWidth", typeof(double), typeof(IconContentControl), new PropertyMetadata(16.0));
+            DependencyProperty.Register("IconWidth", typeof(double), typeof(IconContentControl), new PropertyMetadata(DEFAULT_WIDTH_HEIGHT));
 
 
         public double IconHeight
@@ -57,7 +59,7 @@ namespace WR_Player.Views
 
         // Using a DependencyProperty as the backing store for IconHeight.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty IconHeightProperty =
-            DependencyProperty.Register("IconHeight", typeof(double), typeof(IconContentControl), new PropertyMetadata(16.0));
+            DependencyProperty.Register("IconHeight", typeof(double), typeof(IconContentControl), new PropertyMetadata(DEFAULT_WIDTH_HEIGHT));
 
 
     }

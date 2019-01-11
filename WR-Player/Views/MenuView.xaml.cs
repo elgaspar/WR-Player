@@ -54,52 +54,68 @@ namespace WR_Player.Views
 
 
 
-        private void PlaylistNew(object sender, RoutedEventArgs e)
+        private void Click_PlaylistNew(object sender, RoutedEventArgs e)
         {
             Actions.PlaylistNew();
         }
 
-        private void PlaylistOpen(object sender, RoutedEventArgs e)
+        private void Click_PlaylistOpen(object sender, RoutedEventArgs e)
         {
             Actions.PlaylistOpen();
         }
 
-        private void PlaylistSave(object sender, RoutedEventArgs e)
+        private void Click_PlaylistSave(object sender, RoutedEventArgs e)
         {
             Actions.PlaylistSave();
         }
 
-        private void PlaylistSaveAs(object sender, RoutedEventArgs e)
+        private void Click_PlaylistSaveAs(object sender, RoutedEventArgs e)
         {
             Actions.PlaylistSaveAs();
         }    
         
-        private void StreamAdd(object sender, RoutedEventArgs e)
+
+
+        private void Click_AddFile(object sender, RoutedEventArgs e)
         {
-            Actions.StreamAdd();
+            Actions.AddFile();
         }
 
-        private void StreamEdit(object sender, RoutedEventArgs e)
+        private void Click_AddDirectory(object sender, RoutedEventArgs e)
         {
-            Actions.StreamEdit();
+            Actions.AddDirectory();
         }
 
-        private void StreamRemove(object sender, RoutedEventArgs e)
+        private void Click_AddUrl(object sender, RoutedEventArgs e)
         {
-            Actions.StreamRemove();
+            Actions.AddUrl();
         }
 
-        private void CompactMode(object sender, RoutedEventArgs e)
+
+
+        private void Click_RemoveSelected(object sender, RoutedEventArgs e)
+        {
+            Actions.RemoveSelected();
+        }
+
+        private void Click_RemoveAll(object sender, RoutedEventArgs e)
+        {
+            Actions.RemoveAll();
+        }
+
+
+
+        private void Click_CompactMode(object sender, RoutedEventArgs e)
         {
             Actions.EnableCompactMode();
         }
 
-        private void Settings(object sender, RoutedEventArgs e)
+        private void Click_Settings(object sender, RoutedEventArgs e)
         {
             Actions.Settings();
         }
 
-        private void About(object sender, RoutedEventArgs e)
+        private void Click_About(object sender, RoutedEventArgs e)
         {
             Actions.About();
         }

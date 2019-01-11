@@ -23,34 +23,41 @@
         <MenuItem Header="Playlist" Height="Auto">
             <MenuItem Header="New"
                       Icon="{StaticResource PlaylistNewIcon}"
-                      Click="PlaylistNew">
+                      Click="Click_PlaylistNew">
             </MenuItem>
             <MenuItem Header="Open.."
                       Icon="{StaticResource PlaylistOpenIcon}"
-                      Click="PlaylistOpen"/>
+                      Click="Click_PlaylistOpen"/>
             <Separator/>
             <MenuItem Header="Save"
                       Icon="{StaticResource PlaylistSaveIcon}"
-                      IsEnabled="{Binding PlaylistVM.CanSave}"
-                      Click="PlaylistSave"/>
+                      Click="Click_PlaylistSave"/>
             <MenuItem Header="Save As.."
                       Icon="{StaticResource PlaylistSaveAsIcon}"
-                      IsEnabled="{Binding PlaylistVM.CanSave}"
-                      Click="PlaylistSaveAs"/>
+                      Click="Click_PlaylistSaveAs"/>
         </MenuItem>
 
-        <MenuItem Header="Stream" Height="Auto">
-            <MenuItem Header="Add.."
-                      Icon="{StaticResource StreamAddIcon}"
-                      Click="StreamAdd"/>
-            <MenuItem Header="Edit.."
-                      Icon="{StaticResource StreamEditIcon}"
+        <MenuItem Header="Add" Height="Auto">
+            <MenuItem Header="File.."
+                      Icon="{StaticResource AddFileIcon}"
+                      Click="Click_AddFile"/>
+            <MenuItem Header="Directory.."
+                      Icon="{StaticResource AddDirectoryIcon}"
+                      Click="Click_AddDirectory"/>
+            <MenuItem Header="URL.."
+                      Icon="{StaticResource AddUrlIcon}"
+                      Click="Click_AddUrl"/>
+        </MenuItem>
+
+        <MenuItem Header="Remove" Height="Auto">
+            <MenuItem Header="Selected"
+                      Icon="{StaticResource RemoveSelectedIcon}"
                       IsEnabled="{Binding PlaylistVM.CanEditRemove}"
-                      Click="StreamEdit"/>
-            <MenuItem Header="Remove.."
-                      Icon="{StaticResource StreamRemoveIcon}"
-                      IsEnabled="{Binding PlaylistVM.CanEditRemove}"
-                      Click="StreamRemove"/>
+                      Click="Click_RemoveSelected"/>
+            <MenuItem Header="All"
+                      Icon="{StaticResource RemoveAllIcon}"
+                      IsEnabled="{Binding PlaylistVM.AreThereItems}"
+                      Click="Click_RemoveAll"/>
         </MenuItem>
 
         <MenuItem Header="View" Height="Auto">
@@ -58,19 +65,19 @@
                       Icon="{StaticResource CompactModeEnableIcon}"
                       IsCheckable="True"
                       IsChecked="{Binding ElementName=mv, Path=IsCompactModeEnabled}"
-                      Click="CompactMode"/>
+                      Click="Click_CompactMode"/>
         </MenuItem>
 
         <MenuItem Header="Options" Height="Auto">
             <MenuItem Header="Settings.."
                       Icon="{StaticResource SettingsIcon}"
-                      Click="Settings"/>
+                      Click="Click_Settings"/>
         </MenuItem>
         
         <MenuItem Header="Help" Height="Auto">
             <MenuItem Header="About WR-Player.."
                       Icon="{StaticResource AboutIcon}"
-                      Click="About"/>
+                      Click="Click_About"/>
         </MenuItem>
 
     </Menu>

@@ -8,9 +8,9 @@ using WR_Player.Models;
 
 namespace WR_Player.ViewModels
 {
-    class DialogStreamAddEditViewModel : DialogViewModelBase, IDataErrorInfo
+    class DialogAddUrlViewModel : DialogViewModelBase, IDataErrorInfo
     {
-        public DialogStreamAddEditViewModel(MainViewModel parent, bool addEdit) : base(parent)
+        public DialogAddUrlViewModel(MainViewModel parent, bool addEdit) : base(parent)
         {
             AddEdit = addEdit;
             if (AddEdit == true)
@@ -98,9 +98,9 @@ namespace WR_Player.ViewModels
         public void Ok()
         {
             if (AddEdit)
-                StreamAdd();
+                UrlAdd();
             else
-                StreamEdit();
+                UrlEdit();
             TryClose(true);
         }
 
@@ -112,23 +112,23 @@ namespace WR_Player.ViewModels
 
 
 
-        private void StreamAdd()
+        private void UrlAdd()
         {
             Console.WriteLine("STREAM ADD: \n" +
                                     "\tTitle: " + StreamTitle +
                                     "\n\tURL: " + StreamUrl);//TODO: delete me
 
-            PlaylistItem stream = new PlaylistItem(StreamTitle, StreamUrl);
-            ParentVM.PlaylistVM.AddStream(stream);
+            PlaylistItem newItem = new PlaylistItem(StreamTitle, StreamUrl);
+            ParentVM.PlaylistVM.AddItem(newItem);
         }
 
-        private void StreamEdit()
+        private void UrlEdit()
         {
             Console.WriteLine("STREAM EDIT: \n" +
                                     "\tTitle: " + StreamTitle +
                                     "\n\tURL: " + StreamUrl);//TODO: delete me
 
-            ParentVM.PlaylistVM.EditStream(StreamTitle, StreamUrl);
+            ParentVM.PlaylistVM.EditUrl(StreamTitle, StreamUrl);
         }
     }
 }

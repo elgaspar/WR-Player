@@ -83,6 +83,14 @@ namespace WR_Player.Models
 
 
 
+
+        public void Clear()
+        {
+            _items.Clear();
+        }
+
+
+
         public bool SaveToFile(string filepath)
         {
             return PlaylistParser.WriteToFile(this, filepath);

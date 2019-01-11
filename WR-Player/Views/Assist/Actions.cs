@@ -47,7 +47,7 @@ namespace WR_Player.Views.Assist
 
         public static bool PlaylistSave()
         {
-            if (!mainVM.PlaylistVM.isPlaylistFileOpen)
+            if (!mainVM.PlaylistVM.IsPlaylistFileOpen)
                 return PlaylistSaveAs();
             bool succeed = mainVM.PlaylistVM.Save();
             if (!succeed)
@@ -84,22 +84,53 @@ namespace WR_Player.Views.Assist
 
 
 
-        public static void StreamAdd()
+        public static void AddFile()
         {
-            Dialogs.StreamAdd(mainVM);
+            Dialogs.AddFile(mainVM);
         }
 
-        public static void StreamEdit()
+        public static void AddDirectory()
         {
-            Dialogs.StreamEdit(mainVM);
+            Dialogs.AddDirectory(mainVM);
         }
 
-        public static void StreamRemove()
+        public static void AddUrl()
         {
-            bool? result = Dialogs.StreamRemove();
+            Dialogs.AddUrl(mainVM);
+        }
+
+
+
+        public static void RemoveSelected()
+        {
+            bool? result = Dialogs.RemoveSelected();
             if (result == true)
-                mainVM.PlaylistVM.RemoveStream();
+                mainVM.PlaylistVM.RemoveSelectedItem();
         }
+
+        public static void RemoveAll()
+        {
+            bool? result = Dialogs.RemoveAll();
+            if (result == true)
+                mainVM.PlaylistVM.RemoveAllItems();
+        }
+
+        //public static void StreamAdd()
+        //{
+        //    Dialogs.StreamAdd(mainVM);
+        //}
+
+        //public static void StreamEdit()
+        //{
+        //    Dialogs.StreamEdit(mainVM);
+        //}
+
+        //public static void StreamRemove()
+        //{
+        //    bool? result = Dialogs.StreamRemove();
+        //    if (result == true)
+        //        mainVM.PlaylistVM.RemoveStream();
+        //}
 
 
 

@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace WR_Player.Views
 {
     /// <summary>
-    /// Interaction logic for DialogStreamAddEditView.xaml
+    /// Interaction logic for DialogAddUrlView.xaml
     /// </summary>
-    public partial class DialogStreamAddEditView : MetroWindow
+    public partial class DialogAddUrlView : MetroWindow
     {
-        public DialogStreamAddEditView()
+        public DialogAddUrlView()
         {
             InitializeComponent();
         }

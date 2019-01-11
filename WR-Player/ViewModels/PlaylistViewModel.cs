@@ -43,9 +43,7 @@ namespace WR_Player.ViewModels
 
         public PlaylistItem SelectedItem { get { return playlist.SelectedItem; } }
 
-        public bool isPlaylistFileOpen { get { return !string.IsNullOrEmpty(Filepath); } }
-
-        public bool CanSave { get { return playlist.Items.Count > 0; } }
+        public bool IsPlaylistFileOpen { get { return !string.IsNullOrEmpty(Filepath); } }
 
         public bool CanEditRemove { get { return ItemToProcess != null; } }
 
@@ -101,14 +99,15 @@ namespace WR_Player.ViewModels
         }
 
 
-        public void AddStream(PlaylistItem stream)
+        public void AddItem(PlaylistItem item)
         {
-            playlist.Add(stream);
+            playlist.Add(item);
             AnyChangeHappened = true;
             notifyAll();
         }
 
-        public void EditStream(string newTitle, string newPath)
+        //TODO: it is not used yet. Do i need edit only for urls?
+        public void EditUrl(string newTitle, string newPath)
         {
             PlaylistItem itemToEdit = ParentVM.PlaylistVM.ItemToProcess;
 
@@ -126,11 +125,19 @@ namespace WR_Player.ViewModels
             notifyAll();
         }
 
-        public void RemoveStream()
+        public void RemoveSelectedItem()
         {
             if (ItemToProcess == SelectedItem)
                 stopPlaying();
             playlist.Remove(ItemToProcess);
+            AnyChangeHappened = true;
+            notifyAll();
+        }
+
+        public void RemoveAllItems()
+        {
+            stopPlaying();
+            playlist.Clear();
             AnyChangeHappened = true;
             notifyAll();
         }
@@ -152,8 +159,8 @@ namespace WR_Player.ViewModels
         private void notifyAll()
         {
             NotifyOfPropertyChange(() => Items);
-            NotifyOfPropertyChange(() => CanSave);
             NotifyOfPropertyChange(() => SelectedItem);
+            NotifyOfPropertyChange(() => AreThereItems);
         }
     }
 }

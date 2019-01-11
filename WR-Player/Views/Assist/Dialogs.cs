@@ -39,20 +39,44 @@ namespace WR_Player.Views.Assist
             return dialog.FileName;
         }
 
-        public static void StreamAdd(MainViewModel mainVM)
+
+
+        public static void AddFile(MainViewModel mainVM)
         {
-            ShowDialog(new DialogStreamAddEditViewModel(mainVM, true));
+            //TODO
+            //ShowDialog(new DialogAddFileViewModel(mainVM));
+            Console.WriteLine("TODO: dialog AddFile");
         }
 
-        public static void StreamEdit(MainViewModel mainVM)
+        public static void AddDirectory(MainViewModel mainVM)
         {
-            ShowDialog(new DialogStreamAddEditViewModel(mainVM, false));
+            //TODO
+            //ShowDialog(new DialogAddDirectoryViewModel(mainVM));
+            Console.WriteLine("TODO: dialog AddDirectory");
         }
 
-        public static bool? StreamRemove()
+        public static void AddUrl(MainViewModel mainVM)
         {
-            return ConfirmDialog("Remove selected entry?");
+            ShowDialog(new DialogAddUrlViewModel(mainVM, true));
         }
+
+
+
+        public static bool? RemoveSelected()
+        {
+            return ConfirmDialog("Remove selected item?");
+        }
+
+        public static bool? RemoveAll()
+        {
+            return ConfirmDialog("Remove all items?");
+        }
+
+        //public static void StreamEdit(MainViewModel mainVM)
+        //{
+        //    ShowDialog(new DialogStreamAddEditViewModel(mainVM, false));
+        //}
+
 
         public static bool? PromptForSave()
         {
@@ -70,6 +94,7 @@ namespace WR_Player.Views.Assist
             IWindowManager manager = new WindowManager();
             manager.ShowDialog(vm, null, null);
         }
+
 
 
         private static bool? ShowDialog(DialogViewModelBase vm)
