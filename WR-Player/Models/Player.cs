@@ -29,7 +29,6 @@ namespace WR_Player.Models
         public void Play(string Url)
         {
             player.Close();
-
             try
             {
                 player.Open(new Uri(Url));

@@ -11,6 +11,7 @@
                       Height="262"
                       MinWidth="347"
                       MinHeight="141"
+                      MaxWidth="347"
                       WindowStartupLocation="CenterScreen"
                       SaveWindowPosition="True"
                       Loaded="metroWindow_Loaded"
