@@ -8,6 +8,8 @@ namespace WR_Player.Models
 {
     enum AudioType
     {
+        Url,
+
         Aac,
         Mp3,
         Ogg,

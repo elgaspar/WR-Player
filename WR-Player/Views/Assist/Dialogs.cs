@@ -146,19 +146,21 @@ namespace WR_Player.Views.Assist
 
         private static string audioFileFilter()
         {
-            //"Audio files (*.flac, *.mp3, *.ogg, *.wav, *.wma) | *.flac; *.mp3; *.ogg; *.wav; *.wma"
+            //"Audio files (*.aac, *.mp3, *.ogg, *.wav, *.wma) | *.aac; *.mp3; *.ogg; *.wav; *.wma"
             string filter1 = "(";
             string filter2 = "";
             foreach (AudioType at in Enum.GetValues(typeof(AudioType)).Cast<AudioType>())
             {
-                string ext = "*." + at.ToString().ToLower();
-                filter1 += ext + ", ";
-                filter2 += ext + "; ";
+                if (at != AudioType.Url)
+                {
+                    string ext = "*." + at.ToString().ToLower();
+                    filter1 += ext + ", ";
+                    filter2 += ext + "; ";
+                }
             }
             filter1 = filter1.Remove(filter1.Length - 2);
             filter2 = filter2.Remove(filter2.Length - 2);
             string result = "Audio files " + filter1 + ") | " + filter2;
-            Console.WriteLine(result);
             return result;
         }
     }

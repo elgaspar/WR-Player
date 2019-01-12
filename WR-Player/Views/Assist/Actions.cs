@@ -231,12 +231,14 @@ namespace WR_Player.Views.Assist
         private static bool hasValidAudioFormat(string filepath)
         {
             string str = filepath.ToLower();
-
             foreach (AudioType at in Enum.GetValues(typeof(AudioType)).Cast<AudioType>())
             {
-                string ext = at.ToString().ToLower();
-                if (str.EndsWith(ext))
-                    return true;
+                if (at != AudioType.Url)
+                {
+                    string ext = at.ToString().ToLower();
+                    if (str.EndsWith(ext))
+                        return true;
+                }
             }
             return false;
         }
