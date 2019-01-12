@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WR_Player.Views"
+             xmlns:Converters="clr-namespace:WR_Player.Views.Converters"
              xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:Cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro.Platform">
 
@@ -21,11 +22,18 @@
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0"
                                Text="- "/>
                     <TextBlock Grid.Column="1"
+                               Text="{Binding Type, Converter={Converters:AudioTypeToStringConverter}}"
+                               FontSize="8"
+                               FontStyle="Italic"
+                               VerticalAlignment="Center"
+                               Margin="0 0 5 0"/>
+                    <TextBlock Grid.Column="2"
                                Text="{Binding Title}"
                                ToolTip="{Binding Title}"
                                TextTrimming="CharacterEllipsis">

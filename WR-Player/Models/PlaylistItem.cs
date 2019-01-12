@@ -40,6 +40,18 @@ namespace WR_Player.Models
             set
             {
                 _path = value;
+                Type = generateAudioTypeFromPath(value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private AudioType _type;
+        public AudioType Type
+        {
+            get { return _type; }
+            set
+            {
+                _type = value;
                 NotifyPropertyChanged();
             }
         }
@@ -53,6 +65,17 @@ namespace WR_Player.Models
                 _isSelected = value;
                 NotifyPropertyChanged();
             }
+        }
+
+        private static AudioType generateAudioTypeFromPath(string path)
+        {
+            if (path.ToLower().StartsWith("http"))
+                return AudioType.Url;
+            string extension = System.IO.Path.GetExtension(path);
+            extension = extension.Substring(1); //first character is '.' so we remove it
+            extension = extension.First().ToString().ToUpper() + extension.Substring(1).ToLower();
+            Enum.TryParse(extension, out AudioType type);
+            return type;
         }
 
     }

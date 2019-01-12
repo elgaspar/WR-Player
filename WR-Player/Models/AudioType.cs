@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WR_Player.Models
 {
-    enum AudioType
+    public enum AudioType
     {
         Url,
 
