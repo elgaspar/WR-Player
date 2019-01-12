@@ -1,6 +1,7 @@
 ﻿using MahApps.Metro;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,7 +32,7 @@ namespace WR_Player.Views.Assist
             if (!succeed)
                 return;
 
-            string filepath = Dialogs.BrowseFileToOpen();
+            string filepath = Dialogs.BrowsePlaylistFileToOpen();
             if (filepath == null)
                 return;
 
@@ -57,7 +58,7 @@ namespace WR_Player.Views.Assist
 
         public static bool PlaylistSaveAs()
         {
-            string filepath = Dialogs.BrowseFileToSave();
+            string filepath = Dialogs.BrowsePlaylistFileToSave();
             if (filepath == null)
                 return false;
             bool succeed = mainVM.PlaylistVM.SaveAs(filepath);
@@ -86,12 +87,20 @@ namespace WR_Player.Views.Assist
 
         public static void AddFile()
         {
-            Dialogs.AddFile(mainVM);
+            string filepath = Dialogs.BrowseAudioFileToOpen();
+            if (filepath == null)
+                return;
+            mainVM.PlaylistVM.AddFile(filepath);
         }
 
         public static void AddDirectory()
         {
-            Dialogs.AddDirectory(mainVM);
+            string folderPath = Dialogs.BrowseFolderToOpen();
+            if (folderPath == null)
+                return;
+            IEnumerable<string> filepaths = getAllFilesInFolder(folderPath);
+            foreach(string path in filepaths)
+                mainVM.PlaylistVM.AddFile(path);
         }
 
         public static void AddUrl()
@@ -211,6 +220,17 @@ namespace WR_Player.Views.Assist
         {
             if (Properties.Settings.Default.IsCompacModeEnabled)
                 EnableCompactMode();
+        }
+
+        private static IEnumerable<string> getAllFilesInFolder(string folderPath)
+        {
+            return Directory.EnumerateFiles(folderPath, "*.*", SearchOption.AllDirectories).Where(s => hasValidAudioFormat(s));
+        }
+
+        private static bool hasValidAudioFormat(string filepath)
+        {
+            string str = filepath.ToLower();
+            return str.EndsWith(".mp3") || str.EndsWith(".wav") || str.EndsWith(".wma") || str.EndsWith(".ogg") || str.EndsWith(".flac"); ;
         }
 
     }

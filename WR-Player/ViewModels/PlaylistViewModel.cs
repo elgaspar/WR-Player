@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -99,6 +100,12 @@ namespace WR_Player.ViewModels
         }
 
 
+        public void AddFile(string path)
+        {
+            PlaylistItem newItem = new PlaylistItem(createTitleFromPath(path), path);
+            AddItem(newItem);
+        }
+
         public void AddItem(PlaylistItem item)
         {
             playlist.Add(item);
@@ -107,7 +114,7 @@ namespace WR_Player.ViewModels
         }
 
         //TODO: it is not used yet. Do i need edit only for urls?
-        public void EditUrl(string newTitle, string newPath)
+        public void EditItem(string newTitle, string newPath)
         {
             PlaylistItem itemToEdit = ParentVM.PlaylistVM.ItemToProcess;
 
@@ -154,6 +161,11 @@ namespace WR_Player.ViewModels
             playlist = new Playlist();
             Filepath = null;
             AnyChangeHappened = false;
+        }
+
+        private string createTitleFromPath(string path)
+        {
+            return Path.GetFileNameWithoutExtension(path);
         }
 
         private void notifyAll()

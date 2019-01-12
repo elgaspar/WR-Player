@@ -12,48 +12,54 @@ namespace WR_Player.Views.Assist
     class Dialogs
     {
         //TODO
-        private static readonly string FILE_EXTENSION = ".m3u8";
-        private static readonly string FILE_FILTER = "UTF-8 Encoded Audio Playlist files (*.m3u8)|*.m3u8";
+        //private static readonly string PLAYLIST_FILE_EXTENSION = ".m3u8";
+        private static readonly string PLAYLIST_FILE_FILTER = "Playlist files (*.m3u8)|*.m3u8";
+
+        //private static readonly string AUDIO_FILE_EXTENSION = ".m3u8";
+        private static readonly string AUDIO_FILE_FILTER = "Audio files (*.mp3, *.wav, *.wma, *.ogg, *.flac) | *.wav; *.mp3; *.wma; *.ogg; *.flac";
 
 
 
-        public static string BrowseFileToSave()
+        public static string BrowsePlaylistFileToSave()
         {
-            SaveFileDialog dialog = new SaveFileDialog();
-            dialog.DefaultExt = FILE_EXTENSION;
-            dialog.Filter = FILE_FILTER;
-            bool? result = dialog.ShowDialog();
-            if (result != true) //null or false
+            return ShowFileSaveDialog(PLAYLIST_FILE_FILTER);
+        }
+
+        public static string BrowsePlaylistFileToOpen()
+        {
+            return ShowFileOpenDialog(PLAYLIST_FILE_FILTER);
+        }
+
+        public static string BrowseAudioFileToOpen()
+        {
+            return ShowFileOpenDialog(AUDIO_FILE_FILTER);
+        }
+
+        public static string BrowseFolderToOpen()
+        {
+            var dialog = new System.Windows.Forms.FolderBrowserDialog();
+            System.Windows.Forms.DialogResult result = dialog.ShowDialog();
+            if (result == System.Windows.Forms.DialogResult.OK)
+                return dialog.SelectedPath;
+            else
                 return null;
-            return dialog.FileName;
-        }
-
-        public static string BrowseFileToOpen()
-        {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.DefaultExt = FILE_EXTENSION;
-            dialog.Filter = FILE_FILTER;
-            bool? result = dialog.ShowDialog();
-            if (result != true) //null or false
-                return null;
-            return dialog.FileName;
         }
 
 
 
-        public static void AddFile(MainViewModel mainVM)
-        {
-            //TODO
-            //ShowDialog(new DialogAddFileViewModel(mainVM));
-            Console.WriteLine("TODO: dialog AddFile");
-        }
+        //public static void AddFile(MainViewModel mainVM)
+        //{
+        //    //TODO
+        //    //ShowDialog(new DialogAddFileViewModel(mainVM));
+        //    Console.WriteLine("TODO: dialog AddFile");
+        //}
 
-        public static void AddDirectory(MainViewModel mainVM)
-        {
-            //TODO
-            //ShowDialog(new DialogAddDirectoryViewModel(mainVM));
-            Console.WriteLine("TODO: dialog AddDirectory");
-        }
+        //public static void AddDirectory(MainViewModel mainVM)
+        //{
+        //    //TODO
+        //    //ShowDialog(new DialogAddDirectoryViewModel(mainVM));
+        //    Console.WriteLine("TODO: dialog AddDirectory");
+        //}
 
         public static void AddUrl(MainViewModel mainVM)
         {
@@ -96,6 +102,28 @@ namespace WR_Player.Views.Assist
         }
 
 
+
+        private static string ShowFileSaveDialog(string filter)
+        {
+            SaveFileDialog dialog = new SaveFileDialog();
+            //dialog.DefaultExt = PLAYLIST_FILE_EXTENSION;
+            dialog.Filter = filter;
+            bool? result = dialog.ShowDialog();
+            if (result != true) //null or false
+                return null;
+            return dialog.FileName;
+        }
+
+        private static string ShowFileOpenDialog(string filter)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            //dialog.DefaultExt = PLAYLIST_FILE_EXTENSION;
+            dialog.Filter = filter;
+            bool? result = dialog.ShowDialog();
+            if (result != true) //null or false
+                return null;
+            return dialog.FileName;
+        }
 
         private static bool? ShowDialog(DialogViewModelBase vm)
         {

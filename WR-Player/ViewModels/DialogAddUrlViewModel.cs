@@ -128,7 +128,7 @@ namespace WR_Player.ViewModels
                                     "\tTitle: " + StreamTitle +
                                     "\n\tURL: " + StreamUrl);//TODO: delete me
 
-            ParentVM.PlaylistVM.EditUrl(StreamTitle, StreamUrl);
+            ParentVM.PlaylistVM.EditItem(StreamTitle, StreamUrl);
         }
     }
 }
