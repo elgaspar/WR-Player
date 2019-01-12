@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WR_Player.Models;
 using WR_Player.ViewModels;
 
 namespace WR_Player.Views.Assist
@@ -13,10 +14,10 @@ namespace WR_Player.Views.Assist
     {
         //TODO
         //private static readonly string PLAYLIST_FILE_EXTENSION = ".m3u8";
-        private static readonly string PLAYLIST_FILE_FILTER = "Playlist files (*.m3u8)|*.m3u8";
+        private static readonly string PLAYLIST_FILE_FILTER = playlistFileFilter();
 
         //private static readonly string AUDIO_FILE_EXTENSION = ".m3u8";
-        private static readonly string AUDIO_FILE_FILTER = "Audio files (*.mp3, *.wav, *.wma, *.ogg, *.flac) | *.wav; *.mp3; *.wma; *.ogg; *.flac";
+        private static readonly string AUDIO_FILE_FILTER = audioFileFilter();
 
 
 
@@ -136,6 +137,29 @@ namespace WR_Player.Views.Assist
             DialogConfirmViewModel vm = new DialogConfirmViewModel(msg);
             ShowDialog(vm);
             return vm.Result;
+        }
+
+        private static string playlistFileFilter()
+        {
+            return "Playlist files (*.m3u8) | *.m3u8";
+        }
+
+        private static string audioFileFilter()
+        {
+            //"Audio files (*.flac, *.mp3, *.ogg, *.wav, *.wma) | *.flac; *.mp3; *.ogg; *.wav; *.wma"
+            string filter1 = "(";
+            string filter2 = "";
+            foreach (AudioType at in Enum.GetValues(typeof(AudioType)).Cast<AudioType>())
+            {
+                string ext = "*." + at.ToString().ToLower();
+                filter1 += ext + ", ";
+                filter2 += ext + "; ";
+            }
+            filter1 = filter1.Remove(filter1.Length - 2);
+            filter2 = filter2.Remove(filter2.Length - 2);
+            string result = "Audio files " + filter1 + ") | " + filter2;
+            Console.WriteLine(result);
+            return result;
         }
     }
 }

@@ -75,6 +75,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Models\AudioType.cs" />
     <Compile Include="Models\NotifyBase.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\Playlist.cs" />

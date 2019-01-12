@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using WR_Player.Models;
 using WR_Player.ViewModels;
 
 namespace WR_Player.Views.Assist
@@ -230,7 +231,14 @@ namespace WR_Player.Views.Assist
         private static bool hasValidAudioFormat(string filepath)
         {
             string str = filepath.ToLower();
-            return str.EndsWith(".mp3") || str.EndsWith(".wav") || str.EndsWith(".wma") || str.EndsWith(".ogg") || str.EndsWith(".flac"); ;
+
+            foreach (AudioType at in Enum.GetValues(typeof(AudioType)).Cast<AudioType>())
+            {
+                string ext = at.ToString().ToLower();
+                if (str.EndsWith(ext))
+                    return true;
+            }
+            return false;
         }
 
     }
