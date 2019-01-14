@@ -5,6 +5,8 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
+using System.Windows;
 using WR_Player.Models;
 
 namespace WR_Player.ViewModels
@@ -26,6 +28,41 @@ namespace WR_Player.ViewModels
 
         public Player.PlayerStatus Status { get { return player.Status; } }
 
+
+
+
+
+        public double DurationInSeconds
+        {
+            get
+            {
+                //if (LoadedItem != null && LoadedItem.Type == AudioType.Url)
+                //    return 1;
+                if (player.DurationInSeconds == -1)
+                    return 1;
+                return player.DurationInSeconds;
+            }
+        }
+
+        public double PositionInSeconds
+        {
+            get
+            {
+                //if (LoadedItem != null && LoadedItem.Type == AudioType.Url)
+                //    return 1;
+                return player.PositionInSeconds;
+            }
+            set
+            {
+                player.PositionInSeconds = value;
+                NotifyOfPropertyChange(() => PositionInSeconds);
+            }
+        }
+
+
+
+
+
         public bool IsPlaying { get { return Status != Player.PlayerStatus.Idle; } }
 
         public double Volume
@@ -40,6 +77,8 @@ namespace WR_Player.ViewModels
             if (!PlaylistVM.AreThereItems)
                 return;
             player.Play(LoadedItem.Path);
+            if (LoadedItem.Type != AudioType.Url)
+                enablePositionNotifier();
             notifyAll();
         }
 
@@ -48,6 +87,7 @@ namespace WR_Player.ViewModels
             if (!IsPlaying)
                 return;
             player.Stop();
+            disablePositionNotifier();
             notifyAll();
         }
 
@@ -77,11 +117,47 @@ namespace WR_Player.ViewModels
 
 
 
+
+
+
+        private Timer positionNotifierTimer;
+
+        private void enablePositionNotifier()
+        {
+            if (positionNotifierTimer != null)
+                positionNotifierTimer.Dispose();
+            positionNotifierTimer = new Timer();
+            positionNotifierTimer.Elapsed += new ElapsedEventHandler(notifyPosition);
+            positionNotifierTimer.Interval = 100;
+            positionNotifierTimer.Enabled = true;
+
+
+            NotifyOfPropertyChange(() => PositionInSeconds);
+            NotifyOfPropertyChange(() => DurationInSeconds);
+        }
+
+        private void disablePositionNotifier()
+        {
+            if (positionNotifierTimer!=null)
+                positionNotifierTimer.Dispose();
+        }
+
+        private void notifyPosition(object source, ElapsedEventArgs e)
+        {
+            NotifyOfPropertyChange(() => PositionInSeconds);
+            NotifyOfPropertyChange(() => DurationInSeconds);
+        }
+
+
+
+
         private void notifyAll()
         {
             NotifyOfPropertyChange(() => Status);
             NotifyOfPropertyChange(() => IsPlaying);
             NotifyOfPropertyChange(() => LoadedItem);
+            NotifyOfPropertyChange(() => PositionInSeconds);
+            NotifyOfPropertyChange(() => DurationInSeconds);
         }
 
         private bool thereIsNoNextItem { get { return !PlaylistVM.AreThereItems || LoadedItem == PlaylistVM.Items.Last(); } }

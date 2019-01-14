@@ -7,10 +7,49 @@ using System.Windows.Media;
 
 namespace WR_Player.Models
 {
-    public class Player
+    public class Player : NotifyBase
     {
+        private const double DEFAULT_DURATION_POSITION = -1;
+
         public double Volume { get; private set; }        
         public PlayerStatus Status { get; private set; }
+
+        public double DurationInSeconds
+        {
+            get
+            {
+                if (player.NaturalDuration.HasTimeSpan)
+                    return (int)player.NaturalDuration.TimeSpan.TotalSeconds;
+                return DEFAULT_DURATION_POSITION;
+            }
+        }
+
+        public double PositionInSeconds
+        {
+            get
+            {
+                if (Status != PlayerStatus.Playing)
+                    return 0;
+                if (!player.NaturalDuration.HasTimeSpan)
+                    return DEFAULT_DURATION_POSITION;
+                return (int)player.Position.TotalSeconds;
+            }
+            set
+            {
+                if (player.NaturalDuration.HasTimeSpan)
+                    player.Position = new TimeSpan(0, 0, (int)value);
+            }
+        }
+
+        //public int PositionPercentage
+        //{
+        //    get
+        //    {
+        //        return PositionInSeconds / DurationInSeconds;
+        //    }
+            
+        //}
+
 
         private MediaPlayer player;
 
@@ -55,5 +94,6 @@ namespace WR_Player.Models
             Volume = vol;
             player.Volume = vol;
         }
+
     }
 }
