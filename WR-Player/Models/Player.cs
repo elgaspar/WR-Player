@@ -9,12 +9,12 @@ namespace WR_Player.Models
 {
     public class Player : NotifyBase
     {
-        private const double DEFAULT_DURATION_POSITION = -1;
+        private const int DEFAULT_DURATION_POSITION = -1;
 
         public double Volume { get; private set; }        
         public PlayerStatus Status { get; private set; }
 
-        public double DurationInSeconds
+        public int DurationInSeconds
         {
             get
             {
@@ -24,7 +24,7 @@ namespace WR_Player.Models
             }
         }
 
-        public double PositionInSeconds
+        public int PositionInSeconds
         {
             get
             {

@@ -57,7 +57,7 @@
         <Slider x:Name="positionBarSlider"
                 IsEnabled="{Binding IsPlaying}"
                 Value="{Binding PositionInSeconds}"
-                ToolTip="{Binding PositionInSeconds, Mode=OneWay}"
+                ToolTip="{Binding PositionInSeconds, Mode=OneWay, Converter={Converters:SecondsToStringConverter}}"
                 Focusable="False"
                 Maximum="{Binding DurationInSeconds, Mode=OneWay}"
                 IsMoveToPointEnabled="True"

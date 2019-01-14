@@ -32,24 +32,21 @@ namespace WR_Player.ViewModels
 
 
 
-        public double DurationInSeconds
+        public int DurationInSeconds
         {
             get
             {
-                //if (LoadedItem != null && LoadedItem.Type == AudioType.Url)
-                //    return 1;
                 if (player.DurationInSeconds == -1)
                     return 1;
                 return player.DurationInSeconds;
             }
         }
 
-        public double PositionInSeconds
+        public int PositionInSeconds
         {
             get
             {
-                //if (LoadedItem != null && LoadedItem.Type == AudioType.Url)
-                //    return 1;
+                Console.WriteLine(new TimeSpan(0,0, player.PositionInSeconds).ToString("c"));
                 return player.PositionInSeconds;
             }
             set
