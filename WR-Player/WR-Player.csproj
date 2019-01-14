@@ -82,6 +82,7 @@
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\Playlist.cs" />
     <Compile Include="Models\PlaylistItem.cs" />
+    <Compile Include="Models\PlaylistItemHelper.cs" />
     <Compile Include="Models\PlaylistParser.cs" />
     <Compile Include="ViewModels\DialogAddUrlViewModel.cs" />
     <Compile Include="ViewModels\DialogConfirmViewModel.cs" />
