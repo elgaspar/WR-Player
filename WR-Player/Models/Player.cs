@@ -41,15 +41,11 @@ namespace WR_Player.Models
             }
         }
 
-        //public int PositionPercentage
-        //{
-        //    get
-        //    {
-        //        return PositionInSeconds / DurationInSeconds;
-        //    }
-            
-        //}
-
+        public event EventHandler PlaybackFinished
+        {
+            add { player.MediaEnded += value; }
+            remove { player.MediaEnded -= value; }
+        }
 
         private MediaPlayer player;
 

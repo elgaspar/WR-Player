@@ -20,9 +20,9 @@ namespace WR_Player.ViewModels
         public PlayerViewModel(MainViewModel parent) : base(parent)
         {
             player = new Player();
+
+            player.PlaybackFinished += Player_PlaybackFinished;
         }
-
-
 
         public PlaylistItem LoadedItem { get { return PlaylistVM.SelectedItem; } }
 
@@ -44,11 +44,7 @@ namespace WR_Player.ViewModels
 
         public int PositionInSeconds
         {
-            get
-            {
-                Console.WriteLine(new TimeSpan(0,0, player.PositionInSeconds).ToString("c"));
-                return player.PositionInSeconds;
-            }
+            get { return player.PositionInSeconds; }
             set
             {
                 player.PositionInSeconds = value;
@@ -147,6 +143,18 @@ namespace WR_Player.ViewModels
 
 
 
+
+        private void Player_PlaybackFinished(object sender, EventArgs e)
+        {
+            if (thereIsNoNextItem)
+            {
+                Stop();
+                Console.WriteLine("Playback finished: No next item to load.");//TODO: deleteme
+                return;
+            }
+            Next();
+            Console.WriteLine("Playback finished: Next item loaded.");//TODO: deleteme
+        }
 
         private void notifyAll()
         {
