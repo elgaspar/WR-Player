@@ -21,8 +21,11 @@ namespace WR_Player.ViewModels
         {
             player = new Player();
 
+            player.PlaybackStarted += NotifyStatus;
             player.PlaybackFinished += Player_PlaybackFinished;
+            player.PlaybackError += NotifyStatus;
         }
+
 
         public PlaylistItem LoadedItem { get { return PlaylistVM.SelectedItem; } }
 
@@ -55,8 +58,19 @@ namespace WR_Player.ViewModels
 
 
 
-
-        public bool IsPlaying { get { return Status != Player.PlayerStatus.Idle; } }
+        private bool _isPlaying;
+        public bool IsPlaying
+        {
+            get
+            {
+                return _isPlaying;
+            }
+            private set
+            {
+                _isPlaying = value;
+                NotifyOfPropertyChange(() => IsPlaying);
+            }
+        }
 
         public double Volume
         {
@@ -70,6 +84,7 @@ namespace WR_Player.ViewModels
             if (!PlaylistVM.AreThereItems)
                 return;
             player.Play(LoadedItem.Path);
+            IsPlaying = true;
             if (LoadedItem.Type != AudioType.Url)
                 enablePositionNotifier();
             notifyAll();
@@ -80,6 +95,7 @@ namespace WR_Player.ViewModels
             if (!IsPlaying)
                 return;
             player.Stop();
+            IsPlaying = false;
             disablePositionNotifier();
             notifyAll();
         }
@@ -144,17 +160,9 @@ namespace WR_Player.ViewModels
 
 
 
-        private void Player_PlaybackFinished(object sender, EventArgs e)
-        {
-            if (thereIsNoNextItem)
-            {
-                Stop();
-                Console.WriteLine("Playback finished: No next item to load.");//TODO: deleteme
-                return;
-            }
-            Next();
-            Console.WriteLine("Playback finished: Next item loaded.");//TODO: deleteme
-        }
+        
+
+        
 
         private void notifyAll()
         {
@@ -168,6 +176,28 @@ namespace WR_Player.ViewModels
         private bool thereIsNoNextItem { get { return !PlaylistVM.AreThereItems || LoadedItem == PlaylistVM.Items.Last(); } }
 
         private bool thereIsNoPreviousItem { get { return !PlaylistVM.AreThereItems || LoadedItem == PlaylistVM.Items.First(); } }
+
+
+
+
+        private void NotifyStatus(object sender, EventArgs e)
+        {
+            NotifyOfPropertyChange(() => Status);
+            NotifyOfPropertyChange(() => IsPlaying);
+        }
+
+        private void Player_PlaybackFinished(object sender, EventArgs e)
+        {
+            if (thereIsNoNextItem)
+            {
+                Stop();
+                Console.WriteLine("Playback finished: No next item to load.");//TODO: deleteme
+                NotifyStatus(null, null);
+                return;
+            }
+            Next();
+            Console.WriteLine("Playback finished: Next item loaded.");//TODO: deleteme
+        }
 
     }
 }

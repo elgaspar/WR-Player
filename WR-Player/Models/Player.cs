@@ -40,6 +40,12 @@ namespace WR_Player.Models
                     player.Position = new TimeSpan(0, 0, (int)value);
             }
         }
+        
+        public event EventHandler PlaybackStarted
+        {
+            add { player.MediaOpened += value; }
+            remove { player.MediaOpened -= value; }
+        }
 
         public event EventHandler PlaybackFinished
         {
@@ -47,18 +53,32 @@ namespace WR_Player.Models
             remove { player.MediaEnded -= value; }
         }
 
+        public event EventHandler<ExceptionEventArgs> PlaybackError
+        {
+            add { player.MediaFailed += value; }
+            remove { player.MediaFailed -= value; }
+        }
+
+
+
+
+
         private MediaPlayer player;
 
         public Player()
         {
             player = new MediaPlayer();
             Volume = 0.5;
-            Status = PlayerStatus.Idle;
+            Status = PlayerStatus.Stopped;
+
+            PlaybackStarted += Player_PlaybackStarted;
+            PlaybackFinished += Player_PlaybackFinished;
+            PlaybackError += Player_PlaybackError;
         }
 
         public enum PlayerStatus
         {
-            Idle, Playing, Error
+            Stopped, Buffering, Loading, Playing, Error
         }
 
         public void Play(string Url)
@@ -71,24 +91,46 @@ namespace WR_Player.Models
             }
             catch (Exception)
             {
-                Console.WriteLine("---Invalid URL");//TODO deleteme
                 Status = PlayerStatus.Error;
                 return;
             }
             player.Volume = Volume;
-            Status = PlayerStatus.Playing;
+            bool isUrl = PlaylistItemHelper.GenerateType(Url) == AudioType.Url;
+            if (isUrl)
+                Status = PlayerStatus.Buffering;
+            else
+                Status = PlayerStatus.Loading;
         }
 
         public void Stop()
         {
             player.Stop();
-            Status = PlayerStatus.Idle;
+            Status = PlayerStatus.Stopped;
         }
 
         public void SetVolume(double vol)
         {
             Volume = vol;
             player.Volume = vol;
+        }
+
+
+
+
+
+        private void Player_PlaybackStarted(object sender, EventArgs e)
+        {
+            Status = PlayerStatus.Playing;
+        }
+
+        private void Player_PlaybackFinished(object sender, EventArgs e)
+        {
+            Status = PlayerStatus.Stopped;
+        }
+
+        private void Player_PlaybackError(object sender, EventArgs e)
+        {
+            Status = PlayerStatus.Error;
         }
 
     }
