@@ -50,11 +50,11 @@
         </MenuItem>
 
         <MenuItem Header="Remove" Height="Auto">
-            <MenuItem Header="Selected"
+            <MenuItem Header="Selected.."
                       Icon="{StaticResource RemoveSelectedIcon}"
                       IsEnabled="{Binding PlaylistVM.CanEditRemove}"
                       Click="Click_RemoveSelected"/>
-            <MenuItem Header="All"
+            <MenuItem Header="All.."
                       Icon="{StaticResource RemoveAllIcon}"
                       IsEnabled="{Binding PlaylistVM.AreThereItems}"
                       Click="Click_RemoveAll"/>
