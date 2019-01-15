@@ -24,8 +24,7 @@
             BorderBrush="{x:Null}"
             Padding="0"
             Width="20" Height="20"
-            Click="Button_Click_Restore"
-            Margin="0 18 7 0"/>
+            Click="Button_Click_Restore"/>
 
     
 </UserControl>

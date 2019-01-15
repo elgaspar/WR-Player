@@ -41,7 +41,8 @@
                           Margin="5"/>
 
         <local:CompactModeRestoreButton Grid.Row="2" Grid.Column="1"
-                                        Visibility="{Binding IsCompactModeEnabled, ElementName=menu, Converter={StaticResource BooleanToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}"/>
+                                        Visibility="{Binding IsCompactModeEnabled, ElementName=menu, Converter={StaticResource BooleanToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}"
+                                        Margin="0 45 7 0"/>
 
     </Grid>
 

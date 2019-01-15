@@ -89,7 +89,7 @@
         <ProgressBar x:Name="positionProgressBar"
                      IsIndeterminate="True"
                      Height="10"
-                     Margin="5">
+                     Margin="5 8 5 8">
             <ProgressBar.Resources>
                 <Style TargetType="{x:Type ProgressBar}" BasedOn="{StaticResource MetroProgressBar}">
                     <Style.Triggers>
