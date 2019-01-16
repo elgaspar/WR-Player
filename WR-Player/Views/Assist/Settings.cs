@@ -14,6 +14,92 @@ namespace WR_Player.Views.Assist
         private static MainViewModel mainVM { get { return (MainViewModel)Application.Current.MainWindow.DataContext; } }
         private static MainView mainWin { get { return (MainView)Application.Current.MainWindow; } }
 
+
+
+        public static bool OpenLastUsedFile
+        {
+            get { return Properties.Settings.Default.OpenLastUsedFile; }
+            set
+            {
+                Properties.Settings.Default.OpenLastUsedFile = value;
+                Properties.Settings.Default.Save();
+            }
+        }
+
+        public static string LastUsedFilepath
+        {
+            get { return Properties.Settings.Default.LastUsedFilepath; }
+            set
+            {
+                Properties.Settings.Default.LastUsedFilepath = value;
+                Properties.Settings.Default.Save();
+            }
+        }
+
+        public static bool AlwaysOnTop
+        {
+            get { return Properties.Settings.Default.AlwaysOnTop; }
+            set
+            {
+                Properties.Settings.Default.AlwaysOnTop = value;
+                Properties.Settings.Default.Save();
+            }
+        }
+
+        public static bool HideTaskbarIcon
+        {
+            get { return Properties.Settings.Default.HideTaskbarIcon; }
+            set
+            {
+                Properties.Settings.Default.HideTaskbarIcon = value;
+                Properties.Settings.Default.Save();
+            }
+        }
+
+        public static string Theme
+        {
+            get { return Properties.Settings.Default.Theme; }
+            set
+            {
+                Properties.Settings.Default.Theme = value;
+                Properties.Settings.Default.Save();
+            }
+        }
+
+        public static bool IsCompacModeEnabled
+        {
+            get { return Properties.Settings.Default.IsCompacModeEnabled; }
+            set
+            {
+                Properties.Settings.Default.IsCompacModeEnabled = value;
+                Properties.Settings.Default.Save();
+            }
+        }
+
+        public static double Volume
+        {
+            get { return Properties.Settings.Default.Volume; }
+            set
+            {
+                Properties.Settings.Default.Volume = value;
+                Properties.Settings.Default.Save();
+            }
+        }
+
+        public static bool HideSeekingBar
+        {
+            get { return Properties.Settings.Default.HideSeekingBar; }
+            set
+            {
+                Properties.Settings.Default.HideSeekingBar = value;
+                Properties.Settings.Default.Save();
+            }
+        }
+
+
+
+
+
         public static void Apply()
         {
             ApplyTheme();
@@ -24,10 +110,9 @@ namespace WR_Player.Views.Assist
 
         public static void Save()
         {
-            Properties.Settings.Default.LastUsedFilepath = mainVM.PlaylistVM.Filepath;
-            Properties.Settings.Default.IsCompacModeEnabled = mainWin.menu.IsCompactModeEnabled;
-            Properties.Settings.Default.Volume = mainVM.PlayerVM.Volume;
-            Properties.Settings.Default.Save();
+            LastUsedFilepath = mainVM.PlaylistVM.Filepath;
+            IsCompacModeEnabled = mainWin.menu.IsCompactModeEnabled;
+            Volume = mainVM.PlayerVM.Volume;
         }
 
         public static void ApplyTheme()
@@ -35,7 +120,7 @@ namespace WR_Player.Views.Assist
             try
             {
                 Tuple<AppTheme, Accent> appStyle = ThemeManager.DetectAppStyle(Application.Current);
-                ThemeManager.ChangeAppStyle(Application.Current, ThemeManager.GetAccent(Properties.Settings.Default.Theme), ThemeManager.GetAppTheme("BaseLight"));
+                ThemeManager.ChangeAppStyle(Application.Current, ThemeManager.GetAccent(Theme), ThemeManager.GetAppTheme("BaseLight"));
             }
             catch (Exception)
             {
@@ -49,20 +134,20 @@ namespace WR_Player.Views.Assist
 
         private static void applyVolume()
         {
-            mainVM.PlayerVM.Volume = Properties.Settings.Default.Volume;
+            mainVM.PlayerVM.Volume = Volume;
         }
 
         private static void openLastUsedFileIfNeeded()
         {
-            bool openFile = Properties.Settings.Default.OpenLastUsedFile;
-            bool validFile = !string.IsNullOrEmpty(Properties.Settings.Default.LastUsedFilepath);
+            bool openFile = OpenLastUsedFile;
+            bool validFile = !string.IsNullOrEmpty(LastUsedFilepath);
             if (openFile && validFile)
-                Actions.PlaylistOpen(Properties.Settings.Default.LastUsedFilepath);
+                Actions.PlaylistOpen(LastUsedFilepath);
         }
 
         private static void enableCompactModeIfNeeded()
         {
-            if (Properties.Settings.Default.IsCompacModeEnabled)
+            if (IsCompacModeEnabled)
                 Actions.EnableCompactMode();
         }
     }

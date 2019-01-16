@@ -22,8 +22,8 @@ namespace WR_Player.Views
     /// </summary>
     public partial class MainView : MetroWindow
     {
-        private double default_MinWidth;
-        private double default_MinHeight;
+        private double defaultMinWidth;
+        private double defaultMinHeight;
 
         private WindowState savedState;
         private double savedWidth;
@@ -39,8 +39,8 @@ namespace WR_Player.Views
 
         private void initDefaultValues()
         {
-            default_MinWidth = MinWidth;
-            default_MinHeight = MinHeight;
+            defaultMinWidth = MinWidth;
+            defaultMinHeight = MinHeight;
         }
 
         private void saveSizeAndState()
@@ -67,8 +67,10 @@ namespace WR_Player.Views
             MinWidth = 0;
             MinHeight = 0;
 
-            Topmost = Properties.Settings.Default.AlwaysOnTop;
-            ShowInTaskbar = !Properties.Settings.Default.HideTaskbarIcon;
+            Topmost = Settings.AlwaysOnTop;
+            ShowInTaskbar = !Settings.HideTaskbarIcon;
+
+            compactModeRestoreButton.EnableCompact();
         }
 
         public void DisableCompact()
@@ -79,12 +81,14 @@ namespace WR_Player.Views
 
             initWindowButtons();
 
-            MinWidth = default_MinWidth;
-            MinHeight = default_MinHeight;
+            MinWidth = defaultMinWidth;
+            MinHeight = defaultMinHeight;
             restoreSizeAndState();
 
             Topmost = false;
             ShowInTaskbar = true;
+
+            compactModeRestoreButton.DisableCompact();
         }
 
         //window buttons (close, maximize, minimize) need to be reinitialized to be shown correctly

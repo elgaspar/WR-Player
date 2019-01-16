@@ -106,5 +106,17 @@ namespace WR_Player.Properties {
                 this["Volume"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool HideSeekingBar {
+            get {
+                return ((bool)(this["HideSeekingBar"]));
+            }
+            set {
+                this["HideSeekingBar"] = value;
+            }
+        }
     }
 }

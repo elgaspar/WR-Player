@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WR_Player.Views.Assist;
 
 namespace WR_Player.ViewModels
 {
@@ -36,14 +37,25 @@ namespace WR_Player.ViewModels
             }
         }
 
-        private bool _showTaskbarIcon;
-        public bool ShowTaskbarIcon
+        private bool _hideTaskbarIcon;
+        public bool HideTaskbarIcon
         {
-            get { return _showTaskbarIcon; }
+            get { return _hideTaskbarIcon; }
             set
             {
-                _showTaskbarIcon = value;
-                NotifyOfPropertyChange(() => ShowTaskbarIcon);
+                _hideTaskbarIcon = value;
+                NotifyOfPropertyChange(() => HideTaskbarIcon);
+            }
+        }
+
+        private bool _hideSeekingBar;
+        public bool HideSeekingBar
+        {
+            get { return _hideSeekingBar; }
+            set
+            {
+                _hideSeekingBar = value;
+                NotifyOfPropertyChange(() => HideSeekingBar);
             }
         }
 
@@ -84,20 +96,20 @@ namespace WR_Player.ViewModels
 
         private void loadCurrentSettings()
         {
-            OpenLastUsedFile = Properties.Settings.Default.OpenLastUsedFile;
-            AlwaysOnTop = Properties.Settings.Default.AlwaysOnTop;
-            ShowTaskbarIcon = Properties.Settings.Default.HideTaskbarIcon;
-            Theme = Properties.Settings.Default.Theme;
+            OpenLastUsedFile = Settings.OpenLastUsedFile;
+            AlwaysOnTop = Settings.AlwaysOnTop;
+            HideTaskbarIcon = Settings.HideTaskbarIcon;
+            HideSeekingBar = Settings.HideSeekingBar;
+            Theme = Settings.Theme;
         }
 
         private void saveCurrentSettings()
         {
-            Properties.Settings.Default.OpenLastUsedFile = OpenLastUsedFile;
-            Properties.Settings.Default.AlwaysOnTop = AlwaysOnTop;
-            Properties.Settings.Default.HideTaskbarIcon = ShowTaskbarIcon;
-            Properties.Settings.Default.Theme = Theme;
-
-            Properties.Settings.Default.Save();
+            Settings.OpenLastUsedFile = OpenLastUsedFile;
+            Settings.AlwaysOnTop = AlwaysOnTop;
+            Settings.HideTaskbarIcon = HideTaskbarIcon;
+            Settings.HideSeekingBar = HideSeekingBar;
+            Settings.Theme = Theme;
         }
     }
 }

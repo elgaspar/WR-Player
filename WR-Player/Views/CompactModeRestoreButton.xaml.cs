@@ -21,14 +21,42 @@ namespace WR_Player.Views
     /// </summary>
     public partial class CompactModeRestoreButton : UserControl
     {
+        private Thickness defaultMargin;
+
         public CompactModeRestoreButton()
         {
             InitializeComponent();
         }
 
+        
+
+        public void EnableCompact()
+        {
+            defaultMargin = this.Margin;
+            if (Settings.HideSeekingBar)
+                this.Margin = createMargin();
+        }
+
+        public void DisableCompact()
+        {
+            Console.WriteLine(defaultMargin);
+            this.Margin = defaultMargin;
+        }
+
+        private Thickness createMargin()
+        {
+            double left = defaultMargin.Left;
+            double top = 19;
+            double right = defaultMargin.Right;
+            double bottom = defaultMargin.Bottom;
+            return new Thickness(left, top, right, bottom);
+        }
+
+
         private void Button_Click_Restore(object sender, RoutedEventArgs e)
         {
             Actions.DisableCompactMode();
         }
+
     }
 }

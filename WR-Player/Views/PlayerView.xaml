@@ -8,9 +8,40 @@
 
     <UserControl.Resources>
         <ResourceDictionary>
+
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="IconsResourceDictionary.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+
+            <Style x:Key="seekingBarSliderStyle"
+                       TargetType="{x:Type Slider}"
+                       BasedOn="{StaticResource MetroSlider}">
+                <Style.Triggers>
+                    <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding LoadedItem.Type}" Value="Url"/>
+                            <Condition Binding="{Binding IsPlaying}" Value="True" />
+                        </MultiDataTrigger.Conditions>
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                    </MultiDataTrigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style x:Key="seekingProgressBarStyle"
+                       TargetType="{x:Type ProgressBar}"
+                       BasedOn="{StaticResource MetroProgressBar}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Visibility, ElementName=seekingBarSlider}" Value="Visible">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style x:Key="controlHiddenStyle"
+                       TargetType="{x:Type Control}">
+                <Setter Property="Visibility" Value="Collapsed"/>
+            </Style>
+
         </ResourceDictionary>
     </UserControl.Resources>
     
@@ -59,8 +90,9 @@
         </Grid>
 
 
-        <Slider x:Name="positionBarSlider"
+        <Slider x:Name="seekingBarSlider"
                 IsEnabled="{Binding IsPlaying}"
+                Style="{StaticResource seekingBarSliderStyle}"
                 Value="{Binding PositionInSeconds}"
                 ToolTip="{Binding PositionInSeconds, Mode=OneWay, Converter={Converters:SecondsToStringConverter}}"
                 Focusable="False"
@@ -70,38 +102,15 @@
                 Controls:SliderHelper.TrackFillDisabledBrush="#FF9D9D9D"
                 Controls:SliderHelper.ThumbFillHoverBrush="#FF7F7F7F"
                 Controls:SliderHelper.TrackValueFillDisabledBrush="{DynamicResource AccentColorBrush}"
-                Margin="5">
-            <Slider.Resources>
-                <Style TargetType="{x:Type Slider}" BasedOn="{StaticResource MetroSlider}">
-                    <Style.Triggers>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding LoadedItem.Type}" Value="Url"/>
-                                <Condition Binding="{Binding IsPlaying}" Value="True" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter Property="Visibility" Value="Collapsed"/>
-                        </MultiDataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Slider.Resources>
-        </Slider>
+                Margin="5"/>
 
-        <ProgressBar x:Name="positionProgressBar"
+        <ProgressBar x:Name="seekingProgressBar"
+                     Style="{StaticResource seekingProgressBarStyle}"
                      IsIndeterminate="True"
                      Height="10"
-                     Margin="5 8 5 8">
-            <ProgressBar.Resources>
-                <Style TargetType="{x:Type ProgressBar}" BasedOn="{StaticResource MetroProgressBar}">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding Visibility, ElementName=positionBarSlider}" Value="Visible">
-                            <Setter Property="Visibility" Value="Collapsed" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </ProgressBar.Resources>
-        </ProgressBar>
-        
-        
+                     Margin="5 8 5 8"/>
+
+
 
         <StackPanel Orientation="Horizontal">
 

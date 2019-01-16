@@ -42,6 +42,8 @@ namespace WR_Player.Views
 
         public void EnableCompact()
         {
+            if (Settings.HideSeekingBar)
+                hideSeekingBar();
             setCompactSize(previousButton);
             setCompactSize(playButton);
             setCompactSize(stopButton);
@@ -53,6 +55,7 @@ namespace WR_Player.Views
 
         public void DisableCompact()
         {
+            showSeekingBar();
             setNormalSize(previousButton);
             setNormalSize(playButton);
             setNormalSize(stopButton);
@@ -74,6 +77,18 @@ namespace WR_Player.Views
         }
 
 
+
+        private void hideSeekingBar()
+        {
+            seekingBarSlider.Style = (Style)FindResource("controlHiddenStyle");
+            seekingProgressBar.Style = (Style)FindResource("controlHiddenStyle");
+        }
+
+        private void showSeekingBar()
+        {
+            seekingBarSlider.Style = (Style)FindResource("seekingBarSliderStyle");
+            seekingProgressBar.Style = (Style)FindResource("seekingProgressBarStyle");
+        }
 
         private void setCompactSize(Button button)
         {
