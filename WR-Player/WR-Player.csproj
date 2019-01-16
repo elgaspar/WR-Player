@@ -99,6 +99,7 @@
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\Assist\Actions.cs" />
     <Compile Include="Views\Assist\Dialogs.cs" />
+    <Compile Include="Views\Assist\Settings.cs" />
     <Compile Include="Views\CompactModeRestoreButton.xaml.cs">
       <DependentUpon>CompactModeRestoreButton.xaml</DependentUpon>
     </Compile>

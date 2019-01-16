@@ -31,10 +31,6 @@ namespace WR_Player.ViewModels
 
         public Player.PlayerStatus Status { get { return player.Status; } }
 
-
-
-
-
         public int DurationInSeconds
         {
             get
@@ -55,9 +51,6 @@ namespace WR_Player.ViewModels
             }
         }
 
-
-
-
         private bool _isPlaying;
         public bool IsPlaying
         {
@@ -75,7 +68,11 @@ namespace WR_Player.ViewModels
         public double Volume
         {
             get { return player.Volume; }
-            set { player.SetVolume(value); }
+            set
+            {
+                player.SetVolume(value);
+                NotifyOfPropertyChange(() => Volume);
+            }
         }
 
 

@@ -94,5 +94,17 @@ namespace WR_Player.Properties {
                 this["IsCompacModeEnabled"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.5")]
+        public double Volume {
+            get {
+                return ((double)(this["Volume"]));
+            }
+            set {
+                this["Volume"] = value;
+            }
+        }
     }
 }

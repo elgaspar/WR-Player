@@ -1,12 +1,8 @@
-﻿using MahApps.Metro;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using WR_Player.Models;
 using WR_Player.ViewModels;
 
@@ -40,7 +36,7 @@ namespace WR_Player.Views.Assist
             PlaylistOpen(filepath);
         }
 
-        private static void PlaylistOpen(string filepath)
+        public static void PlaylistOpen(string filepath)
         {
             bool succeed = mainVM.PlaylistVM.Load(filepath);
             if (!succeed)
@@ -100,8 +96,7 @@ namespace WR_Player.Views.Assist
             if (folderPath == null)
                 return;
             IEnumerable<string> filepaths = getAllFilesInFolder(folderPath);
-            foreach(string path in filepaths)
-                mainVM.PlaylistVM.AddFile(path);
+            addAllFiles(filepaths);
         }
 
         public static void AddUrl()
@@ -165,7 +160,7 @@ namespace WR_Player.Views.Assist
         public static void Settings()
         {
             Dialogs.Settings(mainVM);
-            applyTheme();
+            WR_Player.Views.Assist.Settings.ApplyTheme();
         }
 
         public static void About()
@@ -176,67 +171,28 @@ namespace WR_Player.Views.Assist
 
 
 
-        public static void ApplySettings()
-        {
-            applyTheme();
-            openLastUsedFileIfNeeded();
-            enableCompactModeIfNeeded();
-        }
-
-        public static void SaveSettings()
-        {
-            Properties.Settings.Default.LastUsedFilepath = mainVM.PlaylistVM.Filepath;
-            Properties.Settings.Default.IsCompacModeEnabled = mainWin.menu.IsCompactModeEnabled;
-            Properties.Settings.Default.Save();
-        }
-
-
-
-
-
-
-
-        private static void applyTheme()
-        {
-            try
-            {
-                Tuple<AppTheme, Accent> appStyle = ThemeManager.DetectAppStyle(Application.Current);
-                ThemeManager.ChangeAppStyle(Application.Current, ThemeManager.GetAccent(Properties.Settings.Default.Theme), ThemeManager.GetAppTheme("BaseLight"));
-            }
-            catch (Exception)
-            {
-                Dialogs.Error("Couldn't apply theme.");
-            }
-        }
-
-        private static void openLastUsedFileIfNeeded()
-        {
-            bool openFile = Properties.Settings.Default.OpenLastUsedFile;
-            bool validFile = !string.IsNullOrEmpty(Properties.Settings.Default.LastUsedFilepath);
-            if (openFile && validFile)
-                Actions.PlaylistOpen(Properties.Settings.Default.LastUsedFilepath);
-        }
-
-        private static void enableCompactModeIfNeeded()
-        {
-            if (Properties.Settings.Default.IsCompacModeEnabled)
-                EnableCompactMode();
-        }
+        
 
         private static IEnumerable<string> getAllFilesInFolder(string folderPath)
         {
             return Directory.EnumerateFiles(folderPath, "*.*", SearchOption.AllDirectories).Where(s => hasValidAudioFormat(s));
         }
 
-        private static bool hasValidAudioFormat(string filepath)
+        private static void addAllFiles(IEnumerable<string> filepaths)
         {
-            string str = filepath.ToLower();
-            foreach (AudioType at in Enum.GetValues(typeof(AudioType)).Cast<AudioType>())
+            foreach (string path in filepaths)
+                mainVM.PlaylistVM.AddFile(path);
+        }
+
+        private static bool hasValidAudioFormat(string path)
+        {
+            string filepath = path.ToLower();
+            foreach (AudioType type in Enum.GetValues(typeof(AudioType)).Cast<AudioType>())
             {
-                if (at != AudioType.Url)
+                if (type != AudioType.Url)
                 {
-                    string ext = at.ToString().ToLower();
-                    if (str.EndsWith(ext))
+                    string ext = type.ToString().ToLower();
+                    if (filepath.EndsWith(ext))
                         return true;
                 }
             }

@@ -96,15 +96,14 @@ namespace WR_Player.Views
 
         private void metroWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            Actions.ApplySettings();
+            Settings.Apply();
         }
 
         private void metroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Actions.PromptForPlaylistSave();
-            Actions.SaveSettings();
+            Settings.Save();
         }
 
-        
     }
 }
