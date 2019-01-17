@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,9 @@ namespace WR_Player.ViewModels
         public PlaylistViewModel(MainViewModel parent) : base(parent)
         {
             initPlaylist();
+
+            ItemsToProcess = new ObservableCollection<PlaylistItem>();
+            ItemsToProcess.CollectionChanged += ItemsToProcess_Changed;
         }
 
 
@@ -26,17 +30,7 @@ namespace WR_Player.ViewModels
 
         public bool AnyChangeHappened { get; set; }
 
-        private PlaylistItem _itemToProcess;
-        public PlaylistItem ItemToProcess
-        {
-            get { return _itemToProcess; }
-            set
-            {
-                _itemToProcess = value;
-                NotifyOfPropertyChange(() => ItemToProcess);
-                NotifyOfPropertyChange(() => CanEditRemove);
-            }
-        }
+        public ObservableCollection<PlaylistItem> ItemsToProcess { get; }
 
         public ReadOnlyObservableCollection<PlaylistItem> Items { get { return playlist.Items; } }
 
@@ -46,7 +40,9 @@ namespace WR_Player.ViewModels
 
         public bool IsPlaylistFileOpen { get { return !string.IsNullOrEmpty(Filepath); } }
 
-        public bool CanEditRemove { get { return ItemToProcess != null; } }
+        public bool CanRemove { get { return ItemsToProcess.Count > 0; } }
+
+        public bool CanEdit { get { return ItemsToProcess.Count == 1; } }
 
         public void New()
         {
@@ -116,7 +112,7 @@ namespace WR_Player.ViewModels
         //TODO: it is not used yet. Do i need edit only for urls?
         public void EditItem(string newTitle, string newPath)
         {
-            PlaylistItem itemToEdit = ParentVM.PlaylistVM.ItemToProcess;
+            PlaylistItem itemToEdit = ParentVM.PlaylistVM.ItemsToProcess[0];//TODO: EDIT FUNCTION
 
             bool wasPlaying = PlayerVM.IsPlaying;
             bool editedItemWasLoadedOnPlayer = (PlayerVM.LoadedItem == itemToEdit);
@@ -132,11 +128,14 @@ namespace WR_Player.ViewModels
             notifyAll();
         }
 
-        public void RemoveSelectedItem()
+        public void RemoveSelectedItems()
         {
-            if (ItemToProcess == SelectedItem)
+            if (ItemsToProcess.Contains(SelectedItem))
                 stopPlaying();
-            playlist.Remove(ItemToProcess);
+
+            for (int i = ItemsToProcess.Count - 1; i >= 0; i--)
+                playlist.Remove(ItemsToProcess[i]);
+
             AnyChangeHappened = true;
             notifyAll();
         }
@@ -173,6 +172,12 @@ namespace WR_Player.ViewModels
             NotifyOfPropertyChange(() => Items);
             NotifyOfPropertyChange(() => SelectedItem);
             NotifyOfPropertyChange(() => AreThereItems);
+        }
+
+        private void ItemsToProcess_Changed(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            NotifyOfPropertyChange(() => CanRemove);
+            NotifyOfPropertyChange(() => CanEdit);
         }
     }
 }

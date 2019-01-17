@@ -110,7 +110,7 @@ namespace WR_Player.Views.Assist
         {
             bool? result = Dialogs.RemoveSelected();
             if (result == true)
-                mainVM.PlaylistVM.RemoveSelectedItem();
+                mainVM.PlaylistVM.RemoveSelectedItems();
         }
 
         public static void RemoveAll()

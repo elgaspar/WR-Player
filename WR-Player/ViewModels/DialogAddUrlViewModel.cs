@@ -20,8 +20,9 @@ namespace WR_Player.ViewModels
             else
             {
                 Title = "Edit Stream";
-                StreamTitle = ParentVM.PlaylistVM.ItemToProcess.Title;
-                StreamUrl = ParentVM.PlaylistVM.ItemToProcess.Path;
+                //TODO: EDIT FUNCTION
+                //StreamTitle = ParentVM.PlaylistVM.ItemToProcess.Title;
+                //StreamUrl = ParentVM.PlaylistVM.ItemToProcess.Path;
             }
         }
 

@@ -11,10 +11,11 @@
     <ListBox Grid.Row="2"
              x:Name="list"
              ItemsSource="{Binding Items}"
-             SelectedItem="{Binding ItemToProcess}"
+             SelectionMode="Extended"
              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
              BorderBrush="LightGray"
-             BorderThickness="0 2 0 2">
+             BorderThickness="0 2 0 2"
+             SelectionChanged="list_SelectionChanged">
 
         <ListBox.ItemTemplate>
             <DataTemplate>

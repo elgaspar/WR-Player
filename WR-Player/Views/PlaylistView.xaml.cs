@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WR_Player.Models;
+using WR_Player.ViewModels;
 
 namespace WR_Player.Views
 {
@@ -33,6 +35,17 @@ namespace WR_Player.Views
         public void MakeInvisible()
         {
             Visibility = Visibility.Collapsed;
+        }
+
+        private void list_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            PlaylistViewModel vm = (PlaylistViewModel)DataContext;
+
+            foreach (PlaylistItem item in e.AddedItems)
+                vm.ItemsToProcess.Add(item);
+
+            foreach (PlaylistItem item in e.RemovedItems)
+                vm.ItemsToProcess.Remove(item);
         }
     }
 }
