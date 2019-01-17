@@ -9,10 +9,6 @@
     <UserControl.Resources>
         <ResourceDictionary>
 
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="IconsResourceDictionary.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-
             <Style x:Key="seekingBarSliderStyle"
                        TargetType="{x:Type Slider}"
                        BasedOn="{StaticResource MetroSlider}">

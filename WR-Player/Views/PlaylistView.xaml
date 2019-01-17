@@ -8,13 +8,6 @@
              xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:Cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro.Platform">
 
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="IconsResourceDictionary.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </UserControl.Resources>
     
     <ListBox Grid.Row="2"
              x:Name="list"

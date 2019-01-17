@@ -6,16 +6,6 @@
              xmlns:local="clr-namespace:WR_Player.Views"
              mc:Ignorable="d">
 
-    
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="IconsResourceDictionary.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </UserControl.Resources>
-
-
     <Button x:Name="restoreButton"
             ToolTip="Restore"
             Focusable="False"

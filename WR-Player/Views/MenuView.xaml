@@ -7,16 +7,6 @@
              xmlns:local="clr-namespace:WR_Player.Views"
              xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:Cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro.Platform">
-
-    
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="IconsResourceDictionary.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </UserControl.Resources>
-    
     
     <Menu>
 
