@@ -43,9 +43,16 @@ namespace WR_Player.Models
             get { return _path; }
             set
             {
+                AudioType generatedType = PlaylistItemHelper.GenerateType(value);
+                int generatedDuration = PlaylistItemHelper.GenerateDuration(value, Type);
+
+                /* Values are assigned after GenerateType and GenerateDuration are executed
+                 * so if any exception is thrown by these 2 methods, then no new value will
+                 * be assigned to Path, Type and DurationInSeconds. */
                 _path = value;
-                Type = PlaylistItemHelper.GenerateType(Path);
-                DurationInSeconds = PlaylistItemHelper.GenerateDuration(Path, Type);
+                Type = generatedType;
+                DurationInSeconds = generatedDuration;
+
                 NotifyPropertyChanged();
             }
         }

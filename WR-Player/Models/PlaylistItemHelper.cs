@@ -58,18 +58,11 @@ namespace WR_Player.Models
 
         private static int parseDurationStringToSeconds(string durationString)
         {
-            try
-            {
-                int hours = Int32.Parse(durationString.Substring(0, 2));
-                int minutes = Int32.Parse(durationString.Substring(3, 2));
-                int seconds = Int32.Parse(durationString.Substring(6, 2));
-                TimeSpan tp = new TimeSpan(hours, minutes, seconds);
-                return (int)tp.TotalSeconds;
-            }
-            catch (Exception)
-            {
-                return 0;
-            }
+            int hours = Int32.Parse(durationString.Substring(0, 2));
+            int minutes = Int32.Parse(durationString.Substring(3, 2));
+            int seconds = Int32.Parse(durationString.Substring(6, 2));
+            TimeSpan tp = new TimeSpan(hours, minutes, seconds);
+            return (int)tp.TotalSeconds;
         }
     }
 }

@@ -86,6 +86,7 @@
     <Compile Include="Models\PlaylistParser.cs" />
     <Compile Include="ViewModels\DialogAddUrlViewModel.cs" />
     <Compile Include="ViewModels\DialogConfirmViewModel.cs" />
+    <Compile Include="ViewModels\DialogEditPlaylistItemViewModel.cs" />
     <Compile Include="ViewModels\DialogErrorViewModel.cs" />
     <Compile Include="ViewModels\DialogSettingsViewModel.cs" />
     <Compile Include="ViewModels\DialogViewModelBase.cs" />
@@ -110,6 +111,9 @@
     </Compile>
     <Compile Include="Views\DialogConfirmView.xaml.cs">
       <DependentUpon>DialogConfirmView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DialogEditPlaylistItemView.xaml.cs">
+      <DependentUpon>DialogEditPlaylistItemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DialogErrorView.xaml.cs">
       <DependentUpon>DialogErrorView.xaml</DependentUpon>
@@ -181,6 +185,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\DialogConfirmView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DialogEditPlaylistItemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

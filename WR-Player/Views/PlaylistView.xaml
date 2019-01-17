@@ -65,6 +65,21 @@
             </DataTemplate>
         </ListBox.ItemTemplate>
 
+        <ListBox.ContextMenu>
+            <ContextMenu>
+                <MenuItem Header="Play.."
+                          IsEnabled="{Binding CanPlay}"
+                          Click="MenuItem_Click_Play"/>
+                <Separator />
+                <MenuItem Header="Edit.."
+                          IsEnabled="{Binding CanEdit}"
+                          Click="MenuItem_Click_Edit"/>
+                <MenuItem Header="Remove.."
+                          IsEnabled="{Binding CanRemove}"
+                          Click="MenuItem_Click_Remove"/>
+            </ContextMenu>
+        </ListBox.ContextMenu>
+        
     </ListBox>
 
 </UserControl>

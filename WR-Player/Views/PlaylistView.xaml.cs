@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WR_Player.Models;
 using WR_Player.ViewModels;
+using WR_Player.Views.Assist;
 
 namespace WR_Player.Views
 {
@@ -46,6 +47,21 @@ namespace WR_Player.Views
 
             foreach (PlaylistItem item in e.RemovedItems)
                 vm.ItemsToProcess.Remove(item);
+        }
+
+        private void MenuItem_Click_Play(object sender, RoutedEventArgs e)
+        {
+            //TODO
+        }
+
+        private void MenuItem_Click_Edit(object sender, RoutedEventArgs e)
+        {
+            Actions.Edit();
+        }
+
+        private void MenuItem_Click_Remove(object sender, RoutedEventArgs e)
+        {
+            Actions.RemoveSelected();
         }
     }
 }

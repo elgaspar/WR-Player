@@ -16,8 +16,8 @@ namespace WR_Player.Views.Assist
 
         public static void PlaylistNew()
         {
-            bool succeed = PromptForPlaylistSave();
-            if (!succeed)
+            bool success = PromptForPlaylistSave();
+            if (!success)
                 return;
 
             mainVM.PlaylistVM.New();
@@ -25,8 +25,8 @@ namespace WR_Player.Views.Assist
 
         public static void PlaylistOpen()
         {
-            bool succeed = PromptForPlaylistSave();
-            if (!succeed)
+            bool success = PromptForPlaylistSave();
+            if (!success)
                 return;
 
             string filepath = Dialogs.BrowsePlaylistFileToOpen();
@@ -38,8 +38,8 @@ namespace WR_Player.Views.Assist
 
         public static void PlaylistOpen(string filepath)
         {
-            bool succeed = mainVM.PlaylistVM.Load(filepath);
-            if (!succeed)
+            bool success = mainVM.PlaylistVM.Load(filepath);
+            if (!success)
                 Dialogs.Error("Couldn't open playlist.");
         }
 
@@ -47,10 +47,10 @@ namespace WR_Player.Views.Assist
         {
             if (!mainVM.PlaylistVM.IsPlaylistFileOpen)
                 return PlaylistSaveAs();
-            bool succeed = mainVM.PlaylistVM.Save();
-            if (!succeed)
+            bool success = mainVM.PlaylistVM.Save();
+            if (!success)
                 Dialogs.Error("Couldn't save playlist.");
-            return succeed;
+            return success;
         }
 
         public static bool PlaylistSaveAs()
@@ -58,10 +58,10 @@ namespace WR_Player.Views.Assist
             string filepath = Dialogs.BrowsePlaylistFileToSave();
             if (filepath == null)
                 return false;
-            bool succeed = mainVM.PlaylistVM.SaveAs(filepath);
-            if (!succeed)
+            bool success = mainVM.PlaylistVM.SaveAs(filepath);
+            if (!success)
                 Dialogs.Error("Couldn't save playlist.");
-            return succeed;
+            return success;
         }
 
         public static bool PromptForPlaylistSave()
@@ -120,22 +120,12 @@ namespace WR_Player.Views.Assist
                 mainVM.PlaylistVM.RemoveAllItems();
         }
 
-        //public static void StreamAdd()
-        //{
-        //    Dialogs.StreamAdd(mainVM);
-        //}
-
-        //public static void StreamEdit()
-        //{
-        //    Dialogs.StreamEdit(mainVM);
-        //}
-
-        //public static void StreamRemove()
-        //{
-        //    bool? result = Dialogs.StreamRemove();
-        //    if (result == true)
-        //        mainVM.PlaylistVM.RemoveStream();
-        //}
+        public static void Edit()
+        {
+            bool? success = Dialogs.Edit(mainVM);
+            if (success == false)
+                Dialogs.Error("Couldn't edit item. Filepath is invalid.");
+        }
 
 
 

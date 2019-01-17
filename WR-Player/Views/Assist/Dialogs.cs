@@ -64,7 +64,7 @@ namespace WR_Player.Views.Assist
 
         public static void AddUrl(MainViewModel mainVM)
         {
-            ShowDialog(new DialogAddUrlViewModel(mainVM, true));
+            ShowDialog(new DialogAddUrlViewModel(mainVM));
         }
 
 
@@ -79,10 +79,12 @@ namespace WR_Player.Views.Assist
             return ConfirmDialog("Remove all items?");
         }
 
-        //public static void StreamEdit(MainViewModel mainVM)
-        //{
-        //    ShowDialog(new DialogStreamAddEditViewModel(mainVM, false));
-        //}
+        public static bool? Edit(MainViewModel mainVM)
+        {
+            DialogEditPlaylistItemViewModel vm = new DialogEditPlaylistItemViewModel(mainVM);
+            ShowDialog(vm);
+            return vm.Success;
+        }
 
 
         public static bool? PromptForSave()

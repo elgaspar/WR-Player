@@ -40,9 +40,11 @@ namespace WR_Player.ViewModels
 
         public bool IsPlaylistFileOpen { get { return !string.IsNullOrEmpty(Filepath); } }
 
-        public bool CanRemove { get { return ItemsToProcess.Count > 0; } }
+        public bool CanPlay { get { return ItemsToProcess.Count == 1; } }
 
         public bool CanEdit { get { return ItemsToProcess.Count == 1; } }
+
+        public bool CanRemove { get { return ItemsToProcess.Count > 0; } }
 
         public void New()
         {
@@ -54,34 +56,34 @@ namespace WR_Player.ViewModels
         
         public bool Save()
         {
-            bool succeed = playlist.SaveToFile(Filepath);
-            if (succeed)
+            bool success = playlist.SaveToFile(Filepath);
+            if (success)
                 AnyChangeHappened = false;
-            return succeed;
+            return success;
         }
 
         public bool SaveAs(string path)
         {
-            bool succeed = playlist.SaveToFile(path);
-            if (succeed)
+            bool success = playlist.SaveToFile(path);
+            if (success)
             {
                 Filepath = path;
                 AnyChangeHappened = false;
             }
-            return succeed;
+            return success;
         }
 
         public bool Load(string path)
         {
             stopPlaying();
-            bool succeed = playlist.LoadFromFile(path);
-            if (succeed)
+            bool success = playlist.LoadFromFile(path);
+            if (success)
             {
                 Filepath = path;
             }
             AnyChangeHappened = false;
             notifyAll();
-            return succeed;
+            return success;
         }
 
 
@@ -109,17 +111,16 @@ namespace WR_Player.ViewModels
             notifyAll();
         }
 
-        //TODO: it is not used yet. Do i need edit only for urls?
         public void EditItem(string newTitle, string newPath)
         {
-            PlaylistItem itemToEdit = ParentVM.PlaylistVM.ItemsToProcess[0];//TODO: EDIT FUNCTION
+            PlaylistItem itemToEdit = ParentVM.PlaylistVM.ItemsToProcess[0];
 
             bool wasPlaying = PlayerVM.IsPlaying;
             bool editedItemWasLoadedOnPlayer = (PlayerVM.LoadedItem == itemToEdit);
             bool pathChanged = (itemToEdit.Path != newPath);
 
-            itemToEdit.Title = newTitle;
             itemToEdit.Path = newPath;
+            itemToEdit.Title = newTitle;
 
             if (wasPlaying && editedItemWasLoadedOnPlayer && pathChanged)
                 PlayerVM.Play();
@@ -176,8 +177,9 @@ namespace WR_Player.ViewModels
 
         private void ItemsToProcess_Changed(object sender, NotifyCollectionChangedEventArgs e)
         {
-            NotifyOfPropertyChange(() => CanRemove);
+            NotifyOfPropertyChange(() => CanPlay);
             NotifyOfPropertyChange(() => CanEdit);
+            NotifyOfPropertyChange(() => CanRemove);
         }
     }
 }

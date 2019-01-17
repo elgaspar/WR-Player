@@ -8,12 +8,18 @@ using WR_Player.Models;
 
 namespace WR_Player.ViewModels
 {
-    class DialogAddUrlViewModel : DialogViewModelBase, IDataErrorInfo
+    class DialogEditPlaylistItemViewModel : DialogViewModelBase, IDataErrorInfo
     {
-        public DialogAddUrlViewModel(MainViewModel parent) : base(parent)
+        public DialogEditPlaylistItemViewModel(MainViewModel parent) : base(parent)
         {
+            PlaylistItem itemToEdit = ParentVM.PlaylistVM.ItemsToProcess[0];
+            ItemTitle = itemToEdit.Title;
+            ItemPath = itemToEdit.Path;
+
+            Success = null;
         }
 
+        public bool? Success { get; private set; }
 
         private string _itemTitle;
         public string ItemTitle
@@ -27,14 +33,14 @@ namespace WR_Player.ViewModels
             }
         }
 
-        private string _itemUrl;
-        public string ItemUrl
+        private string _itemPath;
+        public string ItemPath
         {
-            get { return _itemUrl; }
+            get { return _itemPath; }
             set
             {
-                _itemUrl = value;
-                NotifyOfPropertyChange(() => ItemUrl);
+                _itemPath = value;
+                NotifyOfPropertyChange(() => ItemPath);
                 NotifyOfPropertyChange(() => CanOk);
             }
         }
@@ -50,14 +56,14 @@ namespace WR_Player.ViewModels
             get
             {
                 string result = null;
-                if (string.IsNullOrEmpty(columnName) || columnName == "ItemTitle")
+                if (string.IsNullOrEmpty(columnName) || columnName == "Title")
                 {
                     if (string.IsNullOrWhiteSpace(ItemTitle))
                         result = "Can not be empty.";
                 }
-                if (string.IsNullOrEmpty(columnName) || columnName == "ItemUrl")
+                if (string.IsNullOrEmpty(columnName) || columnName == "ItemPath")
                 {
-                    if (string.IsNullOrWhiteSpace(ItemUrl))
+                    if (string.IsNullOrWhiteSpace(ItemPath))
                         result = "Can not be empty.";
                 }
                 return result;
@@ -70,13 +76,21 @@ namespace WR_Player.ViewModels
 
         public void Ok()
         {
-            Console.WriteLine("URL ADD: \n" +
+            Console.WriteLine("ITEM EDIT: \n" +
                                     "\tTitle: " + ItemTitle +
-                                    "\n\tURL: " + ItemUrl);//TODO: delete me
+                                    "\n\tPath: " + ItemPath);//TODO: delete me
 
-            PlaylistItem newItem = new PlaylistItem(ItemTitle, ItemUrl);
-            ParentVM.PlaylistVM.AddItem(newItem);
-
+            Success = true;
+            try
+            {
+                ParentVM.PlaylistVM.EditItem(ItemTitle, ItemPath);
+            }
+            catch (Exception e)
+            {
+                Success = false;
+                TryClose(false);
+            }
+            
             TryClose(true);
         }
 
@@ -85,6 +99,5 @@ namespace WR_Player.ViewModels
             //Do nothing
             TryClose(null);
         }
-
     }
 }
