@@ -51,17 +51,31 @@ namespace WR_Player.Views
 
         private void MenuItem_Click_Play(object sender, RoutedEventArgs e)
         {
-            //TODO
+            Actions.PlaySelected();
         }
 
         private void MenuItem_Click_Edit(object sender, RoutedEventArgs e)
         {
-            Actions.Edit();
+            Actions.EditSelected();
         }
 
         private void MenuItem_Click_Remove(object sender, RoutedEventArgs e)
         {
             Actions.RemoveSelected();
         }
+
+        private void list_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ListBoxItem item = ItemsControl.ContainerFromElement(sender as ItemsControl, (DependencyObject)e.OriginalSource) as ListBoxItem;
+            if (item != null)
+                Actions.PlaySelected();
+        }
+
+        private void list_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            list.UnselectAll();
+            Console.WriteLine(list.SelectedIndex);
+        }
+
     }
 }

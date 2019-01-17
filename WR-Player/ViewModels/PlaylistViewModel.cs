@@ -46,13 +46,14 @@ namespace WR_Player.ViewModels
 
         public bool CanRemove { get { return ItemsToProcess.Count > 0; } }
 
+
+
         public void New()
         {
             stopPlaying();
             initPlaylist();
             notifyAll();
         }
-
         
         public bool Save()
         {
@@ -87,6 +88,7 @@ namespace WR_Player.ViewModels
         }
 
 
+
         public void SelectNextItem()
         {
             playlist.SelectNextItem();
@@ -96,6 +98,7 @@ namespace WR_Player.ViewModels
         {
             playlist.SelectPreviousItem();
         }
+
 
 
         public void AddFile(string path)
@@ -148,6 +151,14 @@ namespace WR_Player.ViewModels
             AnyChangeHappened = true;
             notifyAll();
         }
+
+        public void SetSelectedItem()
+        {
+            playlist.SelectItem(ItemsToProcess[0]);
+        }
+
+
+
 
 
         private void stopPlaying()

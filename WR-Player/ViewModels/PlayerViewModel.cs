@@ -27,6 +27,7 @@ namespace WR_Player.ViewModels
         }
 
 
+
         public PlaylistItem LoadedItem { get { return PlaylistVM.SelectedItem; } }
 
         public Player.PlayerStatus Status { get { return player.Status; } }
@@ -74,6 +75,7 @@ namespace WR_Player.ViewModels
                 NotifyOfPropertyChange(() => Volume);
             }
         }
+
 
 
         public void Play()
@@ -125,7 +127,6 @@ namespace WR_Player.ViewModels
 
 
 
-
         private Timer positionNotifierTimer;
 
         private void enablePositionNotifier()
@@ -156,11 +157,6 @@ namespace WR_Player.ViewModels
 
 
 
-
-        
-
-        
-
         private void notifyAll()
         {
             NotifyOfPropertyChange(() => Status);
@@ -173,7 +169,6 @@ namespace WR_Player.ViewModels
         private bool thereIsNoNextItem { get { return !PlaylistVM.AreThereItems || LoadedItem == PlaylistVM.Items.Last(); } }
 
         private bool thereIsNoPreviousItem { get { return !PlaylistVM.AreThereItems || LoadedItem == PlaylistVM.Items.First(); } }
-
 
 
 

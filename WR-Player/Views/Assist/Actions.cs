@@ -120,11 +120,17 @@ namespace WR_Player.Views.Assist
                 mainVM.PlaylistVM.RemoveAllItems();
         }
 
-        public static void Edit()
+        public static void EditSelected()
         {
             bool? success = Dialogs.Edit(mainVM);
             if (success == false)
                 Dialogs.Error("Couldn't edit item. Filepath is invalid.");
+        }
+
+        public static void PlaySelected()
+        {
+            mainVM.PlaylistVM.SetSelectedItem();
+            mainVM.PlayerVM.Play();
         }
 
 

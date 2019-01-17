@@ -81,6 +81,12 @@ namespace WR_Player.Models
                 SelectedItemIndex--;
         }
 
+        public void SelectItem(PlaylistItem item)
+        {
+            if (_items.Contains(item))
+                SelectedItemIndex = _items.IndexOf(item);
+        }
+
 
 
 

@@ -15,7 +15,9 @@
              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
              BorderBrush="LightGray"
              BorderThickness="0 2 0 2"
-             SelectionChanged="list_SelectionChanged">
+             SelectionChanged="list_SelectionChanged"
+             MouseDown="list_MouseDown"
+             MouseDoubleClick="list_MouseDoubleClick">
 
         <ListBox.ItemTemplate>
             <DataTemplate>

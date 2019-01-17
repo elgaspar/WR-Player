@@ -85,7 +85,7 @@ namespace WR_Player.ViewModels
             {
                 ParentVM.PlaylistVM.EditItem(ItemTitle, ItemPath);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Success = false;
                 TryClose(false);
