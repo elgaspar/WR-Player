@@ -17,6 +17,16 @@
                       Loaded="metroWindow_Loaded"
                       Closing="metroWindow_Closing">
 
+    <Controls:MetroWindow.IconTemplate>
+        <DataTemplate>
+            <Image Source="pack://application:,,,/Resources/icon.ico"
+                   Width="{TemplateBinding Width}"
+                   Height="{TemplateBinding Height}"
+                   Margin="2"/>
+        </DataTemplate>
+    </Controls:MetroWindow.IconTemplate>
+    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
