@@ -13,7 +13,7 @@
                      Height="{Binding ElementName=ct, Path=IconHeight}">
                 <Canvas Width="24" Height="24">
                     <Path Data="{Binding ElementName=ct, Path=DataPath}"
-                          Fill="Black" />
+                          Fill="{Binding ElementName=ct, Path=ForegroundColor}" />
                 </Canvas>
             </Viewbox>
         </ControlTemplate>

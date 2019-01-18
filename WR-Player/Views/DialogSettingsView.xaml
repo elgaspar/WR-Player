@@ -13,6 +13,13 @@
                       ResizeMode="NoResize"
                       WindowStartupLocation="CenterOwner">
 
+    <Controls:MetroWindow.IconTemplate>
+        <DataTemplate>
+            <ContentControl Content="{StaticResource DialogSettingsIcon}"/>
+        </DataTemplate>
+    </Controls:MetroWindow.IconTemplate>
+
+
 
     <StackPanel Margin="10">
 

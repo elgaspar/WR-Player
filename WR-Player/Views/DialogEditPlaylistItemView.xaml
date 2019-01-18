@@ -14,6 +14,12 @@
                       WindowStartupLocation="CenterOwner"
                       FocusManager.FocusedElement="{Binding ElementName=ItemTitle}">
 
+    <Controls:MetroWindow.IconTemplate>
+        <DataTemplate>
+            <ContentControl Content="{StaticResource DialogEditPlaylistItemIcon}"/>
+        </DataTemplate>
+    </Controls:MetroWindow.IconTemplate>
+
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

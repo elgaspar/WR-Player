@@ -87,6 +87,7 @@
     <Compile Include="Models\PlaylistItem.cs" />
     <Compile Include="Models\PlaylistItemHelper.cs" />
     <Compile Include="Models\PlaylistParser.cs" />
+    <Compile Include="ViewModels\DialogAboutViewModel.cs" />
     <Compile Include="ViewModels\DialogAddUrlViewModel.cs" />
     <Compile Include="ViewModels\DialogConfirmViewModel.cs" />
     <Compile Include="ViewModels\DialogEditPlaylistItemViewModel.cs" />
@@ -109,6 +110,9 @@
     </Compile>
     <Compile Include="Views\Converters\AudioTypeToStringConverter.cs" />
     <Compile Include="Views\Converters\SecondsToStringConverter.cs" />
+    <Compile Include="Views\DialogAboutView.xaml.cs">
+      <DependentUpon>DialogAboutView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DialogAddUrlView.xaml.cs">
       <DependentUpon>DialogAddUrlView.xaml</DependentUpon>
     </Compile>
@@ -180,6 +184,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\CompactModeRestoreButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DialogAboutView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

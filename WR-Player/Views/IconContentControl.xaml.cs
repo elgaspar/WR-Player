@@ -62,5 +62,17 @@ namespace WR_Player.Views
             DependencyProperty.Register("IconHeight", typeof(double), typeof(IconContentControl), new PropertyMetadata(DEFAULT_WIDTH_HEIGHT));
 
 
+
+        public Brush ForegroundColor
+        {
+            get { return (Brush)GetValue(ForegroundColorProperty); }
+            set { SetValue(ForegroundColorProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ForegroundColor.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ForegroundColorProperty =
+            DependencyProperty.Register("ForegroundColor", typeof(Brush), typeof(IconContentControl), new PropertyMetadata(Brushes.Black));
+
+
     }
 }

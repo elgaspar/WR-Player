@@ -48,26 +48,10 @@ namespace WR_Player.Views.Assist
 
 
 
-        //public static void AddFile(MainViewModel mainVM)
-        //{
-        //    //TODO
-        //    //ShowDialog(new DialogAddFileViewModel(mainVM));
-        //    Console.WriteLine("TODO: dialog AddFile");
-        //}
-
-        //public static void AddDirectory(MainViewModel mainVM)
-        //{
-        //    //TODO
-        //    //ShowDialog(new DialogAddDirectoryViewModel(mainVM));
-        //    Console.WriteLine("TODO: dialog AddDirectory");
-        //}
-
         public static void AddUrl(MainViewModel mainVM)
         {
             ShowDialog(new DialogAddUrlViewModel(mainVM));
         }
-
-
 
         public static bool? RemoveSelected()
         {
@@ -86,11 +70,12 @@ namespace WR_Player.Views.Assist
             return vm.Success;
         }
 
-
         public static bool? PromptForSave()
         {
             return ConfirmDialog("Save changes in playlist?");
         }
+
+
 
         public static void Settings(MainViewModel mainVM)
         {
@@ -103,6 +88,13 @@ namespace WR_Player.Views.Assist
             IWindowManager manager = new WindowManager();
             manager.ShowDialog(vm, null, null);
         }
+
+        public static void About()
+        {
+            ShowDialog(new DialogAboutViewModel());
+        }
+
+
 
 
 

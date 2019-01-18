@@ -14,7 +14,6 @@ namespace WR_Player.ViewModels
         {
         }
 
-
         private string _itemTitle;
         public string ItemTitle
         {

@@ -161,8 +161,7 @@ namespace WR_Player.Views.Assist
 
         public static void About()
         {
-            Console.WriteLine("ABOUT");//TODO: delete it
-            //TODO
+            Dialogs.About();
         }
 
 

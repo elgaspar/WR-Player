@@ -19,10 +19,7 @@
 
     <Controls:MetroWindow.IconTemplate>
         <DataTemplate>
-            <Image Source="pack://application:,,,/Resources/icon.ico"
-                   Width="{TemplateBinding Width}"
-                   Height="{TemplateBinding Height}"
-                   Margin="2"/>
+            <ContentControl Content="{StaticResource MainIcon}"/>
         </DataTemplate>
     </Controls:MetroWindow.IconTemplate>
     
