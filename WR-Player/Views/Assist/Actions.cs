@@ -68,10 +68,10 @@ namespace WR_Player.Views.Assist
         {
             if (mainVM.PlaylistVM.AnyChangeHappened)
             {
-                bool? result = Dialogs.PromptForSave();
-                if (result == null)
+                Dialogs.Result result = Dialogs.ConfirmPromptForSave();
+                if (result == Dialogs.Result.Cancel)
                     return false;
-                if (result == true)
+                if (result == Dialogs.Result.Yes)
                 {
                     bool saveSucceed = PlaylistSave();
                     return saveSucceed;
@@ -108,22 +108,22 @@ namespace WR_Player.Views.Assist
 
         public static void RemoveSelected()
         {
-            bool? result = Dialogs.RemoveSelected();
-            if (result == true)
+            Dialogs.Result result = Dialogs.ConfirmRemoveSelected();
+            if (result == Dialogs.Result.Yes)
                 mainVM.PlaylistVM.RemoveSelectedItems();
         }
 
         public static void RemoveAll()
         {
-            bool? result = Dialogs.RemoveAll();
-            if (result == true)
+            Dialogs.Result result = Dialogs.ConfirmRemoveAll();
+            if (result == Dialogs.Result.Yes)
                 mainVM.PlaylistVM.RemoveAllItems();
         }
 
         public static void EditSelected()
         {
-            bool? success = Dialogs.Edit(mainVM);
-            if (success == false)
+            Dialogs.Result result = Dialogs.Edit(mainVM);
+            if (result == Dialogs.Result.Fail)
                 Dialogs.Error("Couldn't edit item. Filepath is invalid.");
         }
 

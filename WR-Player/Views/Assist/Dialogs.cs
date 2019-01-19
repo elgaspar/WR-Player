@@ -53,24 +53,24 @@ namespace WR_Player.Views.Assist
             ShowDialog(new DialogAddUrlViewModel(mainVM));
         }
 
-        public static bool? RemoveSelected()
+        public static Result ConfirmRemoveSelected()
         {
             return ConfirmDialog("Remove selected item?");
         }
 
-        public static bool? RemoveAll()
+        public static Result ConfirmRemoveAll()
         {
             return ConfirmDialog("Remove all items?");
         }
 
-        public static bool? Edit(MainViewModel mainVM)
+        public static Result Edit(MainViewModel mainVM)
         {
             DialogEditPlaylistItemViewModel vm = new DialogEditPlaylistItemViewModel(mainVM);
             ShowDialog(vm);
-            return vm.Success;
+            return boolToSuccessFail(vm.Success);
         }
 
-        public static bool? PromptForSave()
+        public static Result ConfirmPromptForSave()
         {
             return ConfirmDialog("Save changes in playlist?");
         }
@@ -93,6 +93,12 @@ namespace WR_Player.Views.Assist
         {
             ShowDialog(new DialogAboutViewModel());
         }
+
+
+
+
+
+        public enum Result { Yes, No, Cancel, Success, Fail}
 
 
 
@@ -126,11 +132,29 @@ namespace WR_Player.Views.Assist
             return manager.ShowDialog(vm, null, null);
         }
 
-        private static bool? ConfirmDialog(string msg)
+        private static Result ConfirmDialog(string msg)
         {
             DialogConfirmViewModel vm = new DialogConfirmViewModel(msg);
             ShowDialog(vm);
-            return vm.Result;
+            return boolToYesNo(vm.Result);
+        }
+
+        private static Result boolToYesNo(bool? value)
+        {
+            if (value == true)
+                return Result.Yes;
+            if (value == false)
+                return Result.No;
+            return Result.Cancel;
+        }
+
+        private static Result boolToSuccessFail(bool? value)
+        {
+            if (value == true)
+                return Result.Success;
+            if (value == false)
+                return Result.Fail;
+            return Result.Cancel;
         }
 
         private static string playlistFileFilter()
