@@ -3,7 +3,7 @@
 
 ### Description
 WR-Player is a simple and lightweight audio player, written in C#.
-It supports the most common formats (Aac, Mp3, Ogg, Wav, Wma), as well as playing streaming audio from a given URL.
+It supports the most common formats (aac, mp3, ogg, wav, wma), as well as playing streaming audio from a given URL.
 
 
 ##### Features
