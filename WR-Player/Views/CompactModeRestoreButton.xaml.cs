@@ -46,7 +46,7 @@ namespace WR_Player.Views
         private Thickness createMargin()
         {
             double left = defaultMargin.Left;
-            double top = 19;
+            double top = 29;
             double right = defaultMargin.Right;
             double bottom = defaultMargin.Bottom;
             return new Thickness(left, top, right, bottom);

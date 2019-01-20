@@ -36,9 +36,9 @@ namespace WR_Player.ViewModels
         {
             get
             {
-                if (player.DurationInSeconds == -1)
+                if (LoadedItem == null || LoadedItem.DurationInSeconds == -1)
                     return 1;
-                return player.DurationInSeconds;
+                return LoadedItem.DurationInSeconds;
             }
         }
 
@@ -123,6 +123,15 @@ namespace WR_Player.ViewModels
             notifyAll();
         }
 
+        public void notifyAll()
+        {
+            NotifyOfPropertyChange(() => Status);
+            NotifyOfPropertyChange(() => IsPlaying);
+            NotifyOfPropertyChange(() => LoadedItem);
+            NotifyOfPropertyChange(() => PositionInSeconds);
+            NotifyOfPropertyChange(() => DurationInSeconds);
+        }
+
 
 
 
@@ -156,15 +165,6 @@ namespace WR_Player.ViewModels
         }
 
 
-
-        private void notifyAll()
-        {
-            NotifyOfPropertyChange(() => Status);
-            NotifyOfPropertyChange(() => IsPlaying);
-            NotifyOfPropertyChange(() => LoadedItem);
-            NotifyOfPropertyChange(() => PositionInSeconds);
-            NotifyOfPropertyChange(() => DurationInSeconds);
-        }
 
         private bool thereIsNoNextItem { get { return !PlaylistVM.AreThereItems || LoadedItem == PlaylistVM.Items.Last(); } }
 

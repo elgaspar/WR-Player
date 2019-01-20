@@ -14,16 +14,6 @@ namespace WR_Player.Models
         public double Volume { get; private set; }        
         public PlayerStatus Status { get; private set; }
 
-        public int DurationInSeconds
-        {
-            get
-            {
-                if (player.NaturalDuration.HasTimeSpan)
-                    return (int)player.NaturalDuration.TimeSpan.TotalSeconds;
-                return DEFAULT_DURATION_POSITION;
-            }
-        }
-
         public int PositionInSeconds
         {
             get

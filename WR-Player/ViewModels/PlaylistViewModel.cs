@@ -184,6 +184,7 @@ namespace WR_Player.ViewModels
             NotifyOfPropertyChange(() => Items);
             NotifyOfPropertyChange(() => SelectedItem);
             NotifyOfPropertyChange(() => AreThereItems);
+            ParentVM.PlayerVM.notifyAll();
         }
 
         private void ItemsToProcess_Changed(object sender, NotifyCollectionChangedEventArgs e)

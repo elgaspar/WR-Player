@@ -23,6 +23,18 @@
                 </Style.Triggers>
             </Style>
 
+            <Style x:Key="seekingBarPositionDurationStyle"
+                       TargetType="{x:Type StackPanel}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding LoadedItem.Type}" Value="Url">
+                        <Setter Property="Visibility" Value="Hidden" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding LoadedItem}" Value="{x:Null}">
+                        <Setter Property="Visibility" Value="Hidden" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+
             <Style x:Key="seekingProgressBarStyle"
                        TargetType="{x:Type ProgressBar}"
                        BasedOn="{StaticResource MetroProgressBar}">
@@ -33,9 +45,14 @@
                 </Style.Triggers>
             </Style>
 
-            <Style x:Key="controlHiddenStyle"
+            <Style x:Key="controlCollapsedStyle"
                        TargetType="{x:Type Control}">
                 <Setter Property="Visibility" Value="Collapsed"/>
+            </Style>
+
+            <Style x:Key="stackPanelHiddenStyle"
+                       TargetType="{x:Type StackPanel}">
+                <Setter Property="Visibility" Value="Hidden"/>
             </Style>
 
         </ResourceDictionary>
@@ -86,25 +103,52 @@
         </Grid>
 
 
-        <Slider x:Name="seekingBarSlider"
-                IsEnabled="{Binding IsPlaying}"
-                Style="{StaticResource seekingBarSliderStyle}"
-                Value="{Binding PositionInSeconds}"
-                ToolTip="{Binding PositionInSeconds, Mode=OneWay, Converter={Converters:SecondsToStringConverter}}"
-                Focusable="False"
-                Maximum="{Binding DurationInSeconds, Mode=OneWay}"
-                IsMoveToPointEnabled="True"
-                Controls:SliderHelper.ThumbFillDisabledBrush="#FF7F7F7F"
-                Controls:SliderHelper.TrackFillDisabledBrush="#FF9D9D9D"
-                Controls:SliderHelper.ThumbFillHoverBrush="#FF7F7F7F"
-                Controls:SliderHelper.TrackValueFillDisabledBrush="{DynamicResource AccentColorBrush}"
-                Margin="5"/>
+        <Grid Margin="5 5 5 -10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            
+
+            <Slider Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                    x:Name="seekingBarSlider"
+                    IsEnabled="{Binding IsPlaying}"
+                    Style="{StaticResource seekingBarSliderStyle}"
+                    Value="{Binding PositionInSeconds}"
+                    ToolTip="{Binding PositionInSeconds, Converter={Converters:SecondsToStringConverter}}"
+                    Focusable="False"
+                    Maximum="{Binding DurationInSeconds, Mode=OneWay}"
+                    IsMoveToPointEnabled="True"
+                    Controls:SliderHelper.ThumbFillDisabledBrush="#FF7F7F7F"
+                    Controls:SliderHelper.TrackFillDisabledBrush="#FF9D9D9D"
+                    Controls:SliderHelper.ThumbFillHoverBrush="#FF7F7F7F"
+                    Controls:SliderHelper.TrackValueFillDisabledBrush="{DynamicResource AccentColorBrush}"
+                    />
+
+
+            <StackPanel Grid.Row="1" Grid.Column="1"
+                        x:Name="seekingBarPositionDuration"
+                        Orientation="Horizontal"
+                        Style="{StaticResource seekingBarPositionDurationStyle}">
+                <TextBlock Text="{Binding PositionInSeconds, Converter={Converters:SecondsToStringConverter}}"/>
+                <TextBlock Text=" / "/>
+                <TextBlock Text="{Binding DurationInSeconds, Converter={Converters:SecondsToStringConverter}}"/>
+            </StackPanel>
+            
+            
+        </Grid>
+        
 
         <ProgressBar x:Name="seekingProgressBar"
                      Style="{StaticResource seekingProgressBarStyle}"
                      IsIndeterminate="True"
                      Height="10"
-                     Margin="5 8 5 8"/>
+                     Margin="5 0 5 6"/>
 
 
 

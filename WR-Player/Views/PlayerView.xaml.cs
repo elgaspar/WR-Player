@@ -80,13 +80,15 @@ namespace WR_Player.Views
 
         private void hideSeekingBar()
         {
-            seekingBarSlider.Style = (Style)FindResource("controlHiddenStyle");
-            seekingProgressBar.Style = (Style)FindResource("controlHiddenStyle");
+            seekingBarSlider.Style = (Style)FindResource("controlCollapsedStyle");
+            seekingBarPositionDuration.Style = (Style)FindResource("stackPanelHiddenStyle");
+            seekingProgressBar.Style = (Style)FindResource("controlCollapsedStyle");
         }
 
         private void showSeekingBar()
         {
             seekingBarSlider.Style = (Style)FindResource("seekingBarSliderStyle");
+            seekingBarPositionDuration.Style = (Style)FindResource("seekingBarPositionDurationStyle");
             seekingProgressBar.Style = (Style)FindResource("seekingProgressBarStyle");
         }
 
