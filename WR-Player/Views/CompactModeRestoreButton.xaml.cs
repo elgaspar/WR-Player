@@ -39,14 +39,13 @@ namespace WR_Player.Views
 
         public void DisableCompact()
         {
-            Console.WriteLine(defaultMargin);
             this.Margin = defaultMargin;
         }
 
         private Thickness createMargin()
         {
             double left = defaultMargin.Left;
-            double top = 29;
+            double top = 25;
             double right = defaultMargin.Right;
             double bottom = defaultMargin.Bottom;
             return new Thickness(left, top, right, bottom);

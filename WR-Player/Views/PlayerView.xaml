@@ -3,15 +3,17 @@
              xmlns:Converters="clr-namespace:WR_Player.Views.Converters"
              xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:Cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro.Platform">
+             xmlns:Cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro.Platform"
+             Width="345"
+             Height="100">
 
 
     <UserControl.Resources>
         <ResourceDictionary>
 
             <Style x:Key="seekingBarSliderStyle"
-                       TargetType="{x:Type Slider}"
-                       BasedOn="{StaticResource MetroSlider}">
+                   TargetType="{x:Type Slider}"
+                   BasedOn="{StaticResource MetroSlider}">
                 <Style.Triggers>
                     <MultiDataTrigger>
                         <MultiDataTrigger.Conditions>
@@ -24,7 +26,7 @@
             </Style>
 
             <Style x:Key="seekingBarPositionDurationStyle"
-                       TargetType="{x:Type StackPanel}">
+                   TargetType="{x:Type StackPanel}">
                 <Style.Triggers>
                     <DataTrigger Binding="{Binding LoadedItem.Type}" Value="Url">
                         <Setter Property="Visibility" Value="Hidden" />
@@ -36,8 +38,8 @@
             </Style>
 
             <Style x:Key="seekingProgressBarStyle"
-                       TargetType="{x:Type ProgressBar}"
-                       BasedOn="{StaticResource MetroProgressBar}">
+                   TargetType="{x:Type ProgressBar}"
+                   BasedOn="{StaticResource MetroProgressBar}">
                 <Style.Triggers>
                     <DataTrigger Binding="{Binding Visibility, ElementName=seekingBarSlider}" Value="Visible">
                         <Setter Property="Visibility" Value="Collapsed" />
@@ -46,167 +48,168 @@
             </Style>
 
             <Style x:Key="controlCollapsedStyle"
-                       TargetType="{x:Type Control}">
+                   TargetType="{x:Type Control}">
                 <Setter Property="Visibility" Value="Collapsed"/>
             </Style>
 
             <Style x:Key="stackPanelHiddenStyle"
-                       TargetType="{x:Type StackPanel}">
+                   TargetType="{x:Type StackPanel}">
                 <Setter Property="Visibility" Value="Hidden"/>
             </Style>
 
+            <Style x:Key="BufferingStyle"
+                       TargetType="{x:Type TextBlock}"
+                       BasedOn="{StaticResource MetroTextBlock}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Status}" Value="Stopped">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Status}" Value="Loading">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Status}" Value="Playing">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            
         </ResourceDictionary>
     </UserControl.Resources>
-    
-
-    <StackPanel>
-
-        <Grid Margin="5 0 5 0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="47"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <TextBlock Grid.Column="0"
-                       Text="{Binding Status}"
-                       FontStyle="Italic"
-                       HorizontalAlignment="Right"
-                       VerticalAlignment="Center"/>
-            
-            <TextBlock Grid.Column="1"
-                       Text=":"
-                       FontStyle="Italic"
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Center"/>
-            
-            <TextBlock Grid.Column="2"
-                       Text="{Binding LoadedItem.Title}"
-                       ToolTip="{Binding LoadedItem.Title}"
-                       FontSize="14"
-                       FontWeight="DemiBold"
-                       TextTrimming="CharacterEllipsis"
-                       Margin="10 0 0 0"/>
-
-            <Grid.Resources>
-                <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MetroTextBlock}">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding IsPlaying}" Value="False">
-                            <Setter Property="Visibility" Value="Hidden" />
-                        </DataTrigger>                       
-                    </Style.Triggers>
-                </Style>
-
-                
-
-            </Grid.Resources>
-        </Grid>
 
 
-        <Grid Margin="5 5 5 -10">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-
-            
-
-            <Slider Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
-                    x:Name="seekingBarSlider"
-                    IsEnabled="{Binding IsPlaying}"
-                    Style="{StaticResource seekingBarSliderStyle}"
-                    Value="{Binding PositionInSeconds}"
-                    ToolTip="{Binding PositionInSeconds, Converter={Converters:SecondsToStringConverter}}"
-                    Focusable="False"
-                    Maximum="{Binding DurationInSeconds, Mode=OneWay}"
-                    IsMoveToPointEnabled="True"
-                    Controls:SliderHelper.ThumbFillDisabledBrush="#FF7F7F7F"
-                    Controls:SliderHelper.TrackFillDisabledBrush="#FF9D9D9D"
-                    Controls:SliderHelper.ThumbFillHoverBrush="#FF7F7F7F"
-                    Controls:SliderHelper.TrackValueFillDisabledBrush="{DynamicResource AccentColorBrush}"
-                    />
 
 
-            <StackPanel Grid.Row="1" Grid.Column="1"
-                        x:Name="seekingBarPositionDuration"
-                        Orientation="Horizontal"
-                        Style="{StaticResource seekingBarPositionDurationStyle}">
-                <TextBlock Text="{Binding PositionInSeconds, Converter={Converters:SecondsToStringConverter}}"/>
-                <TextBlock Text=" / "/>
-                <TextBlock Text="{Binding DurationInSeconds, Converter={Converters:SecondsToStringConverter}}"/>
-            </StackPanel>
-            
-            
-        </Grid>
-        
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-        <ProgressBar x:Name="seekingProgressBar"
+
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5"
+                   Text="{Binding LoadedItem.Title}"
+                   ToolTip="{Binding LoadedItem.Title}"
+                   FontSize="14"
+                   FontWeight="DemiBold"
+                   TextTrimming="CharacterEllipsis"
+                   Margin="5 -5 5 5"/>
+
+        <Slider Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5"
+                x:Name="seekingBarSlider"
+                IsEnabled="{Binding IsPlaying}"
+                Style="{StaticResource seekingBarSliderStyle}"
+                Value="{Binding PositionInSeconds}"
+                ToolTip="{Binding PositionInSeconds, Converter={Converters:SecondsToStringConverter}}"
+                Focusable="False"
+                Maximum="{Binding DurationInSeconds, Mode=OneWay}"
+                IsMoveToPointEnabled="True"
+                Controls:SliderHelper.ThumbFillDisabledBrush="#FF7F7F7F"
+                Controls:SliderHelper.TrackFillDisabledBrush="#FF9D9D9D"
+                Controls:SliderHelper.ThumbFillHoverBrush="#FF7F7F7F"
+                Controls:SliderHelper.TrackValueFillDisabledBrush="{DynamicResource AccentColorBrush}"/>
+
+        <ProgressBar Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5"
+                     x:Name="seekingProgressBar"
                      Style="{StaticResource seekingProgressBarStyle}"
                      IsIndeterminate="True"
                      Height="10"
-                     Margin="5 0 5 6"/>
+                     Margin="0 0 0 6"/>
 
 
 
-        <StackPanel Orientation="Horizontal">
 
-            <Button x:Name="previousButton"
-                    Cal:Message.Attach="Previous"
-                    Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
-                    Content="{StaticResource PlayerPreviousIcon}"
-                    Focusable="False"
-                    Padding="0"
-                    Width="40" Height="40"
-                    Margin="5"/>
 
-            <Button x:Name="playButton"
-                    Cal:Message.Attach="Play"
-                    Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
-                    Content="{StaticResource PlayerPlayIcon}"
-                    Focusable="False"
-                    Padding="0"
-                    Width="40" Height="40"
-                    Margin="5"/>
+        <Button Grid.Row="2" Grid.Column="0"
+                x:Name="previousButton"
+                Cal:Message.Attach="Previous"
+                Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
+                Content="{StaticResource PlayerPreviousIcon}"
+                Focusable="False"
+                Padding="0"
+                Width="40" Height="40"
+                Margin="0 5 5 0"/>
 
-            <Button x:Name="stopButton"
-                    Cal:Message.Attach="Stop"
-                    Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
-                    Content="{StaticResource PlayerStopIcon}"
-                    Focusable="False"
-                    Padding="0"
-                    Width="40" Height="40"
-                    Margin="5"/>
+        <Button Grid.Row="2" Grid.Column="1"
+                x:Name="playButton"
+                Cal:Message.Attach="Play"
+                Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
+                Content="{StaticResource PlayerPlayIcon}"
+                Focusable="False"
+                Padding="0"
+                Width="40" Height="40"
+                Margin="5 5 5 0"/>
 
-            <Button x:Name="nextButton"
-                    Cal:Message.Attach="Next"
-                    Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
-                    Content="{StaticResource PlayerNextIcon}"
-                    Focusable="False"
-                    Padding="0"
-                    Width="40" Height="40"
-                    Margin="5"/>
+        <Button Grid.Row="2" Grid.Column="2"
+                x:Name="stopButton"
+                Cal:Message.Attach="Stop"
+                Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
+                Content="{StaticResource PlayerStopIcon}"
+                Focusable="False"
+                Padding="0"
+                Width="40" Height="40"
+                Margin="5 5 5 0"/>
 
-            <Slider x:Name="volumeSlider"
-                    Style="{DynamicResource FlatSlider}"
-                    Value="{Binding Volume}"
-                    ToolTip="Volume"
-                    Focusable="False"
-                    Controls:SliderHelper.EnableMouseWheel="MouseHover"
-                    IsMoveToPointEnabled="True"
-                    Maximum="0.99"
-                    SmallChange="0.05"
-                    VerticalAlignment="Center"
-                    Width="125"
-                    Height="15"
-                    Margin="5"/>
+        <Button Grid.Row="2" Grid.Column="3"
+                x:Name="nextButton"
+                Cal:Message.Attach="Next"
+                Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
+                Content="{StaticResource PlayerNextIcon}"
+                Focusable="False"
+                Padding="0"
+                Width="40" Height="40"
+                Margin="5 5 5 0"/>
 
+        <Slider Grid.Row="2" Grid.Column="4"
+                x:Name="volumeSlider"
+                Style="{DynamicResource FlatSlider}"
+                Value="{Binding Volume}"
+                ToolTip="Volume"
+                Focusable="False"
+                Controls:SliderHelper.EnableMouseWheel="MouseHover"
+                IsMoveToPointEnabled="True"
+                Maximum="0.99"
+                SmallChange="0.05"
+                VerticalAlignment="Center"
+                
+                Height="15"
+                Margin="5 5 0 0"/>
+
+
+
+
+
+        <TextBlock Grid.Row="2" Grid.Column="4"
+                   Text="{Binding Status}"
+                   FontStyle="Italic"
+                   Style="{StaticResource BufferingStyle}"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Left"
+                   Margin="5 -3 0 0"/>
+
+
+        <StackPanel Grid.Row="2" Grid.Column="4"
+                    x:Name="seekingBarPositionDuration"
+                    Orientation="Horizontal"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Right"
+                    Style="{StaticResource seekingBarPositionDurationStyle}"
+                    Margin="0 -3 0 0">
+            <TextBlock Text="{Binding PositionInSeconds, Converter={Converters:SecondsToStringConverter}}"/>
+            <TextBlock Text=" / "/>
+            <TextBlock Text="{Binding DurationInSeconds, Converter={Converters:SecondsToStringConverter}}"/>
         </StackPanel>
 
-    </StackPanel>
+
+
+    </Grid>
 
 
 </UserControl>

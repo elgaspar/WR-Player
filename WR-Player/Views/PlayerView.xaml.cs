@@ -21,62 +21,85 @@ namespace WR_Player.Views
     /// </summary>
     public partial class PlayerView : UserControl
     {
+        private const double COMPACT_USERCONTROL_WIDTH = 271; //TODO
+        private const double COMPACT_USERCONTROL_HEIGHT = Double.NaN; //Double.NaN is the default value. (equal to "Auto" in xaml)
+
         private const double COMPACT_BUTTONS_WIDTH_HEIGHT = 30;
         private const double COMPACT_SLIDER_WIDTH = 100;
         private const double COMPACT_SLIDER_HEIGHT = 10;
 
-        private double default_buttons_width_height;
-        private double default_slider_width;
-        private double default_slider_height;
+        private double savedUserControlWidth;
+        private double savedUserControlHeight;
 
+        private double savedButtonsWidthHeight;
+        private double savedSliderWidth;
+        private double savedSliderHeight;
+
+        
 
 
         public PlayerView()
         {
             InitializeComponent();
 
-            initDefaultSizeValues();
+            saveDefaultSizeValues();
         }
 
         
 
         public void EnableCompact()
         {
+            setCompactSizeUserControl();
+
             if (Settings.HideSeekingBar)
                 hideSeekingBar();
-            setCompactSize(previousButton);
-            setCompactSize(playButton);
-            setCompactSize(stopButton);
-            setCompactSize(nextButton);
-            setCompactSize(volumeSlider);
 
-            Width = 271;
+            setCompactSizeButton(previousButton);
+            setCompactSizeButton(playButton);
+            setCompactSizeButton(stopButton);
+            setCompactSizeButton(nextButton);
+
+            setCompactSizeSlider(volumeSlider);
         }
 
         public void DisableCompact()
         {
+            setNormalSizeUserControl();
+
             showSeekingBar();
-            setNormalSize(previousButton);
-            setNormalSize(playButton);
-            setNormalSize(stopButton);
-            setNormalSize(nextButton);
-            setNormalSize(volumeSlider);
 
-            Width = Double.NaN; //Double.NaN is the default value. (equal to "Auto" in xaml)
+            setNormalSizeButton(previousButton);
+            setNormalSizeButton(playButton);
+            setNormalSizeButton(stopButton);
+            setNormalSizeButton(nextButton);
+
+            setNormalSizeSlider(volumeSlider); 
         }
 
 
 
 
 
-        private void initDefaultSizeValues()
+        private void saveDefaultSizeValues()
         {
-            default_buttons_width_height = previousButton.Width;
-            default_slider_width = volumeSlider.Width;
-            default_slider_height = volumeSlider.Height;
+            savedUserControlWidth = this.Width;
+            savedUserControlHeight = this.Height;
+
+            savedButtonsWidthHeight = previousButton.Width;
+            savedSliderWidth = volumeSlider.Width;
+            savedSliderHeight = volumeSlider.Height;  
         }
 
 
+
+
+        
+
+        private void setCompactSizeUserControl()
+        {
+            this.Width = COMPACT_USERCONTROL_WIDTH;
+            this.Height = COMPACT_USERCONTROL_HEIGHT; 
+        }
 
         private void hideSeekingBar()
         {
@@ -85,14 +108,7 @@ namespace WR_Player.Views
             seekingProgressBar.Style = (Style)FindResource("controlCollapsedStyle");
         }
 
-        private void showSeekingBar()
-        {
-            seekingBarSlider.Style = (Style)FindResource("seekingBarSliderStyle");
-            seekingBarPositionDuration.Style = (Style)FindResource("seekingBarPositionDurationStyle");
-            seekingProgressBar.Style = (Style)FindResource("seekingProgressBarStyle");
-        }
-
-        private void setCompactSize(Button button)
+        private void setCompactSizeButton(Button button)
         {
             button.Width = COMPACT_BUTTONS_WIDTH_HEIGHT;
             button.Height = COMPACT_BUTTONS_WIDTH_HEIGHT;
@@ -102,7 +118,7 @@ namespace WR_Player.Views
             icon.IconHeight = COMPACT_BUTTONS_WIDTH_HEIGHT;
         }
 
-        private void setCompactSize(Slider slider)
+        private void setCompactSizeSlider(Slider slider)
         {
             slider.Width = COMPACT_SLIDER_WIDTH;
             slider.Height = COMPACT_SLIDER_HEIGHT;
@@ -110,20 +126,35 @@ namespace WR_Player.Views
 
 
 
-        private void setNormalSize(Button button)
-        {
-            button.Width = default_buttons_width_height;
-            button.Height = default_buttons_width_height;
+        
 
-            IconContentControl icon = (IconContentControl)button.Content;
-            icon.IconWidth = default_buttons_width_height;
-            icon.IconHeight = default_buttons_width_height;
+        private void setNormalSizeUserControl()
+        {
+            this.Width = savedUserControlWidth;
+            this.Height = savedUserControlHeight;
         }
 
-        private void setNormalSize(Slider slider)
+        private void showSeekingBar()
         {
-            slider.Width = default_slider_width;
-            slider.Height = default_slider_height;
+            seekingBarSlider.Style = (Style)FindResource("seekingBarSliderStyle");
+            seekingBarPositionDuration.Style = (Style)FindResource("seekingBarPositionDurationStyle");
+            seekingProgressBar.Style = (Style)FindResource("seekingProgressBarStyle");
+        }
+
+        private void setNormalSizeButton(Button button)
+        {
+            button.Width = savedButtonsWidthHeight;
+            button.Height = savedButtonsWidthHeight;
+
+            IconContentControl icon = (IconContentControl)button.Content;
+            icon.IconWidth = savedButtonsWidthHeight;
+            icon.IconHeight = savedButtonsWidthHeight;
+        }
+
+        private void setNormalSizeSlider(Slider slider)
+        {
+            slider.Width = savedSliderWidth;
+            slider.Height = savedSliderHeight;
         }
 
     }

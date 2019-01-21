@@ -44,8 +44,7 @@
 
         <local:PlayerView Grid.Row="2" Grid.Column="0"
                           x:Name="player"
-                          DataContext="{Binding PlayerVM}"
-                          Margin="5"/>
+                          DataContext="{Binding PlayerVM}"/>
 
         <local:CompactModeRestoreButton Grid.Row="2" Grid.Column="1"
                                         x:Name="compactModeRestoreButton"
