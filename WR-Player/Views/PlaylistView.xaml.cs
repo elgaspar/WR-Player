@@ -21,22 +21,26 @@ namespace WR_Player.Views
     /// <summary>
     /// Interaction logic for PlaylistView.xaml
     /// </summary>
-    public partial class PlaylistView : UserControl
+    public partial class PlaylistView : UserControl, ICompact
     {
         public PlaylistView()
         {
             InitializeComponent();
         }
 
-        public void MakeVisible()
+
+
+        public void EnableCompact()
+        {
+            Visibility = Visibility.Collapsed;
+        }
+
+        public void DisableCompact()
         {
             Visibility = Visibility.Visible;
         }
 
-        public void MakeInvisible()
-        {
-            Visibility = Visibility.Collapsed;
-        }
+
 
         private void list_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

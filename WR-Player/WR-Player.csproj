@@ -105,6 +105,9 @@
     <Compile Include="Views\Assist\Actions.cs" />
     <Compile Include="Views\Assist\Dialogs.cs" />
     <Compile Include="Views\Assist\Settings.cs" />
+    <Compile Include="Views\BufferingStatusTextBlock.xaml.cs">
+      <DependentUpon>BufferingStatusTextBlock.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CompactModeRestoreButton.xaml.cs">
       <DependentUpon>CompactModeRestoreButton.xaml</DependentUpon>
     </Compile>
@@ -128,8 +131,12 @@
     <Compile Include="Views\DialogSettingsView.xaml.cs">
       <DependentUpon>DialogSettingsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ICompact.cs" />
     <Compile Include="Views\IconContentControl.xaml.cs">
       <DependentUpon>IconContentControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoadedItemTextBlock.xaml.cs">
+      <DependentUpon>LoadedItemTextBlock.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
@@ -137,11 +144,23 @@
     <Compile Include="Views\MenuView.xaml.cs">
       <DependentUpon>MenuView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\PlayerButton.xaml.cs">
+      <DependentUpon>PlayerButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PlayerView.xaml.cs">
       <DependentUpon>PlayerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PlaylistView.xaml.cs">
       <DependentUpon>PlaylistView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PositionDurationTextBlock.xaml.cs">
+      <DependentUpon>PositionDurationTextBlock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SeekingBar.xaml.cs">
+      <DependentUpon>SeekingBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VolumeSlider.xaml.cs">
+      <DependentUpon>VolumeSlider.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -183,6 +202,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\BufferingStatusTextBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CompactModeRestoreButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -219,6 +242,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\LoadedItemTextBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -227,11 +254,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\PlayerButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\PlayerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PlaylistView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PositionDurationTextBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SeekingBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\VolumeSlider.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,0 +1,39 @@
+﻿<TextBlock x:Class="WR_Player.Views.PositionDurationTextBlock"
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+           xmlns:local="clr-namespace:WR_Player.Views"
+           mc:Ignorable="d"
+           xmlns:Converters="clr-namespace:WR_Player.Views.Converters"
+           xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+           
+           VerticalAlignment="Top"
+           HorizontalAlignment="Right"
+           Margin="0 -3 5 0">
+
+    
+    <TextBlock.Text>
+        <MultiBinding StringFormat="{}{0} / {1}">
+            <Binding Path="PositionInSeconds" Converter="{Converters:SecondsToStringConverter}"/>
+            <Binding Path="DurationInSeconds" Converter="{Converters:SecondsToStringConverter}"/>
+        </MultiBinding>
+    </TextBlock.Text>
+
+
+    <TextBlock.Style>
+        <Style TargetType="{x:Type TextBlock}"
+               BasedOn="{StaticResource MetroTextBlock}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding LoadedItem.Type}" Value="Url">
+                    <Setter Property="Visibility" Value="Hidden" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding LoadedItem}" Value="{x:Null}">
+                    <Setter Property="Visibility" Value="Hidden" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </TextBlock.Style>
+    
+    
+</TextBlock>

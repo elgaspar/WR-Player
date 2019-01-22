@@ -139,17 +139,11 @@ namespace WR_Player.Views.Assist
         {
             mainWin.menu.IsCompactModeEnabled = true;
             mainWin.EnableCompact();
-            mainWin.menu.MakeInvisible();
-            mainWin.playlist.MakeInvisible();
-            mainWin.player.EnableCompact();
         }
 
         public static void DisableCompactMode()
         {
             mainWin.DisableCompact();
-            mainWin.menu.MakeVisible();
-            mainWin.playlist.MakeVisible();
-            mainWin.player.DisableCompact();
             mainWin.menu.IsCompactModeEnabled = false;
         }
 

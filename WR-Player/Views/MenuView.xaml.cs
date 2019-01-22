@@ -21,7 +21,7 @@ namespace WR_Player.Views
     /// <summary>
     /// Interaction logic for MenuView.xaml
     /// </summary>
-    public partial class MenuView : UserControl
+    public partial class MenuView : UserControl, ICompact
     {
         public MenuView()
         {
@@ -42,14 +42,14 @@ namespace WR_Player.Views
 
 
 
-        public void MakeVisible()
-        {
-            Visibility = Visibility.Visible;
-        }
-
-        public void MakeInvisible()
+        public void EnableCompact()
         {
             Visibility = Visibility.Collapsed;
+        }
+
+        public void DisableCompact()
+        {
+            Visibility = Visibility.Visible;
         }
 
 
@@ -120,6 +120,5 @@ namespace WR_Player.Views
             Actions.About();
         }
 
-        
     }
 }

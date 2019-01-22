@@ -19,35 +19,35 @@ namespace WR_Player.Views
     /// <summary>
     /// Interaction logic for CompactModeRestoreButton.xaml
     /// </summary>
-    public partial class CompactModeRestoreButton : UserControl
+    public partial class CompactModeRestoreButton : UserControl, ICompact
     {
-        private Thickness defaultMargin;
+        private Thickness savedMargin;
 
         public CompactModeRestoreButton()
         {
             InitializeComponent();
         }
 
-        
-
         public void EnableCompact()
         {
-            defaultMargin = this.Margin;
+            savedMargin = this.Margin;
             if (Settings.HideSeekingBar)
                 this.Margin = createMargin();
         }
 
         public void DisableCompact()
         {
-            this.Margin = defaultMargin;
+            this.Margin = savedMargin;
         }
 
+
+        //TODO: use const value isntead
         private Thickness createMargin()
         {
-            double left = defaultMargin.Left;
+            double left = savedMargin.Left;
             double top = 25;
-            double right = defaultMargin.Right;
-            double bottom = defaultMargin.Bottom;
+            double right = savedMargin.Right;
+            double bottom = savedMargin.Bottom;
             return new Thickness(left, top, right, bottom);
         }
 
@@ -56,6 +56,5 @@ namespace WR_Player.Views
         {
             Actions.DisableCompactMode();
         }
-
     }
 }

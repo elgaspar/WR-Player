@@ -20,11 +20,10 @@ namespace WR_Player.Views
     /// <summary>
     /// Interaction logic for MainView.xaml
     /// </summary>
-    public partial class MainView : MetroWindow
+    public partial class MainView : MetroWindow, ICompact
     {
-        private double defaultMinWidth;
-        private double defaultMinHeight;
-
+        private double savedMinWidth;
+        private double savedMinHeight;
         private WindowState savedState;
         private double savedWidth;
         private double savedHeight;
@@ -33,43 +32,43 @@ namespace WR_Player.Views
         public MainView()
         {
             InitializeComponent();
-
-            initDefaultValues();
         }
 
-        private void initDefaultValues()
+        private void saveValues()
         {
-            defaultMinWidth = MinWidth;
-            defaultMinHeight = MinHeight;
-        }
-
-        private void saveSizeAndState()
-        {
+            savedMinWidth = MinWidth;
+            savedMinHeight = MinHeight;
             savedState = WindowState;
             savedWidth = Width;
             savedHeight = Height;
         }
 
-        private void restoreSizeAndState()
+        private void restoreValues()
         {
+            MinWidth = savedMinWidth;
+            MinHeight = savedMinHeight;
             WindowState = savedState;
             Width = savedWidth;
             Height = savedHeight;
         }
 
+
         public void EnableCompact()
         {
-            saveSizeAndState();
+            saveValues();
+
             WindowState = WindowState.Normal;
             SizeToContent = SizeToContent.WidthAndHeight;
             ResizeMode = ResizeMode.NoResize;
             ShowTitleBar = false;
             MinWidth = 0;
             MinHeight = 0;
-
             Topmost = Settings.AlwaysOnTop;
             ShowInTaskbar = !Settings.HideTaskbarIcon;
 
+            menu.EnableCompact();
+            playlist.EnableCompact();
+            player.EnableCompact();
             compactModeRestoreButton.EnableCompact();
         }
 
@@ -78,16 +77,16 @@ namespace WR_Player.Views
             SizeToContent = SizeToContent.Manual;
             ResizeMode = ResizeMode.CanResize;
             ShowTitleBar = true;
-
-            initWindowButtons();
-
-            MinWidth = defaultMinWidth;
-            MinHeight = defaultMinHeight;
-            restoreSizeAndState();
-
             Topmost = false;
             ShowInTaskbar = true;
 
+            initWindowButtons();
+
+            restoreValues();
+
+            menu.DisableCompact();
+            playlist.DisableCompact();
+            player.DisableCompact();
             compactModeRestoreButton.DisableCompact();
         }
 
@@ -97,6 +96,9 @@ namespace WR_Player.Views
             WindowButtonCommands = new WindowButtonCommands();
             WindowButtonCommands.ParentWindow = this;
         }
+
+
+
 
         private void metroWindow_Loaded(object sender, RoutedEventArgs e)
         {
