@@ -22,7 +22,7 @@
             <ContentControl Content="{StaticResource MainIcon}"/>
         </DataTemplate>
     </Controls:MetroWindow.IconTemplate>
-    
+
 
     <Grid>
         <Grid.RowDefinitions>
@@ -30,26 +30,17 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
 
-        <local:MenuView Grid.Row="0" Grid.Column="0"
+        <local:MenuView Grid.Row="0"
                         x:Name="menu"/>
 
-        <local:PlaylistView Grid.Row="1" Grid.Column="0"
+        <local:PlaylistView Grid.Row="1"
                             x:Name="playlist"
                             DataContext="{Binding PlaylistVM}"/>
 
-        <local:PlayerView Grid.Row="2" Grid.Column="0"
+        <local:PlayerView Grid.Row="2"
                           x:Name="player"
                           DataContext="{Binding PlayerVM}"/>
-
-        <local:CompactModeRestoreButton Grid.Row="2" Grid.Column="1"
-                                        x:Name="compactModeRestoreButton"
-                                        Visibility="{Binding IsCompactModeEnabled, ElementName=menu, Converter={StaticResource BooleanToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}"
-                                        Margin="0 0 7 0"/>
 
     </Grid>
 

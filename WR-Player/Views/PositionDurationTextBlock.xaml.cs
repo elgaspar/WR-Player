@@ -24,7 +24,7 @@ namespace WR_Player.Views
 
         private const int COMPACT_MARGIN_LEFT = 0;
         private const int COMPACT_MARGIN_TOP = -5;
-        private const int COMPACT_MARGIN_RIGHT = 2;
+        private const int COMPACT_MARGIN_RIGHT = 5;
         private const int COMPACT_MARGIN_BOTTOM = 0;
 
         private double savedFontSize;

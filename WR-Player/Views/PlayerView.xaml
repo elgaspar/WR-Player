@@ -25,6 +25,7 @@
 
         
         <local:LoadedItemTextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5"
+                                   HorizontalAlignment="Left"
                                    x:Name="loadedItemTextBlock"/>
 
         <local:SeekingBar Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5"
@@ -59,6 +60,12 @@
         <local:PositionDurationTextBlock Grid.Row="2" Grid.Column="4"
                                          x:Name="positionDurationTextBlock"/>
 
+        
+        <local:CompactTitleBar Grid.Row="0" Grid.Column="4" Grid.RowSpan="3"
+                               x:Name="compactTitleBar"
+                               HorizontalAlignment="Right"
+                               VerticalAlignment="Top"
+                               Margin="0 2 2 0"/>
         
     </Grid>
 

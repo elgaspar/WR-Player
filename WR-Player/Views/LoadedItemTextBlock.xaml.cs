@@ -20,8 +20,10 @@ namespace WR_Player.Views
     /// </summary>
     public partial class LoadedItemTextBlock : TextBlock, ICompact
     {
+        private const double COMPACT_WIDTH = 185;
         private const int COMPACT_FONT_SIZE = 12;
 
+        private double savedWidth;
         private double savedFontSize;
 
         public LoadedItemTextBlock()
@@ -31,12 +33,16 @@ namespace WR_Player.Views
 
         public void DisableCompact()
         {
+            this.Width = savedWidth;
             this.FontSize = savedFontSize;
         }
 
         public void EnableCompact()
         {
+            savedWidth = this.Width;
             savedFontSize = this.FontSize;
+
+            this.Width = COMPACT_WIDTH;
             this.FontSize = COMPACT_FONT_SIZE;
         }
     }

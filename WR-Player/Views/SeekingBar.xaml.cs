@@ -22,7 +22,7 @@ namespace WR_Player.Views
     {
         private const int COMPACT_MARGIN_LEFT = 5;
         private const int COMPACT_MARGIN_TOP = 0;
-        private const int COMPACT_MARGIN_RIGHT = 2;
+        private const int COMPACT_MARGIN_RIGHT = 5;
         private const int COMPACT_MARGIN_BOTTOM = 2;
 
         private Thickness savedMargin;

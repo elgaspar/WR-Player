@@ -50,6 +50,7 @@ namespace WR_Player.Views
             volumeSlider.EnableCompact();
             bufferingStatusTextBlock.EnableCompact();
             positionDurationTextBlock.EnableCompact();
+            compactTitleBar.EnableCompact();
         }
 
         public void DisableCompact()
@@ -66,6 +67,7 @@ namespace WR_Player.Views
             volumeSlider.DisableCompact();
             bufferingStatusTextBlock.DisableCompact();
             positionDurationTextBlock.DisableCompact();
+            compactTitleBar.DisableCompact();
         }
 
 

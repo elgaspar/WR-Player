@@ -61,6 +61,7 @@ namespace WR_Player.Views
             SizeToContent = SizeToContent.WidthAndHeight;
             ResizeMode = ResizeMode.NoResize;
             ShowTitleBar = false;
+            ShowCloseButton = false;
             MinWidth = 0;
             MinHeight = 0;
             Topmost = Settings.AlwaysOnTop;
@@ -69,7 +70,6 @@ namespace WR_Player.Views
             menu.EnableCompact();
             playlist.EnableCompact();
             player.EnableCompact();
-            compactModeRestoreButton.EnableCompact();
         }
 
         public void DisableCompact()
@@ -77,6 +77,7 @@ namespace WR_Player.Views
             SizeToContent = SizeToContent.Manual;
             ResizeMode = ResizeMode.CanResize;
             ShowTitleBar = true;
+            ShowCloseButton = true;
             Topmost = false;
             ShowInTaskbar = true;
 
@@ -87,7 +88,6 @@ namespace WR_Player.Views
             menu.DisableCompact();
             playlist.DisableCompact();
             player.DisableCompact();
-            compactModeRestoreButton.DisableCompact();
         }
 
         //window buttons (close, maximize, minimize) need to be reinitialized to be shown correctly
@@ -110,6 +110,5 @@ namespace WR_Player.Views
             Actions.PromptForPlaylistSave();
             Settings.Save();
         }
-
     }
 }
