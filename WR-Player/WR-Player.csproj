@@ -114,7 +114,7 @@
     <Compile Include="Views\CompactTitleBar.xaml.cs">
       <DependentUpon>CompactTitleBar.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Converters\AudioTypeToStringConverter.cs" />
+    <Compile Include="Views\Converters\ListBoxItemIndexConverter.cs" />
     <Compile Include="Views\Converters\SecondsToStringConverter.cs" />
     <Compile Include="Views\DialogAboutView.xaml.cs">
       <DependentUpon>DialogAboutView.xaml</DependentUpon>

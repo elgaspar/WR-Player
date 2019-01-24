@@ -185,6 +185,8 @@ namespace WR_Player.ViewModels
             NotifyOfPropertyChange(() => SelectedItem);
             NotifyOfPropertyChange(() => AreThereItems);
             ParentVM.PlayerVM.notifyAll();
+
+            System.Windows.Data.CollectionViewSource.GetDefaultView(Items).Refresh(); //needed to update playlist numbers
         }
 
         private void ItemsToProcess_Changed(object sender, NotifyCollectionChangedEventArgs e)
