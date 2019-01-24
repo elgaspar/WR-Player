@@ -6,7 +6,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:Cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro.Platform"
              Width="345"
-             Height="102">
+             Height="107">
 
     
     <Grid>
@@ -38,8 +38,51 @@
 
         <local:PlayerButton Grid.Row="2" Grid.Column="1"
                             x:Name="playButton"
-                            Cal:Message.Attach="Play"
-                            Content="{StaticResource PlayerPlayIcon}"/>
+                            Cal:Message.Attach="PlayOrResume"
+                            Content="{StaticResource PlayerPlayIcon}"
+                            Width="50"
+                            Height="50">
+            <local:PlayerButton.Style>
+                <Style TargetType="{x:Type local:PlayerButton}"
+                       BasedOn="{StaticResource MahApps.Metro.Styles.MetroCircleButtonStyle}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Status, UpdateSourceTrigger=PropertyChanged}" Value="Playing">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </local:PlayerButton.Style>
+        </local:PlayerButton>
+
+        <local:PlayerButton Grid.Row="2" Grid.Column="1"
+                            x:Name="pauseButton"
+                            Cal:Message.Attach="Pause"
+                            Content="{StaticResource PlayerPauseIcon}"
+                            Width="50"
+                            Height="50">
+            <local:PlayerButton.Style>
+                <Style TargetType="{x:Type local:PlayerButton}"
+                       BasedOn="{StaticResource MahApps.Metro.Styles.MetroCircleButtonStyle}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Status, UpdateSourceTrigger=PropertyChanged}" Value="Stopped">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Status, UpdateSourceTrigger=PropertyChanged}" Value="Buffering">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Status, UpdateSourceTrigger=PropertyChanged}" Value="Loading">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Status, UpdateSourceTrigger=PropertyChanged}" Value="Paused">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Status, UpdateSourceTrigger=PropertyChanged}" Value="Error">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </local:PlayerButton.Style>
+        </local:PlayerButton>
 
         <local:PlayerButton Grid.Row="2" Grid.Column="2"
                             x:Name="stopButton"

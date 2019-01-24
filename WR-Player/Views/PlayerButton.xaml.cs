@@ -20,7 +20,8 @@ namespace WR_Player.Views
     /// </summary>
     public partial class PlayerButton : Button
     {
-        private const double COMPACT_WIDTH_HEIGHT = 30;
+        private double COMPACT_WIDTH_HEIGHT { get { return savedWidthHeight - 10; } }
+        private double COMPACT_ICON_WIDTH_HEIGHT { get { return savedIconWidthHeight - 10; } }
 
         private const int COMPACT_MARGIN_LEFT = 2;
         private const int COMPACT_MARGIN_TOP = 2;
@@ -29,6 +30,7 @@ namespace WR_Player.Views
 
         private double savedWidthHeight;
         private Thickness savedMargin;
+        private double savedIconWidthHeight;
 
         public PlayerButton()
         {
@@ -45,8 +47,9 @@ namespace WR_Player.Views
             this.Margin = new Thickness(COMPACT_MARGIN_LEFT, COMPACT_MARGIN_TOP, COMPACT_MARGIN_RIGHT, COMPACT_MARGIN_BOTTOM);
 
             IconContentControl icon = (IconContentControl)this.Content;
-            icon.IconWidth = COMPACT_WIDTH_HEIGHT;
-            icon.IconHeight = COMPACT_WIDTH_HEIGHT;
+            savedIconWidthHeight = icon.IconWidth;
+            icon.IconWidth = COMPACT_ICON_WIDTH_HEIGHT;
+            icon.IconHeight = COMPACT_ICON_WIDTH_HEIGHT;
         }
 
         public void DisableCompact()
@@ -56,8 +59,8 @@ namespace WR_Player.Views
             this.Margin = savedMargin;
 
             IconContentControl icon = (IconContentControl)this.Content;
-            icon.IconWidth = savedWidthHeight;
-            icon.IconHeight = savedWidthHeight;
+            icon.IconWidth = savedIconWidthHeight;
+            icon.IconHeight = savedIconWidthHeight;
         }
     }
 }

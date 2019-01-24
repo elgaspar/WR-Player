@@ -18,7 +18,7 @@ namespace WR_Player.Models
         {
             get
             {
-                if (Status != PlayerStatus.Playing)
+                if (Status != PlayerStatus.Playing && Status != PlayerStatus.Paused)
                     return 0;
                 if (!player.NaturalDuration.HasTimeSpan)
                     return DEFAULT_DURATION_POSITION;
@@ -68,7 +68,7 @@ namespace WR_Player.Models
 
         public enum PlayerStatus
         {
-            Stopped, Buffering, Loading, Playing, Error
+            Stopped, Buffering, Loading, Playing, Paused, Error
         }
 
         public void Play(string Url)
@@ -90,6 +90,18 @@ namespace WR_Player.Models
                 Status = PlayerStatus.Buffering;
             else
                 Status = PlayerStatus.Loading;
+        }
+
+        public void Pause()
+        {
+            player.Pause();
+            Status = PlayerStatus.Paused;
+        }
+
+        public void Resume()
+        {
+            player.Play();
+            Status = PlayerStatus.Playing;
         }
 
         public void Stop()

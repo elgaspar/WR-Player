@@ -126,7 +126,7 @@ namespace WR_Player.ViewModels
             itemToEdit.Title = newTitle;
 
             if (wasPlaying && editedItemWasLoadedOnPlayer && pathChanged)
-                PlayerVM.Play();
+                PlayerVM.PlayOrResume();
 
             AnyChangeHappened = true;
             notifyAll();

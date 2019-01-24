@@ -9,9 +9,14 @@
                               DataPath="M6,18V6H8V18H6M9.5,12L18,6V18L9.5,12Z"/>
 
     <local:IconContentControl x:Key="PlayerPlayIcon"
-                              IconWidth="40"
-                              IconHeight="40"
+                              IconWidth="50"
+                              IconHeight="50"
                               DataPath="M8,5.14V19.14L19,12.14L8,5.14Z"/>
+
+    <local:IconContentControl x:Key="PlayerPauseIcon"
+                              IconWidth="46"
+                              IconHeight="46"
+                              DataPath="M14,19H18V5H14M6,19H10V5H6V19Z"/>
 
     <local:IconContentControl x:Key="PlayerStopIcon"
                               IconWidth="40"

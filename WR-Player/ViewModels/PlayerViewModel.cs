@@ -78,14 +78,41 @@ namespace WR_Player.ViewModels
 
 
 
-        public void Play()
+        public void PlayOrResume()
         {
             if (!PlaylistVM.AreThereItems)
                 return;
+
+            if (isPaused)
+            {
+                player.Resume();
+            }
+            else
+            {
+                Play();
+            }
+
+            IsPlaying = true;
+            if (LoadedItem.Type != AudioType.Url)
+                enablePositionNotifier();
+            notifyAll();
+        }
+
+        public void Play()
+        {
             player.Play(LoadedItem.Path);
             IsPlaying = true;
             if (LoadedItem.Type != AudioType.Url)
                 enablePositionNotifier();
+            notifyAll();
+        }
+
+        public void Pause()
+        {
+            if (!IsPlaying)
+                return;
+            player.Pause();
+            disablePositionNotifier();
             notifyAll();
         }
 
@@ -107,7 +134,7 @@ namespace WR_Player.ViewModels
             Stop();
             PlaylistVM.SelectNextItem();
             if (itWasPlaying)
-                Play();
+                PlayOrResume();
             notifyAll();
         }
 
@@ -119,7 +146,7 @@ namespace WR_Player.ViewModels
             Stop();
             PlaylistVM.SelectPreviousItem();
             if (itWasPlaying)
-                Play();
+                PlayOrResume();
             notifyAll();
         }
 
@@ -165,6 +192,8 @@ namespace WR_Player.ViewModels
         }
 
 
+
+        private bool isPaused { get { return Status == Player.PlayerStatus.Paused; } }
 
         private bool thereIsNoNextItem { get { return !PlaylistVM.AreThereItems || LoadedItem == PlaylistVM.Items.Last(); } }
 

@@ -45,6 +45,7 @@ namespace WR_Player.Views
             seekingBar.EnableCompact();
             previousButton.EnableCompact();
             playButton.EnableCompact();
+            pauseButton.EnableCompact();
             stopButton.EnableCompact();
             nextButton.EnableCompact();
             volumeSlider.EnableCompact();
@@ -62,6 +63,7 @@ namespace WR_Player.Views
             seekingBar.DisableCompact();
             previousButton.DisableCompact();
             playButton.DisableCompact();
+            pauseButton.DisableCompact();
             stopButton.DisableCompact();
             nextButton.DisableCompact();
             volumeSlider.DisableCompact();
