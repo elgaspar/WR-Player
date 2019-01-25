@@ -78,7 +78,6 @@ namespace WR_Player.Views
         private void list_MouseDown(object sender, MouseButtonEventArgs e)
         {
             list.UnselectAll();
-            Console.WriteLine(list.SelectedIndex);
         }
 
     }

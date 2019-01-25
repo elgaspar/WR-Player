@@ -29,9 +29,13 @@ namespace WR_Player.Views
         private double savedHeight;
         private Brush savedBackground;
 
+        private bool dragFromAnywhereIsEnabled;
+
         public MainView()
         {
             InitializeComponent();
+
+            dragFromAnywhereIsEnabled = false;
         }
 
         private void saveValues()
@@ -73,6 +77,8 @@ namespace WR_Player.Views
             menu.EnableCompact();
             playlist.EnableCompact();
             player.EnableCompact();
+
+            dragFromAnywhereIsEnabled = true;
         }
 
         public void DisableCompact()
@@ -91,6 +97,8 @@ namespace WR_Player.Views
             menu.DisableCompact();
             playlist.DisableCompact();
             player.DisableCompact();
+
+            dragFromAnywhereIsEnabled = false;
         }
 
         //window buttons (close, maximize, minimize) need to be reinitialized to be shown correctly
@@ -112,6 +120,12 @@ namespace WR_Player.Views
         {
             Actions.PromptForPlaylistSave();
             Settings.Save();
+        }
+
+        private void metroWindow_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if ( dragFromAnywhereIsEnabled && (e.ChangedButton == MouseButton.Left))
+                this.DragMove();
         }
     }
 }

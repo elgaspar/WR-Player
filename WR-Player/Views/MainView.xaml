@@ -16,6 +16,7 @@
                       AllowsTransparency="True"
                       WindowStartupLocation="CenterScreen"
                       SaveWindowPosition="True"
+                      MouseDown="metroWindow_MouseDown"
                       Loaded="metroWindow_Loaded"
                       Closing="metroWindow_Closing">
 
