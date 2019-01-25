@@ -19,13 +19,70 @@
         </DataTemplate>
     </Controls:MetroWindow.IconTemplate>
 
+    
+    
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="1">
+        <StackPanel Grid.Row="0"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center">
+            <Image Source="pack://application:,,,/Resources/icon.ico"
+                   Width="65"
+                   Height="65"/>
+            <StackPanel>
+                <TextBlock Text="WR-Player"
+                           FontSize="20"
+                           FontWeight="Bold"
+                           Margin="5" />
+                <TextBlock Text="{Binding Version}"
+                           FontStyle="Italic"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center"
+                           Margin="5" />
+            </StackPanel>
+        </StackPanel>
+
+
+        <TextBlock Grid.Row="1"
+                   Text="Copyright © 2018-2019 Elias Gasparis"
+                   FontSize="16"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Margin="5" />
+
+        <local:HyperlinkButton Grid.Row="2"
+                               x:Name="VisitMySite"
+                               Text="www.elgaspar.com"
+                               HorizontalAlignment="Center"
+                               Margin="5"/>
+
+        <StackPanel Grid.Row="4"
+                    Orientation="Horizontal"
+                    Margin="5">
+            <TextBlock Text="This program is licensed under the "/>
+            <local:HyperlinkButton x:Name="ShowMyLicense"
+                                   Text="MIT License"/>
+            <TextBlock Text="."/>
+        </StackPanel>
+
+        
+        
+        <local:LibrariesTable Grid.Row="6"/>
+
+
+
+        <Grid Grid.Row="8" Grid.Column="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
@@ -35,7 +92,9 @@
                     Width="85" Height="37"
                     Margin="5" />
         </Grid>
+
     </Grid>
+    
     
     
 </Controls:MetroWindow>

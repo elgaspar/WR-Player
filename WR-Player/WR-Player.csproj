@@ -134,9 +134,15 @@
     <Compile Include="Views\DialogSettingsView.xaml.cs">
       <DependentUpon>DialogSettingsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\HyperlinkButton.xaml.cs">
+      <DependentUpon>HyperlinkButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ICompact.cs" />
     <Compile Include="Views\IconContentControl.xaml.cs">
       <DependentUpon>IconContentControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LibrariesTable.xaml.cs">
+      <DependentUpon>LibrariesTable.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoadedItemTextBlock.xaml.cs">
       <DependentUpon>LoadedItemTextBlock.xaml</DependentUpon>
@@ -241,11 +247,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\HyperlinkButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\IconContentControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\IconsResourceDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LibrariesTable.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -287,7 +301,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\third-party licenses\LICENSE Material Design Icons.txt">
+    <EmbeddedResource Include="Resources\third-party licenses\LICENSE Material Design Google Icons.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
@@ -309,6 +323,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\third-party licenses\LICENSE Material Design Community Icons.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

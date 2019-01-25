@@ -12,11 +12,7 @@ namespace WR_Player.Views.Assist
 {
     class Dialogs
     {
-        //TODO
-        //private static readonly string PLAYLIST_FILE_EXTENSION = ".m3u8";
         private static readonly string PLAYLIST_FILE_FILTER = playlistFileFilter();
-
-        //private static readonly string AUDIO_FILE_EXTENSION = ".m3u8";
         private static readonly string AUDIO_FILE_FILTER = audioFileFilter();
 
 
