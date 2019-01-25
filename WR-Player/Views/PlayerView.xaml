@@ -8,109 +8,109 @@
              Width="345"
              Height="107">
 
-    
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+    <Border BorderThickness="0" CornerRadius="10" Background="White">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-        
-        <local:LoadedItemTextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5"
+
+            <local:LoadedItemTextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5"
                                    HorizontalAlignment="Left"
                                    x:Name="loadedItemTextBlock"/>
 
-        <local:SeekingBar Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5"
+            <local:SeekingBar Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5"
                           x:Name="seekingBar"/>
 
-        <local:PlayerButton Grid.Row="2" Grid.Column="0"
+            <local:PlayerButton Grid.Row="2" Grid.Column="0"
                             x:Name="previousButton"
                             Cal:Message.Attach="Previous"
                             Content="{StaticResource PlayerPreviousIcon}"/>
 
-        <local:PlayerButton Grid.Row="2" Grid.Column="1"
+            <local:PlayerButton Grid.Row="2" Grid.Column="1"
                             x:Name="playButton"
                             Cal:Message.Attach="PlayOrResume"
                             Content="{StaticResource PlayerPlayIcon}"
                             Width="50"
                             Height="50">
-            <local:PlayerButton.Style>
-                <Style TargetType="{x:Type local:PlayerButton}"
+                <local:PlayerButton.Style>
+                    <Style TargetType="{x:Type local:PlayerButton}"
                        BasedOn="{StaticResource MahApps.Metro.Styles.MetroCircleButtonStyle}">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding Status, UpdateSourceTrigger=PropertyChanged}" Value="Playing">
-                            <Setter Property="Visibility" Value="Collapsed" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </local:PlayerButton.Style>
-        </local:PlayerButton>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Status, UpdateSourceTrigger=PropertyChanged}" Value="Playing">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </local:PlayerButton.Style>
+            </local:PlayerButton>
 
-        <local:PlayerButton Grid.Row="2" Grid.Column="1"
+            <local:PlayerButton Grid.Row="2" Grid.Column="1"
                             x:Name="pauseButton"
                             Cal:Message.Attach="Pause"
                             Content="{StaticResource PlayerPauseIcon}"
                             Width="50"
                             Height="50">
-            <local:PlayerButton.Style>
-                <Style TargetType="{x:Type local:PlayerButton}"
+                <local:PlayerButton.Style>
+                    <Style TargetType="{x:Type local:PlayerButton}"
                        BasedOn="{StaticResource MahApps.Metro.Styles.MetroCircleButtonStyle}">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding Status, UpdateSourceTrigger=PropertyChanged}" Value="Stopped">
-                            <Setter Property="Visibility" Value="Collapsed" />
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding Status, UpdateSourceTrigger=PropertyChanged}" Value="Buffering">
-                            <Setter Property="Visibility" Value="Collapsed" />
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding Status, UpdateSourceTrigger=PropertyChanged}" Value="Loading">
-                            <Setter Property="Visibility" Value="Collapsed" />
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding Status, UpdateSourceTrigger=PropertyChanged}" Value="Paused">
-                            <Setter Property="Visibility" Value="Collapsed" />
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding Status, UpdateSourceTrigger=PropertyChanged}" Value="Error">
-                            <Setter Property="Visibility" Value="Collapsed" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </local:PlayerButton.Style>
-        </local:PlayerButton>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Status, UpdateSourceTrigger=PropertyChanged}" Value="Stopped">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Status, UpdateSourceTrigger=PropertyChanged}" Value="Buffering">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Status, UpdateSourceTrigger=PropertyChanged}" Value="Loading">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Status, UpdateSourceTrigger=PropertyChanged}" Value="Paused">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Status, UpdateSourceTrigger=PropertyChanged}" Value="Error">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </local:PlayerButton.Style>
+            </local:PlayerButton>
 
-        <local:PlayerButton Grid.Row="2" Grid.Column="2"
+            <local:PlayerButton Grid.Row="2" Grid.Column="2"
                             x:Name="stopButton"
                             Cal:Message.Attach="Stop"
                             Content="{StaticResource PlayerStopIcon}"/>
 
-        <local:PlayerButton Grid.Row="2" Grid.Column="3"
+            <local:PlayerButton Grid.Row="2" Grid.Column="3"
                             x:Name="nextButton"
                             Cal:Message.Attach="Next"
                             Content="{StaticResource PlayerNextIcon}"/>
 
-        <local:VolumeSlider Grid.Row="2" Grid.Column="4"
+            <local:VolumeSlider Grid.Row="2" Grid.Column="4"
                             x:Name="volumeSlider"/>
 
-        <local:BufferingStatusTextBlock Grid.Row="2" Grid.Column="4"
+            <local:BufferingStatusTextBlock Grid.Row="2" Grid.Column="4"
                                         x:Name="bufferingStatusTextBlock"/>
 
-        <local:PositionDurationTextBlock Grid.Row="2" Grid.Column="4"
+            <local:PositionDurationTextBlock Grid.Row="2" Grid.Column="4"
                                          x:Name="positionDurationTextBlock"/>
 
-        
-        <local:CompactTitleBar Grid.Row="0" Grid.Column="4" Grid.RowSpan="3"
+
+            <local:CompactTitleBar Grid.Row="0" Grid.Column="4" Grid.RowSpan="3"
                                x:Name="compactTitleBar"
                                HorizontalAlignment="Right"
                                VerticalAlignment="Top"
                                Margin="0 2 2 0"/>
-        
-    </Grid>
 
-
+        </Grid>
+    </Border>
+    
 </UserControl>

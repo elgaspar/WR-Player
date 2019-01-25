@@ -27,7 +27,7 @@ namespace WR_Player.Views
         private WindowState savedState;
         private double savedWidth;
         private double savedHeight;
-        
+        private Brush savedBackground;
 
         public MainView()
         {
@@ -41,6 +41,7 @@ namespace WR_Player.Views
             savedState = WindowState;
             savedWidth = Width;
             savedHeight = Height;
+            savedBackground = Background;
         }
 
         private void restoreValues()
@@ -50,6 +51,7 @@ namespace WR_Player.Views
             WindowState = savedState;
             Width = savedWidth;
             Height = savedHeight;
+            Background = savedBackground;
         }
 
 
@@ -66,7 +68,8 @@ namespace WR_Player.Views
             MinHeight = 0;
             Topmost = Settings.AlwaysOnTop;
             ShowInTaskbar = !Settings.HideTaskbarIcon;
-
+            Background = Brushes.Transparent;
+            
             menu.EnableCompact();
             playlist.EnableCompact();
             player.EnableCompact();

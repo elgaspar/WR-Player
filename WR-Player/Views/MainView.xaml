@@ -12,6 +12,8 @@
                       MinWidth="347"
                       MinHeight="273"
                       MaxWidth="347"
+                      BorderThickness="0"
+                      AllowsTransparency="True"
                       WindowStartupLocation="CenterScreen"
                       SaveWindowPosition="True"
                       Loaded="metroWindow_Loaded"
