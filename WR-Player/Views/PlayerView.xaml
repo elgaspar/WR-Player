@@ -8,7 +8,7 @@
              Width="345"
              Height="107">
 
-    <Border BorderThickness="0" CornerRadius="10" Background="White">
+    <Border BorderThickness="0" CornerRadius="10" Background="WhiteSmoke">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>

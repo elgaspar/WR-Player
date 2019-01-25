@@ -7,9 +7,20 @@
              xmlns:local="clr-namespace:WR_Player.Views"
              xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:Cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro.Platform">
-    
-    <Menu>
 
+    <UserControl.Resources>
+        <Style TargetType="{x:Type Menu}"
+               BasedOn="{StaticResource MetroMenu}">
+            <Setter Property="Background" Value="WhiteSmoke" />
+        </Style>
+        <Style TargetType="{x:Type MenuItem}"
+               BasedOn="{StaticResource MetroMenuItem}">
+            <Setter Property="Background" Value="WhiteSmoke" />
+        </Style>
+    </UserControl.Resources>
+
+    <Menu>
+       
         <MenuItem Header="Playlist" Height="Auto">
             <MenuItem Header="New"
                       Icon="{StaticResource PlaylistNewIcon}"
