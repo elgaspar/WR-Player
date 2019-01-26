@@ -8,8 +8,12 @@
              Width="345"
              Height="107">
 
-    <Border BorderThickness="0" CornerRadius="10" Background="WhiteSmoke">
-        <Grid>
+    <Border x:Name="border" 
+            BorderThickness="0"
+            BorderBrush="LightGray"
+            CornerRadius="10"
+            Background="WhiteSmoke">
+        <Grid x:Name="grid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>

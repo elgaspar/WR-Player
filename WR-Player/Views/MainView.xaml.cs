@@ -73,7 +73,8 @@ namespace WR_Player.Views
             Topmost = Settings.AlwaysOnTop;
             ShowInTaskbar = !Settings.HideTaskbarIcon;
             Background = Brushes.Transparent;
-            
+            hideBorder();
+
             menu.EnableCompact();
             playlist.EnableCompact();
             player.EnableCompact();
@@ -93,6 +94,7 @@ namespace WR_Player.Views
             initWindowButtons();
 
             restoreValues();
+            showBorder();
 
             menu.DisableCompact();
             playlist.DisableCompact();
@@ -106,6 +108,16 @@ namespace WR_Player.Views
         {
             WindowButtonCommands = new WindowButtonCommands();
             WindowButtonCommands.ParentWindow = this;
+        }
+
+        private void showBorder()
+        {
+            this.BorderThickness = new Thickness(1);
+        }
+
+        private void hideBorder()
+        {
+            this.BorderThickness = new Thickness(0);
         }
 
 
