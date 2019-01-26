@@ -130,7 +130,9 @@ namespace WR_Player.Views
 
         private void metroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            Actions.PromptForPlaylistSave();
+            bool success = Actions.PromptForPlaylistSave();
+            if (!success)
+                e.Cancel = true; //cancel closing of application
             Settings.Save();
         }
 
