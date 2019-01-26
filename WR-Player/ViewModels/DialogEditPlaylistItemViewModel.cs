@@ -76,10 +76,6 @@ namespace WR_Player.ViewModels
 
         public void Ok()
         {
-            Console.WriteLine("ITEM EDIT: \n" +
-                                    "\tTitle: " + ItemTitle +
-                                    "\n\tPath: " + ItemPath);//TODO: delete me
-
             Success = true;
             try
             {

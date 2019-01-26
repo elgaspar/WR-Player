@@ -212,12 +212,10 @@ namespace WR_Player.ViewModels
             if (thereIsNoNextItem)
             {
                 Stop();
-                Console.WriteLine("Playback finished: No next item to load.");//TODO: deleteme
                 NotifyStatus(null, null);
                 return;
             }
             Next();
-            Console.WriteLine("Playback finished: Next item loaded.");//TODO: deleteme
         }
 
     }

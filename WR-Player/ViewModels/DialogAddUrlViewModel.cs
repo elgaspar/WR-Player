@@ -69,10 +69,6 @@ namespace WR_Player.ViewModels
 
         public void Ok()
         {
-            Console.WriteLine("URL ADD: \n" +
-                                    "\tTitle: " + ItemTitle +
-                                    "\n\tURL: " + ItemUrl);//TODO: delete me
-
             PlaylistItem newItem = new PlaylistItem(ItemTitle, ItemUrl);
             ParentVM.PlaylistVM.AddItem(newItem);
 
