@@ -4,9 +4,7 @@
              xmlns:Converters="clr-namespace:WR_Player.Views.Converters"
              xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:Cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro.Platform"
-             Width="345"
-             Height="107">
+             xmlns:Cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro.Platform">
 
     <Border x:Name="border" 
             BorderThickness="0"

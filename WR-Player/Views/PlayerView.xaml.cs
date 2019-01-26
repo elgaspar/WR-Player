@@ -21,7 +21,7 @@ namespace WR_Player.Views
     /// </summary>
     public partial class PlayerView : UserControl, ICompact
     {
-        private const double COMPACT_WIDTH = Double.NaN;//240;
+        private const double COMPACT_WIDTH = 258;
         private const double COMPACT_HEIGHT = Double.NaN; //Double.NaN is the default value. (equal to "Auto" in xaml)
 
         private const int COMPACT_GRID_MARGIN_LEFT = 3;
