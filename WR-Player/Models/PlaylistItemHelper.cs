@@ -11,10 +11,47 @@ namespace WR_Player.Models
 {
     static class PlaylistItemHelper
     {
+        private const int DURATION_DEFAULT_VALUE = -1;
+
+
+
         public static AudioType GenerateType(string path)
         {
             if (path.ToLower().StartsWith("http"))
                 return AudioType.Url;
+
+            try
+            {
+                return tryParseExtension(path);
+            }
+            catch (Exception)
+            {
+                return AudioType.Url;
+            }
+        }
+
+        public static int GenerateDuration(string path, AudioType type)
+        {
+            if (type == AudioType.Url)
+                return DURATION_DEFAULT_VALUE;
+
+            try
+            {
+                string durationString = getDurationStringFromShell(path);
+                return parseDurationStringToSeconds(durationString);
+            }
+            catch (Exception)
+            {
+                return DURATION_DEFAULT_VALUE;
+            }
+        }
+
+
+
+
+
+        private static AudioType tryParseExtension(string path)
+        {
             string extension = System.IO.Path.GetExtension(path);
             extension = extension.Substring(1); //first character is '.' so we remove it
             extension = extension.First().ToString().ToUpper() + extension.Substring(1).ToLower();
@@ -22,20 +59,7 @@ namespace WR_Player.Models
             return type;
         }
 
-        public static int GenerateDuration(string path, AudioType type)
-        {
-            if (type == AudioType.Url)
-                return -1;
-
-            string durationString = getDurationStringFromShell(path);
-            return parseDurationStringToSeconds(durationString);
-        }
-
-
-
-
-
-        public static string getDurationStringFromShell(string path)
+        private static string getDurationStringFromShell(string path)
         {
             FileInfo fileInfo = new FileInfo(path);
             string directoryName = fileInfo.DirectoryName;
