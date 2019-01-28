@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="WR_Player.Views.SeekingBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WR_Player.Views"
+             xmlns:Converters="clr-namespace:WR_Player.Views.Converters"
+             xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+             mc:Ignorable="d"
+             Margin="5 0 5 2">
+
+    
+    
+    <UserControl.Resources>
+        
+        <Style x:Key="sliderStyle"
+               TargetType="{x:Type Slider}"
+               BasedOn="{StaticResource MetroSlider}">
+            <Style.Triggers>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding LoadedItem.Type}" Value="Url"/>
+                        <Condition Binding="{Binding IsPlaying}" Value="True" />
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </MultiDataTrigger>
+            </Style.Triggers>
+        </Style>
+        
+        <Style x:Key="progressBarStyle"
+               TargetType="{x:Type ProgressBar}"
+               BasedOn="{StaticResource MetroProgressBar}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Visibility, ElementName=slider}" Value="Visible">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        
+        <Style x:Key="controlCollapsedStyle"
+               TargetType="{x:Type Control}">
+            <Setter Property="Visibility" Value="Collapsed"/>
+        </Style>
+
+    </UserControl.Resources>
+    
+    
+    
+    <StackPanel>
+        <Slider x:Name="slider"
+                IsEnabled="{Binding IsPlaying}"
+                Style="{StaticResource sliderStyle}"
+                Value="{Binding PositionInSeconds}"
+                ToolTip="{Binding PositionInSeconds, Converter={Converters:SecondsToStringConverter}}"
+                Focusable="False"
+                Maximum="{Binding DurationInSeconds, Mode=OneWay}"
+                IsMoveToPointEnabled="True"
+                Controls:SliderHelper.ThumbFillDisabledBrush="#FF7F7F7F"
+                Controls:SliderHelper.TrackFillDisabledBrush="#FF9D9D9D"
+                Controls:SliderHelper.ThumbFillHoverBrush="#FF7F7F7F"
+                Controls:SliderHelper.TrackValueFillDisabledBrush="{DynamicResource AccentColorBrush}"/>
+
+        <ProgressBar x:Name="progressBar"
+                     Style="{StaticResource progressBarStyle}"
+                     IsIndeterminate="True"
+                     Height="10"
+                     Margin="0 0 0 6"/>
+    </StackPanel>
+    
+    
+    
+</UserControl>

@@ -1,0 +1,84 @@
+﻿<UserControl x:Class="WR_Player.Views.PlaylistView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WR_Player.Views"
+             xmlns:Converters="clr-namespace:WR_Player.Views.Converters"
+             xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:Cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro.Platform">
+
+    
+    <ListBox Grid.Row="2"
+             x:Name="list"
+             ItemsSource="{Binding Items}"
+             SelectionMode="Extended"
+             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+             BorderBrush="LightGray"
+             BorderThickness="0 1 0 1"
+             SelectionChanged="list_SelectionChanged"
+             MouseDown="list_MouseDown"
+             MouseDoubleClick="list_MouseDoubleClick">
+
+        <ListBox.ItemTemplate>
+            <DataTemplate>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <TextBlock Grid.Column="0"
+                               Text="{Binding StringFormat='{}{0}. ' , RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}, Converter={Converters:ListBoxItemIndexConverter}}"/>
+                    
+                    <TextBlock Grid.Column="2"
+                               Text="{Binding Title}"
+                               ToolTip="{Binding Title}"
+                               TextTrimming="CharacterEllipsis">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MetroTextBlock}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                        <Setter Property="FontWeight" Value="Bold" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+
+                    <TextBlock Grid.Column="3"
+                               Text="{Binding DurationInSeconds, Converter={Converters:SecondsToStringConverter}}"
+                               FontSize="10"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Right"
+                               Margin="10 0 5 0"/>
+                    
+                </Grid>
+
+            </DataTemplate>
+        </ListBox.ItemTemplate>
+
+        <ListBox.ContextMenu>
+            <ContextMenu>
+                <MenuItem Header="Play.."
+                          Icon="{StaticResource PlaySelectedIcon}"
+                          IsEnabled="{Binding CanPlay}"
+                          Click="MenuItem_Click_Play"/>
+                <Separator />
+                <MenuItem Header="Edit.."
+                          Icon="{StaticResource EditSelectedIcon}"
+                          IsEnabled="{Binding CanEdit}"
+                          Click="MenuItem_Click_Edit"/>
+                <MenuItem Header="Remove.."
+                          Icon="{StaticResource RemoveSelectedIcon}"
+                          IsEnabled="{Binding CanRemove}"
+                          Click="MenuItem_Click_Remove"/>
+            </ContextMenu>
+        </ListBox.ContextMenu>
+        
+    </ListBox>
+
+</UserControl>

@@ -1,0 +1,51 @@
+﻿<Controls:MetroWindow x:Name="metroWindow" x:Class="WR_Player.Views.MainView"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:local="clr-namespace:WR_Player.Views"
+                      xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      Title="WR-Player"
+                      TitleCaps="False"
+                      Width="318"
+                      Height="273"
+                      MinWidth="318"
+                      MinHeight="273"
+                      MaxWidth="318"
+                      BorderThickness="1"
+                      AllowsTransparency="True"
+                      WindowStartupLocation="CenterScreen"
+                      SaveWindowPosition="True"
+                      MouseDown="metroWindow_MouseDown"
+                      Loaded="metroWindow_Loaded"
+                      Closing="metroWindow_Closing">
+
+    <Controls:MetroWindow.IconTemplate>
+        <DataTemplate>
+            <ContentControl Content="{StaticResource MainIcon}"/>
+        </DataTemplate>
+    </Controls:MetroWindow.IconTemplate>
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <local:MenuView Grid.Row="0"
+                        x:Name="menu"/>
+
+        <local:PlaylistView Grid.Row="1"
+                            x:Name="playlist"
+                            DataContext="{Binding PlaylistVM}"/>
+
+        <local:PlayerView Grid.Row="2"
+                          x:Name="player"
+                          DataContext="{Binding PlayerVM}"/>
+
+    </Grid>
+
+
+</Controls:MetroWindow>

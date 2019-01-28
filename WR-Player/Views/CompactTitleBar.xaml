@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="WR_Player.Views.CompactTitleBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WR_Player.Views"
+             mc:Ignorable="d" 
+             
+             Visibility="Collapsed">
+    
+    
+    <StackPanel Orientation="Horizontal">
+        
+        <local:CompactButton ToolTip="Restore"
+                             Icon="{StaticResource CompactModeDisableIcon}"
+                             Click="CompactButton_Click_Restore"/>
+
+        <local:CompactButton ToolTip="Exit"
+                             Icon="{StaticResource CompactModeExitIcon}"
+                             Click="CompactButton_Click_Exit"/>
+    </StackPanel>
+    
+    
+</UserControl>
