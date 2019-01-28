@@ -32,10 +32,10 @@ namespace WR_Player.Models
 
             playlist = new Playlist();
             lines = new List<string>();
-            lines.AddRange(linesRead);
 
             try
             {
+                lines.AddRange(linesRead);
                 trimLinesAndRemoveEmpty();
                 readStartingLine();
                 readAllItems();
