@@ -9,7 +9,7 @@ namespace WR_Player.ViewModels
 {
     class DialogAboutViewModel : DialogViewModelBase
     {
-        private const string VersionNo = "1.0.0";
+        private const string VersionNo = "1.0.1";
 
         private const string MY_SITE_URL = @"http://www.elgaspar.com";
         private const string LICENSE_WR_PLAYER = @"Resources\LICENSE WR-Player.txt";
