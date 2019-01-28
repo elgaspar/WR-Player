@@ -20,8 +20,3 @@ It supports the most common formats (aac, mp3, ogg, wav, wma), as well as playin
 
 ### License
 This software is licensed under the [MIT License](https://github.com/elgaspar/WR-Player/blob/master/LICENSE).
-
-
-https://user-images.githubusercontent.com/44162363/51832308-fa6c1100-22fc-11e9-930c-4c6a2fb4be86.png
-https://user-images.githubusercontent.com/44162363/51832309-fa6c1100-22fc-11e9-8dc9-84425c5555dc.png
-https://user-images.githubusercontent.com/44162363/51832310-fb04a780-22fc-11e9-84a8-965ee74a602f.png
