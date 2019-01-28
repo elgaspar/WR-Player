@@ -17,6 +17,9 @@ It supports the most common formats (aac, mp3, ogg, wav, wma), as well as playin
 ![screenshot2](https://user-images.githubusercontent.com/44162363/51832850-7a46ab00-22fe-11e9-833c-5b9c65d20000.png)
 ![screenshot3](https://user-images.githubusercontent.com/44162363/51832852-7a46ab00-22fe-11e9-9c25-1c61a4899985.png)
 
+### Downloads
+[Windows Installer](hhttps://github.com/elgaspar/WR-Player/releases/download/v1.0.0/WR-Player-v1.0.0-setup.exe)
+
 
 ### License
 This software is licensed under the [MIT License](https://github.com/elgaspar/WR-Player/blob/master/LICENSE).
