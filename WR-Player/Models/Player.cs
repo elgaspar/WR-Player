@@ -122,7 +122,11 @@ namespace WR_Player.Models
 
         private void Player_PlaybackStarted(object sender, EventArgs e)
         {
-            Status = PlayerStatus.Playing;
+            /* This check is needed for the case when Stop() is called
+             * right after the Play() was called and before this handler
+             * runs. */
+            if (Status != PlayerStatus.Stopped)
+                Status = PlayerStatus.Playing;
         }
 
         private void Player_PlaybackFinished(object sender, EventArgs e)
