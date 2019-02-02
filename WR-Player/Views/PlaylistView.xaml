@@ -64,18 +64,27 @@
         <ListBox.ContextMenu>
             <ContextMenu>
                 <MenuItem Header="Play.."
-                          Icon="{StaticResource PlaySelectedIcon}"
                           IsEnabled="{Binding CanPlay}"
-                          Click="MenuItem_Click_Play"/>
+                          Click="MenuItem_Click_Play">
+                    <MenuItem.Icon>
+                        <local:IconContentControl DataPath="{StaticResource PlayIconPath}"/>
+                    </MenuItem.Icon>
+                </MenuItem>
                 <Separator />
                 <MenuItem Header="Edit.."
-                          Icon="{StaticResource EditSelectedIcon}"
                           IsEnabled="{Binding CanEdit}"
-                          Click="MenuItem_Click_Edit"/>
+                          Click="MenuItem_Click_Edit">
+                    <MenuItem.Icon>
+                        <local:IconContentControl DataPath="{StaticResource EditIconPath}"/>
+                    </MenuItem.Icon>
+                </MenuItem>
                 <MenuItem Header="Remove.."
-                          Icon="{StaticResource RemoveSelectedIcon}"
                           IsEnabled="{Binding CanRemove}"
-                          Click="MenuItem_Click_Remove"/>
+                          Click="MenuItem_Click_Remove">
+                    <MenuItem.Icon>
+                        <local:IconContentControl DataPath="{StaticResource RemoveSelectedIconPath}"/>
+                    </MenuItem.Icon>
+                </MenuItem>
             </ContextMenu>
         </ListBox.ContextMenu>
         

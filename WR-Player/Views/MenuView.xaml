@@ -23,62 +23,97 @@
        
         <MenuItem Header="Playlist" Height="Auto">
             <MenuItem Header="New"
-                      Icon="{StaticResource PlaylistNewIcon}"
                       Click="Click_PlaylistNew">
+                <MenuItem.Icon>
+                    <local:IconContentControl DataPath="{StaticResource PlaylistNewIconPath}"/>
+                </MenuItem.Icon>
             </MenuItem>
             <MenuItem Header="Open.."
-                      Icon="{StaticResource PlaylistOpenIcon}"
-                      Click="Click_PlaylistOpen"/>
+                      Click="Click_PlaylistOpen">
+                <MenuItem.Icon>
+                    <local:IconContentControl DataPath="{StaticResource PlaylistOpenIconPath}"/>
+                </MenuItem.Icon>
+            </MenuItem>
             <Separator/>
             <MenuItem Header="Save"
-                      Icon="{StaticResource PlaylistSaveIcon}"
-                      Click="Click_PlaylistSave"/>
+                      Click="Click_PlaylistSave">
+                <MenuItem.Icon>
+                    <local:IconContentControl DataPath="{StaticResource PlaylistSaveIconPath}"/>
+                </MenuItem.Icon>
+            </MenuItem>
             <MenuItem Header="Save As.."
-                      Icon="{StaticResource PlaylistSaveAsIcon}"
-                      Click="Click_PlaylistSaveAs"/>
+                      Click="Click_PlaylistSaveAs">
+                <MenuItem.Icon>
+                    <local:IconContentControl DataPath="{StaticResource PlaylistSaveAsIconPath}"/>
+                </MenuItem.Icon>
+            </MenuItem>
         </MenuItem>
 
         <MenuItem Header="Add" Height="Auto">
             <MenuItem Header="File.."
-                      Icon="{StaticResource AddFileIcon}"
-                      Click="Click_AddFile"/>
+                      Click="Click_AddFile">
+                <MenuItem.Icon>
+                    <local:IconContentControl DataPath="{StaticResource FileIconPath}"/>
+                </MenuItem.Icon>
+            </MenuItem>
             <MenuItem Header="Directory.."
-                      Icon="{StaticResource AddDirectoryIcon}"
-                      Click="Click_AddDirectory"/>
+                      Click="Click_AddDirectory">
+                <MenuItem.Icon>
+                    <local:IconContentControl DataPath="{StaticResource DirectoryIconPath}"/>
+                </MenuItem.Icon>
+            </MenuItem>
             <MenuItem Header="URL.."
-                      Icon="{StaticResource AddUrlIcon}"
-                      Click="Click_AddUrl"/>
+                      Click="Click_AddUrl">
+                <MenuItem.Icon>
+                    <local:IconContentControl DataPath="{StaticResource UrlIconPath}"/>
+                </MenuItem.Icon>
+            </MenuItem>
         </MenuItem>
 
         <MenuItem Header="Remove" Height="Auto">
             <MenuItem Header="Selected.."
-                      Icon="{StaticResource RemoveSelectedIcon}"
                       IsEnabled="{Binding PlaylistVM.CanRemove}"
-                      Click="Click_RemoveSelected"/>
+                      Click="Click_RemoveSelected">
+                <MenuItem.Icon>
+                    <local:IconContentControl DataPath="{StaticResource RemoveSelectedIconPath}"/>
+                </MenuItem.Icon>
+            </MenuItem>
             <MenuItem Header="All.."
-                      Icon="{StaticResource RemoveAllIcon}"
                       IsEnabled="{Binding PlaylistVM.AreThereItems}"
-                      Click="Click_RemoveAll"/>
+                      Click="Click_RemoveAll">
+                <MenuItem.Icon>
+                    <local:IconContentControl DataPath="{StaticResource RemoveAllIconPath}"/>
+                </MenuItem.Icon>
+            </MenuItem>
         </MenuItem>
 
         <MenuItem Header="View" Height="Auto">
             <MenuItem Header="Compact Mode"
-                      Icon="{StaticResource CompactModeEnableIcon}"
                       IsCheckable="True"
                       IsChecked="{Binding ElementName=mv, Path=IsCompactModeEnabled}"
-                      Click="Click_CompactMode"/>
+                      Click="Click_CompactMode">
+                <MenuItem.Icon>
+                    <local:IconContentControl DataPath="{StaticResource CompactModeEnableIconPath}"/>
+                </MenuItem.Icon>
+            </MenuItem>
         </MenuItem>
 
         <MenuItem Header="Options" Height="Auto">
             <MenuItem Header="Settings.."
-                      Icon="{StaticResource SettingsIcon}"
-                      Click="Click_Settings"/>
+                      Click="Click_Settings">
+                <MenuItem.Icon>
+                    <local:IconContentControl DataPath="{StaticResource SettingsIconPath}"/>
+                </MenuItem.Icon>
+            </MenuItem>
         </MenuItem>
         
         <MenuItem Header="Help" Height="Auto">
             <MenuItem Header="About WR-Player.."
-                      Icon="{StaticResource AboutIcon}"
-                      Click="Click_About"/>
+                      Click="Click_About">
+                <MenuItem.Icon>
+                    <local:IconContentControl DataPath="{StaticResource AboutIconPath}"/>
+                </MenuItem.Icon>
+            </MenuItem>
         </MenuItem>
 
     </Menu>

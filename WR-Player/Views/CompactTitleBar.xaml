@@ -10,14 +10,24 @@
     
     
     <StackPanel Orientation="Horizontal">
-        
+
         <local:CompactButton ToolTip="Restore"
-                             Icon="{StaticResource CompactModeDisableIcon}"
-                             Click="CompactButton_Click_Restore"/>
+                             Click="CompactButton_Click_Restore">
+            <local:CompactButton.Icon>
+                <local:IconContentControl IconWidth="14"
+                                          IconHeight="14"
+                                          DataPath="{StaticResource CompactModeDisableIconPath}"/>
+            </local:CompactButton.Icon>
+        </local:CompactButton>
 
         <local:CompactButton ToolTip="Exit"
-                             Icon="{StaticResource CompactModeExitIcon}"
-                             Click="CompactButton_Click_Exit"/>
+                             Click="CompactButton_Click_Exit">
+            <local:CompactButton.Icon>
+                <local:IconContentControl IconWidth="14"
+                                          IconHeight="14"
+                                          DataPath="{StaticResource CompactModeExitIconPath}"/>
+            </local:CompactButton.Icon>
+        </local:CompactButton>
     </StackPanel>
     
     

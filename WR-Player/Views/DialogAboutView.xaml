@@ -15,7 +15,8 @@
 
     <Controls:MetroWindow.IconTemplate>
         <DataTemplate>
-            <ContentControl Content="{StaticResource DialogAboutIcon}"/>
+            <local:IconContentControl DataPath="{StaticResource AboutIconPath}"
+                                      ForegroundColor="{DynamicResource IdealForegroundColorBrush}"/>
         </DataTemplate>
     </Controls:MetroWindow.IconTemplate>
 

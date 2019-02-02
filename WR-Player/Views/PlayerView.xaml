@@ -27,23 +27,28 @@
 
 
             <local:LoadedItemTextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5"
-                                   HorizontalAlignment="Left"
-                                   x:Name="loadedItemTextBlock"/>
+                                       HorizontalAlignment="Left"
+                                       x:Name="loadedItemTextBlock"/>
 
             <local:SeekingBar Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5"
-                          x:Name="seekingBar"/>
+                              x:Name="seekingBar"/>
 
             <local:PlayerButton Grid.Row="2" Grid.Column="0"
-                            x:Name="previousButton"
-                            Cal:Message.Attach="Previous"
-                            Content="{StaticResource PlayerPreviousIcon}"/>
+                                x:Name="previousButton"
+                                Cal:Message.Attach="Previous">
+                <local:IconContentControl IconWidth="40"
+                                          IconHeight="40"
+                                          DataPath="{StaticResource PreviousIconPath}"/>
+            </local:PlayerButton>
 
             <local:PlayerButton Grid.Row="2" Grid.Column="1"
-                            x:Name="playButton"
-                            Cal:Message.Attach="PlayOrResume"
-                            Content="{StaticResource PlayerPlayIcon}"
-                            Width="50"
-                            Height="50">
+                                x:Name="playButton"
+                                Width="50"
+                                Height="50"
+                                Cal:Message.Attach="PlayOrResume">
+                <local:IconContentControl IconWidth="50"
+                                          IconHeight="50"
+                                          DataPath="{StaticResource PlayIconPath}"/>
                 <local:PlayerButton.Style>
                     <Style TargetType="{x:Type local:PlayerButton}"
                        BasedOn="{StaticResource MahApps.Metro.Styles.MetroCircleButtonStyle}">
@@ -57,11 +62,13 @@
             </local:PlayerButton>
 
             <local:PlayerButton Grid.Row="2" Grid.Column="1"
-                            x:Name="pauseButton"
-                            Cal:Message.Attach="Pause"
-                            Content="{StaticResource PlayerPauseIcon}"
-                            Width="50"
-                            Height="50">
+                                x:Name="pauseButton"
+                                Width="50"
+                                Height="50"
+                                Cal:Message.Attach="Pause">
+                <local:IconContentControl IconWidth="50"
+                                          IconHeight="50"
+                                          DataPath="{StaticResource PauseIconPath}"/>
                 <local:PlayerButton.Style>
                     <Style TargetType="{x:Type local:PlayerButton}"
                        BasedOn="{StaticResource MahApps.Metro.Styles.MetroCircleButtonStyle}">
@@ -87,30 +94,36 @@
             </local:PlayerButton>
 
             <local:PlayerButton Grid.Row="2" Grid.Column="2"
-                            x:Name="stopButton"
-                            Cal:Message.Attach="Stop"
-                            Content="{StaticResource PlayerStopIcon}"/>
+                                x:Name="stopButton"
+                                Cal:Message.Attach="Stop">
+                <local:IconContentControl IconWidth="40"
+                                          IconHeight="40"
+                                          DataPath="{StaticResource StopIconPath}"/>
+            </local:PlayerButton>
 
             <local:PlayerButton Grid.Row="2" Grid.Column="3"
-                            x:Name="nextButton"
-                            Cal:Message.Attach="Next"
-                            Content="{StaticResource PlayerNextIcon}"/>
+                                x:Name="nextButton"
+                                Cal:Message.Attach="Next">
+                <local:IconContentControl IconWidth="40"
+                                          IconHeight="40"
+                                          DataPath="{StaticResource NextIconPath}"/>
+            </local:PlayerButton>
 
             <local:VolumeSlider Grid.Row="2" Grid.Column="4"
-                            x:Name="volumeSlider"/>
+                                x:Name="volumeSlider"/>
 
             <local:BufferingStatusTextBlock Grid.Row="2" Grid.Column="4"
-                                        x:Name="bufferingStatusTextBlock"/>
+                                            x:Name="bufferingStatusTextBlock"/>
 
             <local:PositionDurationTextBlock Grid.Row="2" Grid.Column="4"
-                                         x:Name="positionDurationTextBlock"/>
+                                             x:Name="positionDurationTextBlock"/>
 
 
             <local:CompactTitleBar Grid.Row="0" Grid.Column="4" Grid.RowSpan="3"
-                               x:Name="compactTitleBar"
-                               HorizontalAlignment="Right"
-                               VerticalAlignment="Top"
-                               Margin="0 2 2 0"/>
+                                   x:Name="compactTitleBar"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Top"
+                                   Margin="0 2 2 0"/>
 
         </Grid>
     </Border>

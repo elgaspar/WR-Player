@@ -16,7 +16,8 @@
 
     <Controls:MetroWindow.IconTemplate>
         <DataTemplate>
-            <ContentControl Content="{StaticResource DialogEditPlaylistItemIcon}"/>
+            <local:IconContentControl DataPath="{StaticResource DialogEditPlaylistItemIconPath}"
+                                      ForegroundColor="{DynamicResource IdealForegroundColorBrush}"/>
         </DataTemplate>
     </Controls:MetroWindow.IconTemplate>
 
