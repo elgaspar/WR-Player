@@ -22,7 +22,8 @@
 
     <Controls:MetroWindow.IconTemplate>
         <DataTemplate>
-            <ContentControl Content="{StaticResource MainIcon}"/>
+            <Image Source="{StaticResource MainIconPath}"
+                   Margin="3"/>
         </DataTemplate>
     </Controls:MetroWindow.IconTemplate>
 

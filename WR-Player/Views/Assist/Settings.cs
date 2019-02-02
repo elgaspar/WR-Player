@@ -142,7 +142,7 @@ namespace WR_Player.Views.Assist
             bool openFile = OpenLastUsedFile;
             bool validFile = !string.IsNullOrEmpty(LastUsedFilepath);
             if (openFile && validFile)
-                Actions.PlaylistOpen(LastUsedFilepath);
+                mainVM.PlaylistVM.Load(LastUsedFilepath);
         }
 
         private static void enableCompactModeIfNeeded()

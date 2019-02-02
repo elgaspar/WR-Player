@@ -13,6 +13,13 @@
                       ResizeMode="NoResize"
                       WindowStartupLocation="CenterOwner">
 
+    <Controls:MetroWindow.IconTemplate>
+        <DataTemplate>
+            <local:IconContentControl DataPath="{StaticResource ErrorIconPath}"
+                                      ForegroundColor="{DynamicResource IdealForegroundColorBrush}"/>
+        </DataTemplate>
+    </Controls:MetroWindow.IconTemplate>
+    
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
